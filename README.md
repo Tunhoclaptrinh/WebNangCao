@@ -2,10 +2,10 @@
 
 [![GitHub repo](https://img.shields.io/badge/Repository-WebNangCao-blue.svg?logo=github)](https://github.com/Tunhoclaptrinh/WebNangCao)
 [![Node.js Version](https://img.shields.io/badge/Node.js-%3E%3D20-green.svg?logo=node.js)](https://nodejs.org/)
-[![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)](#danh-mục-bài-tập-thực-hành)
+[![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)](#-danh-mục-các-bài-đã-có)
 [![Semester](https://img.shields.io/badge/H%E1%BB%8Dc%20K%E1%BB%B3-HK7-orange.svg)](#)
 
-> Repository lưu trữ và quản lý toàn bộ các bài tập thực hành (Labs), bài tập lớn, mã nguồn và tài liệu liên quan cho môn học **Lập trình Web nâng cao**.
+> Repository quản lý các bài tập thực hành (**Lab**) và bài tập về nhà / quá trình (**BaiTap**) môn học **Lập trình Web Nâng Cao**.
 
 ---
 
@@ -20,82 +20,79 @@
 
 ## 🗂️ Cấu Trúc Thư Mục (Repository Structure)
 
-Toàn bộ các bài tập được chuẩn hoá theo từng thư mục riêng biệt độc lập để dễ dàng cài đặt, quản lý dependencies và chấm điểm:
+Repository được phân chia rõ ràng làm **2 khu vực chính**:
+1. 🧪 **`Lab/`**: Chứa toàn bộ các bài thực hành trên lớp / phòng máy (`Lab-01`, `Lab-02`,...).
+2. 📝 **`BaiTap/`**: Chứa toàn bộ các bài tập về nhà, bài tập tuần, bài tập quá trình.
 
 ```text
-BaiTap/
-├── .gitignore               # Cấu hình bỏ qua các file không cần thiết (node_modules, build, env...)
-├── README.md                # Mục lục chính, giới thiệu và lộ trình bài tập
+BaiTap/ (Workspace Root)
+├── .gitignore               # Cấu hình bỏ qua file build, node_modules, env...
+├── README.md                # Mục lục chính, chỉ gán các bài đã có
 │
-├── docs/                    # Tài liệu tham khảo môn học, slide, đề bài
-│   ├── de-bai/              # Nơi lưu trữ file đề bài gốc (PDF, ảnh, docx...)
-│   └── README.md            # Ghi chú tài liệu học tập
+├── docs/                    # Tài liệu tham khảo, slide môn học, file đề bài gốc
+│   └── de-bai/              # Nơi lưu file đề bài (PDF, ảnh, docx...)
 │
-├── Lab-01/                  # Bài tập thực hành số 01
-│   ├── README.md            # Yêu cầu đề bài, hướng dẫn chạy và demo Lab 01
-│   └── ...                  # Mã nguồn bài tập Lab 01
+├── Lab/                     # Khu vực 1: BÀI THỰC HÀNH (LAB)
+│   ├── README.md            # Mục lục khu vực Lab
+│   └── Lab-01/              # Bài thực hành số 1
+│       └── README.md
 │
-├── Lab-02/                  # Bài tập thực hành số 02 (sắp tới)
-└── ...
+└── BaiTap/                  # Khu vực 2: BÀI TẬP VỀ NHÀ / QUÁ TRÌNH (BAITAP)
+    └── README.md            # Mục lục khu vực Bài tập
 ```
 
 ---
 
-## 📋 Danh Mục Bài Tập Thực Hành
+## 📋 Danh Mục Các Bài Đã Có
 
-| STT | Bài Tập | Thư Mục | Nội Dung / Yêu Cầu Chính | Công Nghệ | Trạng Thái |
+### 🧪 1. Danh Sách Bài Thực Hành (Lab)
+
+| STT | Tên Lab | Đường Dẫn Thư Mục | Nội Dung / Yêu Cầu Chính | Công Nghệ | Trạng Thái |
 | :---: | :--- | :--- | :--- | :--- | :---: |
-| 01 | [**Lab 01**](./Lab-01/) | [`Lab-01/`](./Lab-01/) | Khởi tạo môi trường, bài tập thực hành số 1 | HTML/CSS/JS, Vite / React / Node.js | 🟡 Đang chuẩn bị |
-| 02 | **Lab 02** | [`Lab-02/`](./Lab-02/) | Bài tập thực hành số 2 | *Đang cập nhật* | ⏳ Chưa bắt đầu |
-| 03 | **Lab 03** | [`Lab-03/`](./Lab-03/) | Bài tập thực hành số 3 | *Đang cập nhật* | ⏳ Chưa bắt đầu |
-| 04 | **Lab 04** | [`Lab-04/`](./Lab-04/) | Bài tập thực hành số 4 | *Đang cập nhật* | ⏳ Chưa bắt đầu |
-| 05 | **Lab 05** | [`Lab-05/`](./Lab-05/) | Bài tập thực hành số 5 | *Đang cập nhật* | ⏳ Chưa bắt đầu |
-| 06 | **Lab 06** | [`Lab-06/`](./Lab-06/) | Bài tập thực hành số 6 | *Đang cập nhật* | ⏳ Chưa bắt đầu |
-| 07 | **Lab 07** | [`Lab-07/`](./Lab-07/) | Bài tập thực hành số 7 | *Đang cập nhật* | ⏳ Chưa bắt đầu |
-| 08 | **Đồ án** | `Project/` | Đồ án môn học Lập trình Web Nâng Cao | *Đang cập nhật* | ⏳ Chưa bắt đầu |
+| 01 | [**Lab 01**](./Lab/Lab-01/) | [`Lab/Lab-01/`](./Lab/Lab-01/) | Khởi tạo môi trường & bài thực hành số 1 | HTML/CSS/JS, Node.js | 🟡 Đang chuẩn bị |
 
-> *Ghi chú trạng thái:*
-> - 🟢 **Hoàn thành:** Đã hoàn thiện toàn bộ yêu cầu, test kỹ và có tài liệu demo.
-> - 🟡 **Đang thực hiện:** Đang trong quá trình code và kiểm thử.
-> - ⏳ **Chưa bắt đầu:** Chưa đến lịch học hoặc chưa có đề bài.
+---
+
+### 📝 2. Danh Sách Bài Tập (Bài Tập Về Nhà / Tuần)
+
+| STT | Tên Bài Tập | Đường Dẫn Thư Mục | Nội Dung / Yêu Cầu Chính | Công Nghệ | Trạng Thái |
+| :---: | :--- | :--- | :--- | :--- | :---: |
+| — | *(Chưa có bài tập nào)* | — | Sẽ cập nhật khi có bài tập mới | — | ⏳ Chờ cập nhật |
+
+> *Ghi chú:*
+> - Danh mục chỉ hiển thị các bài tập đã có trong repository. Khi có bài mới sẽ được bổ sung trực tiếp vào bảng tương ứng.
+> - Trạng thái: 🟢 Hoàn thành | 🟡 Đang thực hiện / chuẩn bị | 🔴 Cần chỉnh sửa.
 
 ---
 
 ## ⚙️ Hướng Dẫn Cài Đặt & Chạy Môi Trường Chung
 
-### 1. Yêu cầu hệ thống (Prerequisites)
+### 1. Yêu cầu hệ thống
 - [Node.js](https://nodejs.org/) (khuyến nghị phiên bản LTS >= 20.x)
-- Quản lý gói: `npm` (có sẵn với Node.js) hoặc `pnpm` / `yarn`
+- Trình quản lý gói: `npm` / `pnpm` / `yarn`
 - [Git](https://git-scm.com/)
 
-### 2. Hướng dẫn Clone và Thao tác
+### 2. Hướng dẫn chạy bài tập cụ thể
 ```bash
 # Clone repository
 git clone https://github.com/Tunhoclaptrinh/WebNangCao.git
-
-# Di chuyển vào thư mục bài tập
 cd WebNangCao
 
-# Vào thư mục bài tập cần chạy (Ví dụ Lab-01)
-cd Lab-01
+# Vào thư mục bài thực hành hoặc bài tập cần chạy (Ví dụ Lab 01)
+cd Lab/Lab-01
 
-# Cài đặt dependencies (nếu bài tập có package.json)
+# Cài đặt dependencies (nếu có package.json)
 npm install
 
-# Khởi chạy dev server
+# Chạy project
 npm run dev
 ```
 
 ---
 
-## 📝 Quy Chuẩn Thực Hiện & Commit
+## 📝 Quy Chuẩn Git Commit
 
-- **Tổ chức thư mục:** Mỗi bài tập nằm trong một thư mục riêng (`Lab-XX`). Bên trong thư mục luôn có file `README.md` trình bày:
-  1. Đề bài và mục tiêu
-  2. Hướng dẫn chạy và test
-  3. Ảnh minh hoạ / Kết quả thực hiện
-- **Quy chuẩn Git Commit:** Áp dụng Conventional Commits:
-  - `feat(Lab-01): hoàn thành chức năng X`
-  - `fix(Lab-01): sửa lỗi hiển thị layout`
-  - `docs(README): cập nhật danh mục bài tập`
-  - `refactor(Lab-01): tối ưu hoá cấu trúc component`
+- `feat(Lab-01): hoàn thành chức năng X`
+- `feat(BaiTap-01): nộp bài tập số 1`
+- `fix(Lab-01): sửa lỗi giao diện Y`
+- `docs(README): cập nhật bài mới vào danh mục`
