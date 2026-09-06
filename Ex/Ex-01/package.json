@@ -1,0 +1,13 @@
+{
+  "name": "ex-01-order-management-types",
+  "version": "1.0.0",
+  "description": "Bài tập tuần 1: Thiết kế bộ type TypeScript nâng cao cho module Quản lý đơn hàng (PTIT - LTWNC)",
+  "main": "order-management.types.ts",
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "demo": "npx tsx order-management.demo.ts"
+  },
+  "keywords": ["typescript", "generics", "utility-types", "order-management", "ptit"],
+  "author": "Tunhoclaptrinh",
+  "license": "MIT"
+}

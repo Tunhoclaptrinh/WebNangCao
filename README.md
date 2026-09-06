@@ -5,7 +5,7 @@
 [![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)](#-danh-mục-các-bài-đã-có)
 [![Semester](https://img.shields.io/badge/H%E1%BB%8Dc%20K%E1%BB%B3-HK7-orange.svg)](#)
 
-> Repository quản lý các bài thực hành (**Lab**) và bài tập (**Ex**) môn học **Lập trình Web Nâng Cao**.
+> Repository quản lý các bài thực hành (**Lab**) và bài tập (**Ex**) môn học **Lập trình Web Nâng Cao** (PTIT - HK7).
 
 ---
 
@@ -30,7 +30,8 @@ BaiTap/ (Workspace Root)
 ├── README.md                # Mục lục chính, chỉ gán các bài đã có
 │
 ├── docs/                    # Tài liệu tham khảo, slide môn học, file đề bài gốc
-│   └── de-bai/              # Nơi lưu file đề bài (PDF, ảnh, docx...)
+│   ├── de-bai/              # Nơi lưu file đề bài (PDF, ảnh, docx...)
+│   └── slides/              # Slide bài giảng (Buoi1_TypeScript_Nang_Cao.pptx...)
 │
 ├── Lab/                     # Khu vực 1: BÀI THỰC HÀNH (LAB)
 │   ├── README.md            # Mục lục khu vực Lab
@@ -38,7 +39,13 @@ BaiTap/ (Workspace Root)
 │       └── README.md
 │
 └── Ex/                      # Khu vực 2: BÀI TẬP (EXERCISES)
-    └── README.md            # Mục lục khu vực Bài tập
+    ├── README.md            # Mục lục khu vực Bài tập
+    └── Ex-01/               # Bài tập tuần 1: Module Quản lý đơn hàng
+        ├── tsconfig.json
+        ├── package.json
+        ├── order-management.types.ts
+        ├── order-management.demo.ts
+        └── README.md
 ```
 
 ---
@@ -57,7 +64,7 @@ BaiTap/ (Workspace Root)
 
 | STT | Tên Bài Tập | Đường Dẫn Thư Mục | Nội Dung / Yêu Cầu Chính | Công Nghệ | Trạng Thái |
 | :---: | :--- | :--- | :--- | :--- | :---: |
-| — | *(Chưa có bài tập nào)* | — | Sẽ cập nhật khi có bài tập mới | — | ⏳ Chờ cập nhật |
+| 01 | [**Ex 01**](./Ex/Ex-01/) | [`Ex/Ex-01/`](./Ex/Ex-01/) | Thiết kế bộ type TypeScript cho module Quản lý đơn hàng (Order, OrderItem, Product, Customer) | TypeScript, Generics, Utility Types | 🟢 Hoàn thành |
 
 > *Ghi chú:*
 > - Danh mục chỉ hiển thị các bài tập đã có trong repository. Khi có bài mới sẽ được bổ sung trực tiếp vào bảng tương ứng.
@@ -78,16 +85,14 @@ BaiTap/ (Workspace Root)
 git clone https://github.com/Tunhoclaptrinh/WebNangCao.git
 cd WebNangCao
 
-# Vào thư mục bài thực hành hoặc bài tập cần chạy (Ví dụ Lab 01)
-cd Lab/Lab-01
-# Hoặc bài tập:
-# cd Ex/Ex-01
+# Vào thư mục bài tập Ex-01
+cd Ex/Ex-01
 
-# Cài đặt dependencies (nếu có package.json)
-npm install
+# Kiểm tra tính an toàn kiểu dữ liệu (compile-time type check)
+npx typescript --noEmit
 
-# Chạy project
-npm run dev
+# Chạy kịch bản demo mẫu
+npx tsx order-management.demo.ts
 ```
 
 ---
