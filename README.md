@@ -5,7 +5,7 @@
 [![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)](#-danh-mục-các-bài-đã-có)
 [![Semester](https://img.shields.io/badge/H%E1%BB%8Dc%20K%E1%BB%B3-HK7-orange.svg)](#)
 
-> Repository quản lý các bài tập thực hành (**Lab**) và bài tập về nhà / quá trình (**BaiTap**) môn học **Lập trình Web Nâng Cao**.
+> Repository quản lý các bài thực hành (**Lab**) và bài tập (**Ex**) môn học **Lập trình Web Nâng Cao**.
 
 ---
 
@@ -20,9 +20,9 @@
 
 ## 🗂️ Cấu Trúc Thư Mục (Repository Structure)
 
-Repository được phân chia rõ ràng làm **2 khu vực chính**:
+Repository được phân chia đồng bộ làm **2 khu vực chính**:
 1. 🧪 **`Lab/`**: Chứa toàn bộ các bài thực hành trên lớp / phòng máy (`Lab-01`, `Lab-02`,...).
-2. 📝 **`BaiTap/`**: Chứa toàn bộ các bài tập về nhà, bài tập tuần, bài tập quá trình.
+2. 📝 **`Ex/`**: Chứa toàn bộ các bài tập về nhà, bài tập tuần, bài tập rèn luyện (`Ex-01`, `Ex-02`,...).
 
 ```text
 BaiTap/ (Workspace Root)
@@ -37,7 +37,7 @@ BaiTap/ (Workspace Root)
 │   └── Lab-01/              # Bài thực hành số 1
 │       └── README.md
 │
-└── BaiTap/                  # Khu vực 2: BÀI TẬP VỀ NHÀ / QUÁ TRÌNH (BAITAP)
+└── Ex/                      # Khu vực 2: BÀI TẬP (EXERCISES)
     └── README.md            # Mục lục khu vực Bài tập
 ```
 
@@ -53,7 +53,7 @@ BaiTap/ (Workspace Root)
 
 ---
 
-### 📝 2. Danh Sách Bài Tập (Bài Tập Về Nhà / Tuần)
+### 📝 2. Danh Sách Bài Tập (Ex)
 
 | STT | Tên Bài Tập | Đường Dẫn Thư Mục | Nội Dung / Yêu Cầu Chính | Công Nghệ | Trạng Thái |
 | :---: | :--- | :--- | :--- | :--- | :---: |
@@ -80,6 +80,8 @@ cd WebNangCao
 
 # Vào thư mục bài thực hành hoặc bài tập cần chạy (Ví dụ Lab 01)
 cd Lab/Lab-01
+# Hoặc bài tập:
+# cd Ex/Ex-01
 
 # Cài đặt dependencies (nếu có package.json)
 npm install
@@ -93,6 +95,6 @@ npm run dev
 ## 📝 Quy Chuẩn Git Commit
 
 - `feat(Lab-01): hoàn thành chức năng X`
-- `feat(BaiTap-01): nộp bài tập số 1`
+- `feat(Ex-01): nộp bài tập số 1`
 - `fix(Lab-01): sửa lỗi giao diện Y`
 - `docs(README): cập nhật bài mới vào danh mục`
