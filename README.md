@@ -63,6 +63,7 @@ BaiTap/ (Workspace Root)
 | STT | Tên Lab | Đường Dẫn Thư Mục | Nội Dung / Yêu Cầu Chính | Công Nghệ | Trạng Thái |
 | :---: | :--- | :--- | :--- | :--- | :---: |
 | 01 | [**Lab 01**](./Lab/Lab-01/) | [`Lab/Lab-01/`](./Lab/Lab-01/) | Khởi tạo môi trường & bài thực hành số 1 | HTML/CSS/JS, Node.js | 🟡 Đang chuẩn bị |
+| 02 | [**Lab 02**](./Lab/Lab-02/) | [`Lab/Lab-02/`](./Lab/Lab-02/) | Buổi 2 — HOC `withAuth<P>`, Tabs Compound Component (Context API), Custom Hook `useFetch<T>` | React 19, TypeScript, Vite | 🟢 Hoàn thành |
 
 ---
 
