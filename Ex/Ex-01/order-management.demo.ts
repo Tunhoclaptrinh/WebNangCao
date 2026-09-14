@@ -135,6 +135,9 @@ class OrderService implements IRepository<Order<Customer, Product>> {
     return this.orders.length < initialLen;
   }
 
+  /**
+   * Tạo đơn hàng từ CreateOrderDto (chuyển đổi từ dữ liệu Client sang Entity chuẩn)
+   */
   @Log
   async processNewOrder(
     dto: CreateOrderDto,
@@ -163,7 +166,7 @@ class OrderService implements IRepository<Order<Customer, Product>> {
       id: `order_${Date.now()}`,
       orderCode: `ORD-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`,
       customerId: customer.id,
-      customer,
+      customer, // Nạp populated customer nhờ generic Order<Customer, Product>
       items: orderItems,
       status: OrderStatus.CONFIRMED,
       paymentMethod: dto.paymentMethod,

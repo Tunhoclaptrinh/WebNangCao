@@ -1,0 +1,112 @@
+/* ═══════════════════════════════════════════════════════════
+   Accordion.css — Accordion Compound Component Styles
+   Dark glassmorphism theme với smooth animations
+═══════════════════════════════════════════════════════════ */
+
+/* ─── Accordion Container ─── */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* ─── Accordion Item ─── */
+.accordion-item {
+  background: var(--surface-glass);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition:
+    border-color var(--transition),
+    background var(--transition),
+    box-shadow var(--transition);
+}
+
+.accordion-item:hover {
+  border-color: var(--surface-border-hover);
+  background: var(--surface-glass-hover);
+}
+
+.accordion-item--open {
+  border-color: rgba(124, 58, 237, 0.4);
+  background: rgba(124, 58, 237, 0.05);
+  box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.1), var(--shadow-sm);
+}
+
+/* ─── Accordion Trigger (button) ─── */
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text-100);
+  transition: background var(--transition);
+}
+
+.accordion-trigger:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.accordion-trigger:focus-visible {
+  outline: 2px solid var(--primary-light);
+  outline-offset: -2px;
+  border-radius: var(--radius-sm);
+}
+
+.accordion-trigger__text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: inherit;
+}
+
+/* ─── Chevron Icon ─── */
+.accordion-trigger__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--text-400);
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    color var(--transition);
+}
+
+.accordion-trigger__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Rotate icon khi panel đang mở */
+[data-state="open"] .accordion-trigger__icon {
+  transform: rotate(180deg);
+  color: var(--primary-light);
+}
+
+[data-state="open"] .accordion-trigger__text {
+  color: var(--primary-light);
+}
+
+/* ─── Accordion Content ─── */
+/* height được set inline bởi React (animation) */
+.accordion-content {
+  /* transition được set inline */
+}
+
+.accordion-content__inner {
+  padding: 0 20px 20px;
+  color: var(--text-200);
+  font-size: 0.9rem;
+  line-height: 1.75;
+  border-top: 1px solid var(--surface-border);
+  padding-top: 16px;
+}

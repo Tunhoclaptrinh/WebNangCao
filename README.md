@@ -40,11 +40,17 @@ BaiTap/ (Workspace Root)
 │
 └── Ex/                      # Khu vực 2: BÀI TẬP (EXERCISES)
     ├── README.md            # Mục lục khu vực Bài tập
-    └── Ex-01/               # Bài tập tuần 1: Module Quản lý đơn hàng
-        ├── tsconfig.json
-        ├── package.json
-        ├── order-management.types.ts
-        ├── order-management.demo.ts
+    ├── Ex-01/               # Bài tập tuần 1: Module Quản lý đơn hàng
+    │   ├── tsconfig.json
+    │   ├── package.json
+    │   ├── order-management.types.ts
+    │   ├── order-management.demo.ts
+    │   └── README.md
+    └── Ex-02/               # Bài tập tuần 2: Accordion + usePagination (React)
+        ├── src/
+        │   ├── components/Accordion/  # Compound Component
+        │   ├── hooks/usePagination.ts # Custom Hook Generic
+        │   └── ...
         └── README.md
 ```
 
@@ -65,6 +71,7 @@ BaiTap/ (Workspace Root)
 | STT | Tên Bài Tập | Đường Dẫn Thư Mục | Nội Dung / Yêu Cầu Chính | Công Nghệ | Trạng Thái |
 | :---: | :--- | :--- | :--- | :--- | :---: |
 | 01 | [**Ex 01**](./Ex/Ex-01/) | [`Ex/Ex-01/`](./Ex/Ex-01/) | Thiết kế bộ type TypeScript cho module Quản lý đơn hàng (Order, OrderItem, Product, Customer) | TypeScript, Generics, Utility Types | 🟢 Hoàn thành |
+| 02 | [**Ex 02**](./Ex/Ex-02/) | [`Ex/Ex-02/`](./Ex/Ex-02/) | Accordion Compound Component (Context API, single-open) + Custom Hook `usePagination<T>` cho danh sách sản phẩm | React 19, TypeScript, Vite, Context API, Custom Hooks | 🟢 Hoàn thành |
 
 > *Ghi chú:*
 > - Danh mục chỉ hiển thị các bài tập đã có trong repository. Khi có bài mới sẽ được bổ sung trực tiếp vào bảng tương ứng.
