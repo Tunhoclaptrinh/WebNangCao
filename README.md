@@ -1,117 +1,140 @@
-# 🧪 LẬP TRÌNH WEB NÂNG CAO - NHÁNH KHỞI TẠO THỰC HÀNH PHÒNG MÁY
+# 🎓 Student Deadline Tracker — Ứng Dụng Quản Lý Deadline Bài Tập Cá Nhân
 
-> **Nhánh:** `practice-lab-init` (Template Starter Branch)  
+> **Bài thực hành phòng máy số 1 (Practice Lab 01)**  
 > **Sinh viên:** Nguyễn Tiến Tuấn — **MSV:** B23DCCC173  
-> **Lớp:** RIPT1411-20261-02 — **Giảng viên:** ThS. Ngô Văn Nhận  
-> **Học kỳ:** HK7 — Học viện Công nghệ Bưu chính Viễn thông (PTIT)  
-> **Repository:** [https://github.com/Tunhoclaptrinh/WebNangCao](https://github.com/Tunhoclaptrinh/WebNangCao)
+> **Lớp:** RIPT1411-20261-02 — **Học kỳ:** HK7 (PTIT)  
+> **Giảng viên:** ThS. Ngô Văn Nhận  
+> **Branch bài nộp:** `practice-lab-01`  
+> **Repository:** [https://github.com/Tunhoclaptrinh/WebNangCao/tree/practice-lab-01](https://github.com/Tunhoclaptrinh/WebNangCao/tree/practice-lab-01)
 
 ---
 
-## 📌 1. Mục Đích Của Nhánh `practice-lab-init`
+## 📌 1. Bối Cảnh & Đề Bài
 
-Nhánh **`practice-lab-init`** được tạo ra đóng vai trò là **nhánh mẫu khởi tạo (Starter Template)** chuyên biệt cho tất cả các buổi thực hành phòng máy (Practice Labs). 
+Mỗi sinh viên đều đang phải theo dõi hàng chục deadline bài tập từ nhiều môn học khác nhau, dễ quên hoặc nộp trễ. **"Student Deadline Tracker"** là ứng dụng hỗ trợ sinh viên quản lý, theo dõi các bài tập sắp đến hạn một cách khoa học, trực quan và tiện lợi.
 
-- **Đặc điểm:** Nhánh được dọn dẹp sạch sẽ toàn bộ mã nguồn bài tập cũ, chỉ lưu trữ tài liệu tham khảo (`docs/` gồm slides bài giảng, đề bài gốc) và cấu hình chuẩn `.gitignore`.
-- **Lợi ích:** Mỗi khi có một bài thực hành phòng máy mới, sinh viên chỉ việc **checkout một nhánh mới từ `practice-lab-init`** mà không sợ xung đột mã nguồn với bài tập trên lớp lý thuyết (`main`) hay các bài thực hành khác.
-
----
-
-## 🗂️ 2. Cấu Trúc Nhánh Khởi Tạo
-
-```text
-BaiTap/ (Root của nhánh practice-lab-init)
-├── .gitignore                   # Cấu hình bỏ qua file build, node_modules, log...
-├── README.md                    # Hướng dẫn quy trình checkout và làm bài thực hành
-└── docs/                        # Tài liệu tham khảo và slide môn học
-    ├── slides/                  # Slide bài giảng chính thức
-    │   ├── Buoi1_TypeScript_Nang_Cao.pptx
-    │   ├── Buoi2_Kien_Truc_Design_Pattern_React.pptx
-    │   └── Buoi3_Redux_Toolkit_TypeScript.pptx
-    └── de-bai/                  # File đề bài gốc qua các buổi
-        ├── Tuan-01-TypeScript.md
-        ├── Tuan-02-React-Patterns.md
-        └── Tuan-03-Redux-Toolkit.md
-```
+Tài liệu chi tiết đề bài được lưu trữ tại: [`docs/de-bai/Thuc-Hanh-01-Student-Deadline-Tracker.md`](./docs/de-bai/Thuc-Hanh-01-Student-Deadline-Tracker.md).
 
 ---
 
-## 🚀 3. Hướng Dẫn Quy Trình Làm Bài Thực Hành Phòng Máy Mới
+## 🏆 2. Đáp Ứng Đầy Đủ 7 Yêu Cầu Chức Năng
 
-### Bước 1: Đồng bộ và checkout nhánh mới từ `practice-lab-init`
-Từ thư mục dự án, chạy lệnh sau trong terminal:
+| # | Yêu Cầu Chức Năng | Hiện Thực Trong Dự Án | Trạng Thái |
+|:---:|:---|:---|:---:|
+| 1 | **Hiển thị danh sách bài tập** | Môn học, tên bài tập, hạn nộp, độ ưu tiên, trạng thái hoàn thành dạng thẻ Card trực quan | 🟢 Đạt 100% |
+| 2 | **Thêm bài tập mới qua form** | Form Modal Ant Design với DatePicker (ngăn chọn ngày quá khứ), Select môn học, độ ưu tiên | 🟢 Đạt 100% |
+| 3 | **Đánh dấu hoàn thành / bỏ đánh dấu** | Nút Checkmark đổi trạng thái với animation gạch ngang chữ và cập nhật thời gian hoàn tất | 🟢 Đạt 100% |
+| 4 | **Xoá bài tập** | Nút xoá có hộp thoại xác nhận an toàn `Popconfirm` ngăn việc bấm nhầm | 🟢 Đạt 100% |
+| 5 | **Lọc theo trạng thái** | `FilterGroup.Status` dạng Segmented: Tất cả / Chưa hoàn thành / Quá hạn / Đã hoàn thành | 🟢 Đạt 100% |
+| 6 | **Hiển thị "Còn X ngày" hoặc "Quá hạn Y ngày"** | Custom hook `useDeadlineCountdown` tự động tính và hiển thị tag màu cảnh báo trực quan | 🟢 Đạt 100% |
+| 7 | **Khởi động app tải danh sách từ API giả lập** | Redux Toolkit `createAsyncThunk` (`fetchInitialAssignments`) kết nối mock API delay 700ms | 🟢 Đạt 100% |
+
+---
+
+## 🧠 3. Vận Dụng Tổng Hợp Kiến Thức 3 Buổi Học
+
+### 🔷 Buổi 1 — TypeScript Nâng Cao
+- **Generics & Utility Types (`src/types/assignment.types.ts`):**
+  - `CreateAssignmentPayload = Omit<Assignment, 'id' | 'createdAt' | 'completed' | 'completedAt'>`
+  - `UpdateAssignmentPayload = Partial<Omit<Assignment, 'id' | 'createdAt'>> & { id: string }`
+  - `Record<SubjectCode, SubjectMeta>`, `Record<Priority, PriorityMeta>`
+  - Generic interfaces: `ApiResponse<T>`, `FilterCriteria<T>`.
+- **Type Guards Chuyên Biệt:**
+  - `isCompletedAssignment(assignment: Assignment): boolean`
+  - `isOverdueAssignment(assignment: Assignment, referenceDate?: Date): boolean`
+  - `isUrgentAssignment(assignment: Assignment, hoursThreshold?: number): boolean`
+
+### 🔶 Buổi 2 — React Design Patterns
+- **Compound Component Pattern (`src/components/FilterGroup/`):**
+  - Quản lý ngữ cảnh bằng `FilterContext` (Context API).
+  - Cấu trúc: `FilterGroup.Status`, `FilterGroup.Subject`, `FilterGroup.Priority`, `FilterGroup.Search`, `FilterGroup.Actions`.
+- **Higher-Order Component - HOC (`src/hoc/withUrgentHighlight.tsx`):**
+  - HOC `withUrgentHighlight` tự động kiểm tra và bọc viền phát sáng đỏ/cam cho các bài tập khẩn cấp (< 24h) hoặc đã quá hạn.
+- **Custom Hook Nâng Cao (`src/hooks/useDeadlineCountdown.ts`):**
+  - Tự động phân tích chênh lệch thời gian, trả về nhãn *"Còn X ngày"*, *"Hôm nay (còn Y giờ)"*, hoặc *"Quá hạn Z ngày"* cùng màu tag tương ứng.
+
+### 🔷 Buổi 3 — Redux Toolkit Feature-Based + TypeScript
+- **Cấu trúc Feature-Based:** `src/features/assignments/assignmentSlice.ts`.
+- **Async Thunk:** `fetchInitialAssignments`, `createNewAssignment`, `toggleAssignmentStatus`, `deleteAssignment`, `resetAssignmentsData`.
+- **Typed Hooks:** `useAppDispatch` và `useAppSelector` tại `src/app/hooks.ts`.
+- **Selectors kết hợp Type Guards:** `selectFilteredAssignments`, `selectAssignmentStats`.
+
+---
+
+## 🎨 4. Thiết Kế Giao Diện Sáng (Ant Design Light Theme)
+
+- **ConfigProvider Light Theme:**
+  - Primary Color: `#1677ff`
+  - Background Layout: `#f5f7fa`
+  - Card & Container: `#ffffff`
+  - Font chữ: Google Font `Inter` hiện đại
+- **Trải nghiệm trực quan:**
+  - Thẻ thống kê KPI với biểu đồ tròn `Progress` tỷ lệ hoàn thành.
+  - Phản hồi hành động tức thời bằng `message.success` / `message.error`.
+  - Nút "Dữ liệu mẫu" cho phép khôi phục lại trạng thái ban đầu bất kỳ lúc nào để demo.
+
+---
+
+## 🚀 5. Hướng Dẫn Cài Đặt & Chạy Ứng Dụng
+
 ```bash
-# 1. Chuyển về nhánh mẫu
-git checkout practice-lab-init
+# 1. Checkout sang nhánh bài thực hành phòng máy 1
+git checkout practice-lab-01
 
-# 2. Cập nhật mới nhất từ remote
-git pull origin practice-lab-init
+# 2. Cài đặt các thư viện phụ thuộc
+npm install
 
-# 3. Tạo và chuyển sang nhánh bài thực hành mới (Ví dụ: practice-lab-01)
-git checkout -b practice-lab-01
-```
+# 3. Chạy ở chế độ phát triển
+npm run dev
 
----
+# 4. Kiểm tra tính an toàn kiểu dữ liệu (0 errors)
+npm run type-check
 
-### Bước 2: Cập nhật tài liệu đề bài
-1. Thêm file mô tả đề bài thực hành vào thư mục `docs/de-bai/`:
-   - Ví dụ: `docs/de-bai/Thuc-Hanh-01-Student-Deadline-Tracker.md`
-2. Ghi rõ: Bối cảnh, mục tiêu kiến thức (Buổi 1, Buổi 2, Buổi 3), yêu cầu chức năng (1..N), và tiêu chí đánh giá.
-
----
-
-### Bước 3: Khởi tạo mã nguồn và cài đặt thư viện
-Khởi tạo dự án trực tiếp tại thư mục làm việc theo công nghệ yêu cầu:
-```bash
-# Cài đặt các package chuẩn (Vite React TypeScript, Ant Design, Redux Toolkit):
-npm install antd @ant-design/icons @reduxjs/toolkit react-redux dayjs
-```
-
-**Cấu trúc thư mục khuyến nghị cho bài thực hành:**
-```text
-src/
-├── api/                         # Mock API giả lập (Promise, setTimeout, network delay)
-├── app/                         # Cấu hình Redux store, typed hooks (useAppDispatch, useAppSelector)
-├── components/                  # UI Components (Compound Components, HOCs, Modals, Cards)
-├── features/                    # Redux slices feature-based (slices, asyncThunks, selectors)
-├── hooks/                       # Custom Hooks (useCountdown, useFilter...)
-├── types/                       # TypeScript Generics, Utility Types, Type Guards
-├── App.tsx                      # ConfigProvider Ant Design Light Theme
-└── main.tsx                     # Entry point React
-```
-
----
-
-### Bước 4: Kiểm thử và xác minh tính an toàn
-Trước khi nộp bài hoặc đẩy lên Git, luôn kiểm tra:
-```bash
-# 1. Kiểm tra Type-check tuyệt đối không có lỗi:
-npx tsc --noEmit
-
-# 2. Build thử bản production bundle:
+# 5. Build bản production bundle
 npm run build
 ```
 
 ---
 
-### Bước 5: Commit và đẩy bài nộp lên GitHub
-```bash
-# Thêm toàn bộ file thay đổi
-git add -A
+## 🗂️ 6. Cấu Trúc Thư Mục
 
-# Commit theo chuẩn Conventional Commits
-git commit -m "feat(practice-lab-01): hoan thanh ung dung Student Deadline Tracker"
-
-# Push nhánh bài thực hành lên GitHub
-git push -u origin practice-lab-01
+```text
+├── docs/                                 # Tài liệu bài học & đề bài thực hành
+│   ├── de-bai/
+│   │   └── Thuc-Hanh-01-Student-Deadline-Tracker.md
+│   └── slides/                           # Slides Buổi 1, 2, 3
+├── src/
+│   ├── api/
+│   │   └── mockAssignmentApi.ts          # API giả lập với Promise & setTimeout
+│   ├── app/
+│   │   ├── hooks.ts                      # Typed hooks useAppDispatch, useAppSelector
+│   │   └── store.ts                      # Redux Toolkit store configure
+│   ├── components/
+│   │   ├── AssignmentCard.tsx            # Card bài tập + HOC withUrgentHighlight
+│   │   ├── AssignmentFormModal.tsx       # Form Modal thêm mới + DatePicker
+│   │   ├── AssignmentList.tsx            # Danh sách bài tập + Skeleton + Empty
+│   │   ├── DeadlineHeader.tsx            # Header thông tin sinh viên + KPI thống kê
+│   │   ├── TechArchitectureBanner.tsx    # Banner giải thích kiến trúc 3 buổi học
+│   │   └── FilterGroup/                  # Compound Component lọc trạng thái
+│   │       ├── FilterContext.ts
+│   │       ├── FilterGroup.tsx
+│   │       └── index.ts
+│   ├── features/
+│   │   └── assignments/
+│   │       └── assignmentSlice.ts        # Redux Slice + createAsyncThunk + Selectors
+│   ├── hoc/
+│   │   └── withUrgentHighlight.tsx       # HOC cảnh báo deadline khẩn cấp
+│   ├── hooks/
+│   │   └── useDeadlineCountdown.ts       # Custom Hook tính "Còn X ngày / Quá hạn Y ngày"
+│   ├── types/
+│   │   └── assignment.types.ts           # Types, Generics, Utility Types, Type Guards
+│   ├── App.tsx                           # Ant Design ConfigProvider Light Theme
+│   ├── index.css                         # CSS reset & Inter font
+│   └── main.tsx                          # React Root
+├── index.html
+├── package.json
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+└── vite.config.ts
 ```
-
----
-
-## 📋 Danh Sách Các Nhánh Thực Hành Trong Repository
-
-| Tên Nhánh | Buổi / Nội Dung | Trạng Thái |
-| :--- | :--- | :---: |
-| `main` | Nhánh chính: Chứa các bài tập lý thuyết trên lớp (`Ex/`, `Lab/`) | 🟢 Đang hoạt động |
-| `practice-lab-init` | Nhánh template gốc cho các bài thực hành phòng máy | 🟢 Đang hoạt động |
-| `practice-lab-01` | Thực hành phòng máy 1: **Student Deadline Tracker** (TS + Design Patterns + Redux Toolkit) | 🟢 Đang triển khai |
