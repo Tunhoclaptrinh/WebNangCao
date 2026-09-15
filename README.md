@@ -28,10 +28,8 @@ BaiTap/ (Root của nhánh practice-lab-init)
     │   ├── Buoi1_TypeScript_Nang_Cao.pptx
     │   ├── Buoi2_Kien_Truc_Design_Pattern_React.pptx
     │   └── Buoi3_Redux_Toolkit_TypeScript.pptx
-    └── de-bai/                  # File đề bài gốc qua các buổi
-        ├── Tuan-01-TypeScript.md
-        ├── Tuan-02-React-Patterns.md
-        └── Tuan-03-Redux-Toolkit.md
+    └── de-bai/                  # Thư mục lưu đề bài thực hành phòng máy
+        └── .gitkeep             # (Sẵn sàng thêm đề bài khi checkout nhánh mới)
 ```
 
 ---
