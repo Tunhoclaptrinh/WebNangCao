@@ -1,0 +1,39 @@
+.tech-drawer__card {
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+
+.tech-drawer__card--b1 {
+  border: 1px solid #bfdbfe;
+  background: #f8fafc;
+}
+
+.tech-drawer__card--b2 {
+  border: 1px solid #ddd6fe;
+  background: #faf5ff;
+}
+
+.tech-drawer__card--b3 {
+  border: 1px solid #a7f3d0;
+  background: #f0fdf4;
+}
+
+.tech-drawer__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.tech-drawer__header-title {
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.tech-drawer__list {
+  padding-left: 18px;
+  margin: 0;
+  color: #334155;
+  font-size: 13px;
+  line-height: 1.8;
+}

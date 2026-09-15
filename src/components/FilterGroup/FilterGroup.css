@@ -1,0 +1,38 @@
+.filter-group {
+  background: #ffffff;
+  padding: 16px 20px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+  margin-bottom: 20px;
+}
+
+.filter-group__section-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.filter-group__status-segmented {
+  background: #f1f5f9;
+  padding: 3px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.filter-group__reset-btn {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.filter-group__reset-btn:hover {
+  color: #ef4444 !important;
+}
+
+.filter-group__search-input {
+  border-radius: 8px;
+}

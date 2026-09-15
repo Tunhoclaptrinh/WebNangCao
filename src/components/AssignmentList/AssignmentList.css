@@ -1,0 +1,71 @@
+.assignment-list {
+  margin-top: 16px;
+}
+
+.assignment-list__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 0 4px;
+}
+
+.assignment-list__title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.assignment-list__title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.assignment-list__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 8px;
+  border-radius: 9999px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.assignment-list__empty {
+  background: #ffffff;
+  padding: 54px 24px;
+  border-radius: 16px;
+  border: 1px dashed #cbd5e1;
+  text-align: center;
+  margin-top: 16px;
+}
+
+.assignment-list__empty-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #f8fafc;
+  color: #94a3b8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  font-size: 22px;
+}
+
+.assignment-list__empty-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.assignment-list__empty-desc {
+  color: #64748b;
+  font-size: 13px;
+  max-width: 380px;
+  margin: 0 auto 16px auto;
+}

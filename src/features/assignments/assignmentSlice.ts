@@ -21,6 +21,10 @@ export interface AssignmentState {
   subjectFilter: SubjectCode | 'ALL';
   priorityFilter: Priority | 'ALL';
   searchQuery: string;
+  // Giao diện & Tương tác
+  viewMode: 'list' | 'board';
+  selectedAssignmentId: string | null;
+  techDrawerOpen: boolean;
 }
 
 const initialState: AssignmentState = {
@@ -32,6 +36,9 @@ const initialState: AssignmentState = {
   subjectFilter: 'ALL',
   priorityFilter: 'ALL',
   searchQuery: '',
+  viewMode: 'list',
+  selectedAssignmentId: null,
+  techDrawerOpen: false,
 };
 
 // -------------------------------------------------------------
@@ -144,6 +151,15 @@ export const assignmentSlice = createSlice({
       state.priorityFilter = 'ALL';
       state.searchQuery = '';
     },
+    setViewMode: (state, action: PayloadAction<'list' | 'board'>) => {
+      state.viewMode = action.payload;
+    },
+    setSelectedAssignmentId: (state, action: PayloadAction<string | null>) => {
+      state.selectedAssignmentId = action.payload;
+    },
+    setTechDrawerOpen: (state, action: PayloadAction<boolean>) => {
+      state.techDrawerOpen = action.payload;
+    },
   },
   extraReducers: (builder) => {
     // fetchInitialAssignments
@@ -187,6 +203,9 @@ export const assignmentSlice = createSlice({
     builder.addCase(deleteAssignment.fulfilled, (state, action) => {
       const deletedId = action.payload;
       state.items = state.items.filter(a => a.id !== deletedId);
+      if (state.selectedAssignmentId === deletedId) {
+        state.selectedAssignmentId = null;
+      }
     });
 
     // resetAssignmentsData
@@ -202,6 +221,9 @@ export const {
   setPriorityFilter,
   setSearchQuery,
   clearFilters,
+  setViewMode,
+  setSelectedAssignmentId,
+  setTechDrawerOpen,
 } = assignmentSlice.actions;
 
 // -------------------------------------------------------------
@@ -272,6 +294,21 @@ export const selectAssignmentStats = (state: RootState) => {
     pending: pendingCount,
     completionRate: items.length > 0 ? Math.round((completedCount / items.length) * 100) : 0,
   };
+};
+
+export const selectSelectedAssignment = (state: RootState): Assignment | undefined => {
+  const id = state.assignments.selectedAssignmentId;
+  if (!id) return undefined;
+  return state.assignments.items.find(a => a.id === id);
+};
+
+export const selectSubjectStats = (state: RootState): Record<string, number> => {
+  const items = state.assignments.items;
+  const counts: Record<string, number> = {};
+  for (const item of items) {
+    counts[item.subject] = (counts[item.subject] || 0) + 1;
+  }
+  return counts;
 };
 
 export default assignmentSlice.reducer;

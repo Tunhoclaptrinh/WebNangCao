@@ -1,0 +1,38 @@
+.assignment-form-modal .ant-modal-content {
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.assignment-form-modal__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.assignment-form-modal__presets {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.assignment-form-modal__preset-btn {
+  font-size: 11px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  font-weight: 600;
+}
+
+.assignment-form-modal__preset-btn:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+  background: #eff6ff;
+}

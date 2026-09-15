@@ -1,19 +1,11 @@
 import React from 'react';
 import { Space, Skeleton, Button, Typography } from 'antd';
 import { PlusOutlined, InboxOutlined } from '@ant-design/icons';
-import { Assignment } from '../types/assignment.types';
-import { AssignmentCard } from './AssignmentCard';
+import { AssignmentCard } from '../AssignmentCard';
+import { AssignmentListProps } from './AssignmentList.types';
+import './AssignmentList.css';
 
 const { Text } = Typography;
-
-export interface AssignmentListProps {
-  assignments: Assignment[];
-  totalCount: number;
-  loading: boolean;
-  onToggleStatus: (id: string) => void;
-  onDelete: (id: string) => void;
-  onOpenCreateModal: () => void;
-}
 
 export const AssignmentList: React.FC<AssignmentListProps> = ({
   assignments,
@@ -22,10 +14,12 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
   onToggleStatus,
   onDelete,
   onOpenCreateModal,
+  onSelectAssignment,
 }) => {
+  // Trạng thái đang tải dữ liệu ban đầu
   if (loading && assignments.length === 0) {
     return (
-      <Space direction="vertical" size={14} style={{ width: '100%', marginTop: '20px' }}>
+      <Space direction="vertical" size={14} style={{ width: '100%', marginTop: '16px' }}>
         {[1, 2, 3].map((i) => (
           <div key={i} style={{ background: '#ffffff', padding: '20px', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
             <Skeleton active avatar paragraph={{ rows: 2 }} />
@@ -35,25 +29,17 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
     );
   }
 
+  // Trạng thái rỗng không có bài tập
   if (assignments.length === 0) {
     return (
-      <div 
-        style={{ 
-          background: '#ffffff', 
-          padding: '60px 24px', 
-          borderRadius: '16px', 
-          border: '1px dashed #cbd5e1',
-          textAlign: 'center',
-          marginTop: '20px',
-        }}
-      >
-        <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: '#f8fafc', color: '#94a3b8', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}>
-          <InboxOutlined style={{ fontSize: '24px' }} />
+      <div className="assignment-list__empty">
+        <div className="assignment-list__empty-icon">
+          <InboxOutlined />
         </div>
-        <div style={{ fontSize: '15px', fontWeight: 700, color: '#1e293b', marginBottom: '4px' }}>
+        <div className="assignment-list__empty-title">
           {totalCount === 0 ? 'Chưa có deadline nào' : 'Không có bài tập phù hợp'}
         </div>
-        <div style={{ color: '#64748b', fontSize: '13px', maxWidth: '380px', margin: '0 auto 18px auto' }}>
+        <div className="assignment-list__empty-desc">
           {totalCount === 0 
             ? 'Bắt đầu theo dõi deadline bài tập của bạn bằng cách tạo bài tập đầu tiên ngay bây giờ.' 
             : 'Hãy thử chọn bộ lọc trạng thái khác hoặc xoá từ khoá tìm kiếm.'}
@@ -73,25 +59,14 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
   }
 
   return (
-    <div style={{ marginTop: '20px' }}>
-      {/* Header tóm tắt danh sách */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px', padding: '0 4px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '14px', fontWeight: 700, color: '#0f172a', letterSpacing: '-0.01em' }}>
+    <div className="assignment-list">
+      {/* Header tóm tắt số lượng */}
+      <div className="assignment-list__header">
+        <div className="assignment-list__title-group">
+          <span className="assignment-list__title">
             Danh Sách Bài Tập
           </span>
-          <span 
-            style={{ 
-              display: 'inline-flex',
-              alignItems: 'center',
-              padding: '1px 8px',
-              borderRadius: '9999px',
-              background: '#f1f5f9',
-              color: '#475569',
-              fontSize: '11px',
-              fontWeight: 700,
-            }}
-          >
+          <span className="assignment-list__badge">
             {assignments.length}
           </span>
         </div>
@@ -108,6 +83,7 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
             assignment={item}
             onToggleStatus={onToggleStatus}
             onDelete={onDelete}
+            onSelect={onSelectAssignment}
           />
         ))}
       </Space>
