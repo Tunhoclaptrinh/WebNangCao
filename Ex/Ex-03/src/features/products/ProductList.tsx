@@ -1,4 +1,23 @@
 import { useEffect, useMemo, useState } from 'react';
+import {
+  ExclamationCircleOutlined,
+  ReloadOutlined,
+  ThunderboltOutlined,
+} from '@ant-design/icons';
+import {
+  Alert,
+  Button,
+  Card,
+  Col,
+  Empty,
+  Result,
+  Row,
+  Skeleton,
+  Space,
+  Switch,
+  Tag,
+  Typography,
+} from 'antd';
 import { useAppDispatch, useAppSelector } from '../../app/hooks.ts';
 import { ProductCard } from './ProductCard.tsx';
 import { ProductFilter } from './ProductFilter.tsx';
@@ -6,17 +25,14 @@ import { useGetProductsQuery } from './productsApi.ts';
 import { fetchProductsAsync } from './productsSlice.ts';
 import type { Product } from './productTypes.ts';
 
+const { Title, Text } = Typography;
+
 interface ProductListProps {
-  onAddToCartSuccess: (productName: string) => void;
   dataSource: 'thunk' | 'rtk-query';
   setDataSource: (source: 'thunk' | 'rtk-query') => void;
 }
 
-export function ProductList({
-  onAddToCartSuccess,
-  dataSource,
-  setDataSource,
-}: ProductListProps) {
+export function ProductList({ dataSource }: ProductListProps) {
   const dispatch = useAppDispatch();
 
   // State từ Redux Thunk
@@ -59,17 +75,12 @@ export function ProductList({
     }
   };
 
-  // Xác định nguồn dữ liệu active
   const rawProducts: Product[] =
     dataSource === 'thunk' ? thunkProducts : rtkProducts ?? [];
   const isLoading =
-    dataSource === 'thunk'
-      ? thunkStatus === 'loading'
-      : isRtkLoading;
+    dataSource === 'thunk' ? thunkStatus === 'loading' : isRtkLoading;
   const isError =
-    dataSource === 'thunk'
-      ? thunkStatus === 'failed'
-      : isRtkError;
+    dataSource === 'thunk' ? thunkStatus === 'failed' : isRtkError;
   const errorMessage =
     dataSource === 'thunk'
       ? thunkError
@@ -81,12 +92,10 @@ export function ProductList({
   const filteredProducts = useMemo(() => {
     let result = [...rawProducts];
 
-    // Lọc theo danh mục
     if (selectedCategory !== 'Tất cả') {
       result = result.filter((p) => p.category === selectedCategory);
     }
 
-    // Tìm kiếm theo tên hoặc mô tả
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       result = result.filter(
@@ -97,7 +106,6 @@ export function ProductList({
       );
     }
 
-    // Sắp xếp
     if (sortBy === 'price-asc') {
       result.sort((a, b) => a.price - b.price);
     } else if (sortBy === 'price-desc') {
@@ -110,135 +118,125 @@ export function ProductList({
   }, [rawProducts, selectedCategory, searchQuery, sortBy]);
 
   return (
-    <section className="product-section">
-      {/* Header thanh công nghệ Data Fetching */}
-      <div className="section-top-bar">
-        <div>
-          <h2 className="section-heading">Cửa Hàng Thiết Bị Không Gian Làm Việc</h2>
-          <p className="section-subtext">
-            Sản phẩm công nghệ cao cấp chính hãng dành cho Developers và Designers
-          </p>
-        </div>
-
-        {/* Nút chuyển đổi cơ chế Data Fetching: Thunk vs RTK Query */}
-        <div className="source-switcher">
-          <span className="source-label">Phương thức nạp dữ liệu:</span>
-          <div className="switcher-tabs">
-            <button
-              type="button"
-              className={`switch-tab ${dataSource === 'thunk' ? 'active' : ''}`}
-              onClick={() => setDataSource('thunk')}
-            >
-              <span>⚡ Redux Thunk</span>
-              <small>createAsyncThunk</small>
-            </button>
-            <button
-              type="button"
-              className={`switch-tab ${dataSource === 'rtk-query' ? 'active bonus' : 'bonus'}`}
-              onClick={() => setDataSource('rtk-query')}
-            >
-              <span>🔥 RTK Query</span>
-              <small>Điểm cộng kỹ thuật ⭐</small>
-            </button>
+    <div>
+      {/* Top Bar: Tiêu đề và điều khiển mô phỏng */}
+      <Card
+        style={{
+          borderRadius: 8,
+          border: '1px solid #e5e7eb',
+          background: '#ffffff',
+          marginBottom: 16,
+          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
+        }}
+        bodyStyle={{ padding: '14px 20px' }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
+          <div>
+            <Title level={4} style={{ margin: 0, fontSize: 18, color: '#111827' }}>
+              Danh Sách Thiết Bị & Phụ Kiện Công Nghệ
+            </Title>
+            <Space size={6} style={{ marginTop: 4 }}>
+              <Text type="secondary" style={{ fontSize: 13 }}>
+                Đang nạp qua:
+              </Text>
+              {dataSource === 'thunk' ? (
+                <Tag color="blue" icon={<ThunderboltOutlined />}>
+                  createAsyncThunk (productsSlice)
+                </Tag>
+              ) : (
+                <Tag color="green" icon={<span style={{ fontWeight: 700 }}>★</span>}>
+                  RTK Query (productsApi - Điểm cộng ⭐)
+                </Tag>
+              )}
+            </Space>
           </div>
-        </div>
-      </div>
 
-      {/* Điều khiển mô phỏng lỗi mạng */}
-      <div className="simulation-bar">
-        <div className="sim-badge">
-          {dataSource === 'thunk' ? (
-            <>Sử dụng <code>productsSlice.ts</code> (createAsyncThunk)</>
-          ) : (
-            <>Sử dụng <code>productsApi.ts</code> (createApi + fakeBaseQuery)</>
-          )}
-        </div>
+          <Space size="middle" align="center">
+            <Space align="center" size={8}>
+              <Switch
+                checked={simulateError}
+                onChange={(checked) => setSimulateError(checked)}
+                style={{ backgroundColor: simulateError ? '#ff4d4f' : undefined }}
+              />
+              <Text style={{ fontSize: 13, color: simulateError ? '#ff4d4f' : '#4b5563' }}>
+                Mô phỏng lỗi Server 500
+              </Text>
+            </Space>
 
-        <div className="sim-error-toggle">
-          <label className="sim-checkbox-label">
-            <input
-              type="checkbox"
-              checked={simulateError}
-              onChange={(e) => setSimulateError(e.target.checked)}
-            />
-            <span>Mô phỏng lỗi Server 500 (Kiểm tra trạng thái Error/Rejected)</span>
-          </label>
-          <button
-            type="button"
-            onClick={handleRetry}
-            className="btn-refresh"
-            title="Tải lại dữ liệu"
-          >
-            🔄 Refetch
-          </button>
+            <Button
+              icon={<ReloadOutlined />}
+              onClick={handleRetry}
+              loading={isLoading}
+              size="middle"
+            >
+              Refetch
+            </Button>
+          </Space>
         </div>
-      </div>
+      </Card>
 
       {/* Bộ lọc sản phẩm */}
       <ProductFilter />
 
       {/* Trạng thái Loading với Skeleton Cards */}
       {isLoading && (
-        <div className="products-grid-layout">
-          {[1, 2, 3, 4].map((n) => (
-            <div key={n} className="skeleton-card">
-              <div className="skeleton-media"></div>
-              <div className="skeleton-content">
-                <div className="skeleton-line short"></div>
-                <div className="skeleton-line title"></div>
-                <div className="skeleton-line desc"></div>
-                <div className="skeleton-line price"></div>
-              </div>
-            </div>
+        <Row gutter={[16, 16]}>
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+            <Col xs={24} sm={12} md={8} lg={6} key={n}>
+              <Card style={{ borderRadius: 8, height: 360 }}>
+                <Skeleton.Image style={{ width: '100%', height: 160, marginBottom: 16 }} active />
+                <Skeleton active paragraph={{ rows: 3 }} />
+              </Card>
+            </Col>
           ))}
-        </div>
+        </Row>
       )}
 
       {/* Trạng thái Lỗi */}
       {!isLoading && isError && (
-        <div className="error-card">
-          <div className="error-icon">⚠️</div>
-          <div className="error-body">
-            <h3>Không thể tải danh sách sản phẩm</h3>
-            <p>{errorMessage}</p>
-            <p className="error-hint">
-              💡 Bạn đang bật tùy chọn "Mô phỏng lỗi Server". Hãy bỏ chọn ở trên và nhấn "Thử lại".
-            </p>
-            <button
-              type="button"
-              className="btn btn-primary btn-sm"
-              onClick={handleRetry}
-            >
-              Thử lại ngay
-            </button>
-          </div>
-        </div>
+        <Card style={{ borderRadius: 8, textAlign: 'center', padding: '24px 0', border: '1px solid #fed7d7' }}>
+          <Result
+            status="500"
+            title="Gặp lỗi khi tải dữ liệu sản phẩm"
+            subTitle={errorMessage}
+            extra={
+              <Space direction="vertical" size="middle">
+                {simulateError && (
+                  <Alert
+                    message="Bạn đang bật tùy chọn 'Mô phỏng lỗi Server 500'. Hãy tắt công tắc phía trên và nhấn thử lại."
+                    type="warning"
+                    showIcon
+                    icon={<ExclamationCircleOutlined />}
+                  />
+                )}
+                <Button type="primary" onClick={handleRetry} icon={<ReloadOutlined />}>
+                  Thử lại ngay
+                </Button>
+              </Space>
+            }
+          />
+        </Card>
       )}
 
       {/* Trạng thái Thành Công */}
       {!isLoading && !isError && filteredProducts.length > 0 && (
-        <div className="products-grid-layout">
+        <Row gutter={[16, 16]}>
           {filteredProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onAddToCartSuccess={onAddToCartSuccess}
-            />
+            <Col xs={24} sm={12} md={8} lg={6} key={product.id}>
+              <ProductCard product={product} />
+            </Col>
           ))}
-        </div>
+        </Row>
       )}
 
-      {/* Trạng thái Không tìm thấy kết quả phù hợp */}
+      {/* Trạng thái Không có sản phẩm phù hợp */}
       {!isLoading && !isError && filteredProducts.length === 0 && (
-        <div className="empty-products">
-          <div className="empty-icon">🔎</div>
-          <h3>Không tìm thấy sản phẩm phù hợp</h3>
-          <p>
-            Không có kết quả nào khớp với danh mục "{selectedCategory}" hoặc từ khóa "
-            {searchQuery}".
-          </p>
-        </div>
+        <Card style={{ borderRadius: 8, padding: '48px 0', textAlign: 'center' }}>
+          <Empty
+            description={`Không tìm thấy sản phẩm nào thuộc danh mục "${selectedCategory}" hoặc từ khóa "${searchQuery}".`}
+          />
+        </Card>
       )}
-    </section>
+    </div>
   );
 }

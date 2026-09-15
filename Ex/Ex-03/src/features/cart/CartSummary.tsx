@@ -1,4 +1,20 @@
 import { useState } from 'react';
+import {
+  ClearOutlined,
+  CreditCardOutlined,
+  TagOutlined,
+} from '@ant-design/icons';
+import {
+  Alert,
+  Button,
+  Card,
+  Divider,
+  Input,
+  Space,
+  Statistic,
+  Tag,
+  Typography,
+} from 'antd';
 import { useAppDispatch, useAppSelector } from '../../app/hooks.ts';
 import {
   AVAILABLE_COUPONS,
@@ -6,6 +22,8 @@ import {
   clearCart,
   removeCoupon,
 } from './cartSlice.ts';
+
+const { Text } = Typography;
 
 interface CartSummaryProps {
   onCheckout: () => void;
@@ -25,8 +43,7 @@ export function CartSummary({ onCheckout }: CartSummaryProps) {
 
   const [couponInput, setCouponInput] = useState('');
 
-  const handleApply = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleApply = () => {
     if (couponInput.trim()) {
       dispatch(applyCoupon(couponInput));
       setCouponInput('');
@@ -42,102 +59,143 @@ export function CartSummary({ onCheckout }: CartSummaryProps) {
   }
 
   return (
-    <div className="cart-summary-section">
-      {/* Khối nhập mã giảm giá */}
-      <div className="coupon-box">
-        <label className="coupon-title">Mã giảm giá ưu đãi:</label>
-        <form onSubmit={handleApply} className="coupon-form">
-          <input
-            type="text"
-            placeholder="Nhập mã (vd: LTWNC10)"
+    <Card
+      style={{
+        borderRadius: 8,
+        border: '1px solid #e5e7eb',
+        background: '#ffffff',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+      }}
+      bodyStyle={{ padding: 18 }}
+    >
+      {/* Khối nhập mã coupon */}
+      <div style={{ marginBottom: 16 }}>
+        <Text strong style={{ fontSize: 13, display: 'block', marginBottom: 6 }}>
+          <TagOutlined /> Mã Giảm Giá Ưu Đãi:
+        </Text>
+        <Space.Compact style={{ width: '100%', marginBottom: 8 }}>
+          <Input
+            placeholder="Nhập mã voucher (vd: LTWNC10)"
             value={couponInput}
             onChange={(e) => setCouponInput(e.target.value)}
-            className="coupon-input"
+            onPressEnter={handleApply}
+            style={{ textTransform: 'uppercase' }}
           />
-          <button type="submit" className="btn-coupon-apply">
+          <Button type="primary" onClick={handleApply}>
             Áp dụng
-          </button>
-        </form>
+          </Button>
+        </Space.Compact>
 
-        {/* Gợi ý mã có sẵn tiện lợi */}
-        <div className="coupon-suggestions">
-          <span className="sug-label">Gợi ý mã:</span>
+        {/* Gợi ý coupon */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+          <Text type="secondary" style={{ fontSize: 12 }}>Gợi ý:</Text>
           {AVAILABLE_COUPONS.map((c) => (
-            <button
+            <Tag
               key={c.code}
-              type="button"
-              className={`sug-chip ${appliedCoupon?.code === c.code ? 'applied' : ''}`}
+              color={appliedCoupon?.code === c.code ? 'success' : 'processing'}
+              style={{ cursor: 'pointer', fontSize: 11 }}
               onClick={() => handleQuickApply(c.code)}
               title={c.description}
             >
               🏷️ {c.code}
-            </button>
+            </Tag>
           ))}
         </div>
 
-        {/* Thông báo lỗi coupon */}
-        {couponError && <div className="coupon-error">⚠️ {couponError}</div>}
+        {/* Lỗi coupon */}
+        {couponError && (
+          <Alert
+            message={couponError}
+            type="error"
+            showIcon
+            style={{ marginTop: 8, padding: '4px 10px', fontSize: 12 }}
+          />
+        )}
 
-        {/* Coupon đang kích hoạt */}
+        {/* Coupon đang áp dụng */}
         {appliedCoupon && (
-          <div className="applied-coupon-pill">
-            <div>
-              <span className="applied-code">✅ {appliedCoupon.code}</span>
-              <span className="applied-desc">({appliedCoupon.description})</span>
-            </div>
-            <button
-              type="button"
-              className="btn-remove-coupon"
-              onClick={() => dispatch(removeCoupon())}
-              title="Gỡ mã giảm giá"
-            >
-              ✕ Gỡ
-            </button>
+          <Alert
+            message={
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span>
+                  <strong>Đã áp dụng: {appliedCoupon.code}</strong> — {appliedCoupon.description}
+                </span>
+                <Button
+                  type="link"
+                  danger
+                  size="small"
+                  onClick={() => dispatch(removeCoupon())}
+                  style={{ padding: 0, height: 'auto' }}
+                >
+                  Gỡ bỏ
+                </Button>
+              </div>
+            }
+            type="success"
+            showIcon
+            style={{ marginTop: 8, padding: '6px 12px', fontSize: 12 }}
+          />
+        )}
+      </div>
+
+      <Divider style={{ margin: '14px 0' }} />
+
+      {/* Chi tiết thanh toán */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 16 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, color: '#4b5563' }}>
+          <span>Số lượng mặt hàng:</span>
+          <strong>{totalQuantity} món</strong>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, color: '#4b5563' }}>
+          <span>Tạm tính:</span>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+            {subtotal.toLocaleString('vi-VN')} đ
+          </span>
+        </div>
+        {discountAmount > 0 && (
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, color: '#52c41a' }}>
+            <span>Chiết khấu mã giảm:</span>
+            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 600 }}>
+              -{discountAmount.toLocaleString('vi-VN')} đ
+            </span>
           </div>
         )}
       </div>
 
-      {/* Tóm tắt thanh toán */}
-      <div className="cost-breakdown">
-        <div className="cost-row">
-          <span>Tổng số lượng sản phẩm:</span>
-          <strong>{totalQuantity} món</strong>
-        </div>
-        <div className="cost-row">
-          <span>Tạm tính:</span>
-          <span>{subtotal.toLocaleString('vi-VN')} đ</span>
-        </div>
-        {discountAmount > 0 && (
-          <div className="cost-row discount-row">
-            <span>Chiết khấu mã giảm:</span>
-            <span>-{discountAmount.toLocaleString('vi-VN')} đ</span>
-          </div>
-        )}
-        <div className="cost-row total-row">
-          <span>Tổng thanh toán:</span>
-          <span className="total-value">
-            {finalAmount.toLocaleString('vi-VN')} đ
-          </span>
-        </div>
+      {/* Tổng cộng */}
+      <div style={{ background: '#f9fafb', padding: '12px 16px', borderRadius: 6, marginBottom: 16, border: '1px solid #f3f4f6' }}>
+        <Statistic
+          title="Tổng tiền thanh toán:"
+          value={finalAmount}
+          suffix="đ"
+          valueStyle={{ color: '#1677ff', fontWeight: 800, fontSize: 22, fontFamily: "'JetBrains Mono', monospace" }}
+        />
       </div>
 
       {/* Nút hành động */}
-      <div className="cart-action-buttons">
-        <button
-          type="button"
-          className="btn-checkout"
+      <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <Button
+          type="primary"
+          size="large"
+          block
+          icon={<CreditCardOutlined />}
           onClick={onCheckout}
+          style={{ fontWeight: 700, boxShadow: '0 2px 8px rgba(22, 119, 255, 0.25)' }}
         >
-          🚀 Tiến Hành Thanh Toán ({finalAmount.toLocaleString('vi-VN')} đ)
-        </button>
-        <button
-          type="button"
-          className="btn-clear-cart"
+          Tiến Hành Thanh Toán ({finalAmount.toLocaleString('vi-VN')} đ)
+        </Button>
+
+        <Button
+          type="dashed"
+          danger
+          block
+          icon={<ClearOutlined />}
           onClick={() => dispatch(clearCart())}
+          size="middle"
         >
-          🗑️ Làm trống giỏ hàng
-        </button>
-      </div>
-    </div>
+          Làm trống giỏ hàng
+        </Button>
+      </Space>
+    </Card>
   );
 }

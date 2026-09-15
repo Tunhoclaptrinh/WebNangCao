@@ -1,14 +1,19 @@
+import { CheckOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { App, Badge, Button, Card, Rate, Space, Tag, Typography } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../app/hooks.ts';
 import { addItem } from '../cart/cartSlice.ts';
 import type { Product } from './productTypes.ts';
 
+const { Text, Title, Paragraph } = Typography;
+
 interface ProductCardProps {
   product: Product;
-  onAddToCartSuccess?: (name: string) => void;
 }
 
-export function ProductCard({ product, onAddToCartSuccess }: ProductCardProps) {
+export function ProductCard({ product }: ProductCardProps) {
   const dispatch = useAppDispatch();
+  const { message } = App.useApp();
+
   const cartItem = useAppSelector((state) =>
     state.cart.items.find((i) => i.id === product.id)
   );
@@ -33,98 +38,146 @@ export function ProductCard({ product, onAddToCartSuccess }: ProductCardProps) {
       })
     );
 
-    if (onAddToCartSuccess) {
-      onAddToCartSuccess(product.name);
-    }
+    message.success(`Đã thêm "${product.name}" vào giỏ hàng!`);
   };
 
   const discountPercent = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0;
 
-  return (
-    <article className="product-card">
-      {/* Khung ảnh giả lập công nghệ sang trọng */}
-      <div className="product-media" style={{ background: product.imageColor }}>
-        {product.badge && <span className="product-badge">{product.badge}</span>}
-        {discountPercent > 0 && (
-          <span className="product-discount-tag">-{discountPercent}%</span>
-        )}
-        <div className="product-icon-wrap">
-          {product.category === 'Màn hình' && '🖥️'}
-          {product.category === 'Bàn phím' && '⌨️'}
-          {product.category === 'Chuột' && '🖱️'}
-          {product.category === 'Âm thanh' && '🎧'}
-          {product.category === 'Phụ kiện' && '💡'}
+  const cardContent = (
+    <Card
+      hoverable
+      style={{
+        borderRadius: 8,
+        border: '1px solid #e5e7eb',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
+      }}
+      bodyStyle={{
+        padding: 16,
+        display: 'flex',
+        flexDirection: 'column',
+        flex: 1,
+      }}
+      cover={
+        <div
+          style={{
+            height: 160,
+            background: '#f3f4f6',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+            borderBottom: '1px solid #f0f0f0',
+          }}
+        >
+          <div style={{ fontSize: 56, filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))' }}>
+            {product.category === 'Màn hình' && '🖥️'}
+            {product.category === 'Bàn phím' && '⌨️'}
+            {product.category === 'Chuột' && '🖱️'}
+            {product.category === 'Âm thanh' && '🎧'}
+            {product.category === 'Phụ kiện' && '💡'}
+          </div>
+
+          {discountPercent > 0 && (
+            <span
+              style={{
+                position: 'absolute',
+                top: 10,
+                right: 10,
+                background: '#ff4d4f',
+                color: '#ffffff',
+                fontWeight: 700,
+                fontSize: 12,
+                padding: '2px 8px',
+                borderRadius: 4,
+              }}
+            >
+              -{discountPercent}%
+            </span>
+          )}
         </div>
+      }
+    >
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+        <Tag color="blue">{product.category}</Tag>
+        <Space size={4}>
+          <Rate disabled defaultValue={product.rating} allowHalf style={{ fontSize: 11 }} />
+          <Text type="secondary" style={{ fontSize: 11 }}>({product.reviewsCount})</Text>
+        </Space>
       </div>
 
-      <div className="product-content">
-        <div className="product-cat-row">
-          <span className="product-category">{product.category}</span>
-          <span className="product-rating">
-            ★ {product.rating} <span className="review-count">({product.reviewsCount})</span>
-          </span>
-        </div>
+      <Title level={5} style={{ margin: '4px 0 6px', fontSize: 14, minHeight: 40 }} ellipsis={{ rows: 2 }}>
+        {product.name}
+      </Title>
 
-        <h3 className="product-title" title={product.name}>
-          {product.name}
-        </h3>
+      <Paragraph type="secondary" style={{ fontSize: 12, marginBottom: 10 }} ellipsis={{ rows: 2 }}>
+        {product.description}
+      </Paragraph>
 
-        <p className="product-desc">{product.description}</p>
-
-        {/* Thông số kỹ thuật nhanh */}
-        <div className="product-specs">
-          {product.specs.slice(0, 3).map((spec, idx) => (
-            <span key={idx} className="spec-tag">
+      <div style={{ marginBottom: 14 }}>
+        <Space size={[4, 4]} wrap>
+          {product.specs.slice(0, 2).map((spec, idx) => (
+            <Tag key={idx} style={{ fontSize: 11, background: '#f9fafb', borderColor: '#e5e7eb' }}>
               {spec}
-            </span>
+            </Tag>
           ))}
-        </div>
+        </Space>
+      </div>
 
-        <div className="product-footer">
-          <div className="price-box">
-            <span className="current-price">
+      <div style={{ marginTop: 'auto', paddingTop: 10, borderTop: '1px solid #f3f4f6' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 12 }}>
+          <div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: '#1677ff', fontFamily: "'JetBrains Mono', monospace" }}>
               {product.price.toLocaleString('vi-VN')} đ
-            </span>
+            </div>
             {product.originalPrice && (
-              <span className="original-price">
+              <Text delete type="secondary" style={{ fontSize: 12, fontFamily: "'JetBrains Mono', monospace" }}>
                 {product.originalPrice.toLocaleString('vi-VN')} đ
-              </span>
+              </Text>
             )}
           </div>
 
-          <div className="stock-info">
+          <div>
             {isOutOfStock ? (
-              <span className="stock-out">Hết hàng</span>
+              <Badge status="error" text="Hết hàng" />
             ) : product.stock < 10 ? (
-              <span className="stock-low">Chỉ còn {product.stock} cái</span>
+              <Badge status="warning" text={`Còn ${product.stock}`} />
             ) : (
-              <span className="stock-available">Còn hàng ({product.stock})</span>
+              <Badge status="success" text={`Kho: ${product.stock}`} />
             )}
           </div>
         </div>
 
-        <button
-          type="button"
-          className="btn-add-cart"
+        <Button
+          type="primary"
+          block
+          icon={currentCartQty > 0 ? <CheckOutlined /> : <ShoppingCartOutlined />}
           onClick={handleAddToCart}
           disabled={isOutOfStock || isMaxInCart}
         >
-          {isOutOfStock ? (
-            'Tạm hết hàng'
-          ) : isMaxInCart ? (
-            `Đã đạt tối đa trong giỏ (${currentCartQty})`
-          ) : (
-            <>
-              <span>🛒 Thêm vào giỏ</span>
-              {currentCartQty > 0 && (
-                <span className="in-cart-count">({currentCartQty})</span>
-              )}
-            </>
-          )}
-        </button>
+          {isOutOfStock
+            ? 'Tạm hết hàng'
+            : isMaxInCart
+            ? `Tối đa trong giỏ (${currentCartQty})`
+            : currentCartQty > 0
+            ? `Thêm tiếp (${currentCartQty})`
+            : 'Thêm vào giỏ'}
+        </Button>
       </div>
-    </article>
+    </Card>
   );
+
+  if (product.badge) {
+    return (
+      <Badge.Ribbon text={product.badge} color="red">
+        {cardContent}
+      </Badge.Ribbon>
+    );
+  }
+
+  return cardContent;
 }

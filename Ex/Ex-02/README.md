@@ -6,7 +6,7 @@
 |---|---|
 | **Giảng viên** | Ngô Văn Nhận |
 | **Thời hạn** | 09/09/2026 23:00 (cho phép nộp muộn) |
-| **Công nghệ** | React 19 + TypeScript + Vite |
+| **Công nghệ** | React 19 + TypeScript + Ant Design 5.x (Light Theme) + Vite |
 | **Trạng thái** | 🟢 Hoàn thành |
 
 ---

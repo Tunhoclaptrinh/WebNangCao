@@ -235,16 +235,14 @@ Trong `src/features/products/productsApi.ts`:
 
 ---
 
-## 7. Giao Diện Người Dùng & Trải Nghiệm E-Commerce
+## 7. Giao Diện Người Dùng & Trải Nghiệm E-Commerce (Ant Design Light Mode)
 
-- **Hệ màu cao cấp:** Dark mode nền đen vũ trụ (`#07090e`), phối tím Neon (`#8b5cf6`), xanh Cyan (`#06b6d4`), xanh ngọc lục bảo (`#10b981`).
-- **Hiệu ứng Glassmorphism:** Các card và navbar phủ kính mờ `backdrop-filter: blur(16px)` với viền phản quang tinh tế.
-- **Drawer giỏ hàng trượt:** Animation mượt mà từ cạnh phải, hỗ trợ đóng nhanh bằng phím `ESC` hoặc click ra ngoài overlay.
-- **Micro-interactions:**
-  - Badge số lượng trên Navbar tự động nảy số (pop animation) khi thêm sản phẩm.
-  - Toast notification hiển thị góc dưới màn hình khi thao tác thành công.
-  - Bộ lọc sản phẩm real-time theo danh mục (Màn hình, Bàn phím, Chuột, Âm thanh, Phụ kiện), thanh tìm kiếm từ khóa và sắp xếp theo giá tăng/giảm hoặc đánh giá.
-  - Modal thanh toán giả lập với hóa đơn chi tiết, form nhập địa chỉ và mã đơn hàng ngẫu nhiên.
+- **Hệ thống Design System Ant Design 5.x:** Sử dụng `ConfigProvider` chuẩn hóa toàn bộ tokens: màu chủ đạo `#1677ff`, bo góc `8px`, nền xám sáng thanh lịch (`#f5f7fa`), card trắng tinh khôi (`#ffffff`).
+- **Thanh điều hướng Navbar (Ant Design Header):** Header cố định với logo cửa hàng, chip sinh viên, bộ nút `Segmented` chuyển đổi linh hoạt giữa Redux Thunk và RTK Query (Bonus điểm cộng), nút giỏ hàng tích hợp `Badge` số lượng realtime.
+- **Card sản phẩm (Ant Design Card):** Sử dụng `Card hoverable`, `Badge.Ribbon` hiển thị danh hiệu hot, `Tag` phân loại danh mục, `Rate` đánh giá sao, và nút `Button type="primary"` thêm giỏ hàng.
+- **Drawer giỏ hàng (Ant Design Drawer):** Trượt mượt mà từ cạnh phải, quản lý danh sách mặt hàng qua `CartItemRow`, tăng giảm số lượng linh hoạt, nút xóa với icon `DeleteOutlined`.
+- **Tóm tắt thanh toán (Ant Design Card & Statistic):** Hiển thị tổng tiền nổi bật, nhập và gợi ý mã voucher tiện dụng với `Tag` ưu đãi (`LTWNC10`, `PTIT200K`, `VIP500K`).
+- **Modal đặt hàng (Ant Design Modal & Form):** Hóa đơn `Descriptions`, form xác nhận giao hàng và kết quả `Result status="success"` chuyên nghiệp.
 
 ---
 

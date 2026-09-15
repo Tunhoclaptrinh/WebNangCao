@@ -1,185 +1,216 @@
-/**
- * App.tsx — Lab-02 Demo Page
- * Hiển thị 3 bài thực hành từ Buổi 2:
- * 1. HOC withAuth<P>
- * 2. Tabs Compound Component (Context API)
- * 3. Custom Hook useFetch<T>
- */
+import {
+  CodeOutlined,
+  CompassOutlined,
+  GlobalOutlined,
+  LockOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+import {
+  Alert,
+  Card,
+  Col,
+  ConfigProvider,
+  Layout,
+  Row,
+  Space,
+  Tag,
+  Typography,
+} from 'antd';
+import viVN from 'antd/locale/vi_VN';
+import { ProtectedProfile, ProductListDemo } from './components/Demo/DemoComponents.tsx';
+import { Tabs } from './components/Tabs/Tabs.tsx';
 
-import { Tabs } from "./components/Tabs/Tabs";
-import { ProtectedProfile, ProductListDemo } from "./components/Demo/DemoComponents";
-import "./App.css";
+const { Header, Content, Footer } = Layout;
+const { Text, Paragraph } = Typography;
 
 export default function App() {
   return (
-    <div className="app">
-      {/* Header */}
-      <header className="app-header">
-        <div className="app-header__badge">LTWNC · Lab Buổi 2</div>
-        <h1 className="app-header__title">Design Patterns in React</h1>
-        <p className="app-header__subtitle">
-          HOC · Compound Component · Custom Hook · Context API · Generic TypeScript
-        </p>
-        <div className="slide-ref">
-          📄 Nguồn: <code>Buoi2_Kien_Truc_Design_Pattern_React.pptx</code> · Slides 16–18
-        </div>
-      </header>
+    <ConfigProvider
+      locale={viVN}
+      theme={{
+        token: {
+          colorPrimary: '#1677ff',
+          colorBgBase: '#ffffff',
+          colorBgLayout: '#f5f7fa',
+          colorTextBase: '#1f2937',
+          borderRadius: 8,
+          fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        },
+      }}
+    >
+      <Layout style={{ minHeight: '100vh', background: '#f5f7fa' }}>
+        {/* Header */}
+        <Header
+          style={{
+            position: 'sticky',
+            top: 0,
+            zIndex: 40,
+            background: '#ffffff',
+            borderBottom: '1px solid #e5e7eb',
+            padding: '12px 24px',
+            boxShadow: '0 1px 4px rgba(0, 0, 0, 0.05)',
+            height: 'auto',
+          }}
+        >
+          <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
+            <Space align="center" size="middle">
+              <div
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 8,
+                  background: 'linear-gradient(135deg, #1677ff, #06b6d4)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#ffffff',
+                  fontSize: 20,
+                  boxShadow: '0 2px 8px rgba(22, 119, 255, 0.25)',
+                }}
+              >
+                <CompassOutlined />
+              </div>
+              <div>
+                <div style={{ fontSize: 18, fontWeight: 700, color: '#111827', lineHeight: 1.2 }}>
+                  LTWNC Lab-02 — Design Patterns in React
+                </div>
+                <Text type="secondary" style={{ fontSize: 12 }}>
+                  HOC · Compound Component · Custom Hook · Context API · TypeScript
+                </Text>
+              </div>
+            </Space>
 
-      <main className="app-main">
-        {/* ═══════════════════════════════════════
-            BÀI 1: HOC withAuth<P>
-        ═══════════════════════════════════════ */}
-        <section className="demo-section">
-          <div className="section-label">
-            <span className="section-label__tag">Bài 1/3</span>
-            <h2 className="section-label__title">HOC — withAuth&lt;P&gt;</h2>
-            <p className="section-label__desc">
-              Higher-Order Component bọc component với kiểm tra đăng nhập.
-              Dùng <code>useAuth()</code> hook giả lập.
-            </p>
+            <Tag icon={<UserOutlined />} color="blue" style={{ padding: '4px 10px', fontSize: 13 }}>
+              SV: <strong>Nguyễn Tiến Tuấn</strong> (MSV: <code>B23DCCC173</code>)
+            </Tag>
           </div>
+        </Header>
 
-          <div className="code-preview">
-            <div className="code-preview__header">
-              <span className="code-dot code-dot--red" /><span className="code-dot code-dot--yellow" /><span className="code-dot code-dot--green" />
-              <span className="code-preview__title">withAuth HOC Usage</span>
-            </div>
-            <pre className="code-preview__body">{`// Bọc component bất kỳ bằng withAuth
-const ProtectedProfile = withAuth(ProfilePage);
+        {/* Nội dung chính */}
+        <Content style={{ maxWidth: 1200, width: '100%', margin: '0 auto', padding: '24px 20px' }}>
+          <Alert
+            message="Nội dung thực hành Buổi 2 (Slide 16–18)"
+            description="Áp dụng các mẫu thiết kế React nâng cao: Higher-Order Component (withAuth), Compound Component với Context API (Tabs), và Custom Hook Generic (useFetch<T>)."
+            type="info"
+            showIcon
+            style={{ marginBottom: 24, borderRadius: 8, border: '1px solid #bfdbfe', background: '#eff6ff' }}
+          />
 
-// Khi render: tự kiểm tra đăng nhập trước
-<ProtectedProfile title="Trang Cá Nhân" />`}</pre>
-          </div>
+          <Row gutter={[24, 24]}>
+            {/* BÀI 1: HOC withAuth */}
+            <Col xs={24} lg={12}>
+              <Card
+                title={
+                  <Space align="center">
+                    <LockOutlined style={{ color: '#1677ff' }} />
+                    <span>Bài 1/3: HOC withAuth&lt;P&gt;</span>
+                  </Space>
+                }
+                style={{ borderRadius: 8, border: '1px solid #e5e7eb', height: '100%', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)' }}
+                extra={<Tag color="blue">HOC Pattern</Tag>}
+              >
+                <Paragraph type="secondary" style={{ fontSize: 13, marginBottom: 16 }}>
+                  Higher-Order Component kiểm tra xác thực quyền truy cập trước khi render component mục tiêu. Nếu chưa đăng nhập, tự chuyển hướng hoặc hiển thị thông báo.
+                </Paragraph>
 
-          <div className="demo-hint">
-            💡 Thay <code>mockUser = null</code> trong <code>useAuth.ts</code> để xem màn hình "Chưa đăng nhập"
-          </div>
+                <div style={{ background: '#f9fafb', padding: '10px 14px', borderRadius: 6, border: '1px solid #f3f4f6', marginBottom: 16 }}>
+                  <Text code style={{ fontSize: 12 }}>
+                    const ProtectedProfile = withAuth(ProfilePage);
+                  </Text>
+                </div>
 
-          <ProtectedProfile title="Trang Cá Nhân Của Tôi" />
-        </section>
+                <ProtectedProfile title="Trang Cá Nhân Của Tôi" />
+              </Card>
+            </Col>
 
-        {/* ═══════════════════════════════════════
-            BÀI 2: TABS COMPOUND COMPONENT
-        ═══════════════════════════════════════ */}
-        <section className="demo-section">
-          <div className="section-label">
-            <span className="section-label__tag">Bài 2/3</span>
-            <h2 className="section-label__title">Compound Component — Tabs</h2>
-            <p className="section-label__desc">
-              Context API chia sẻ state giữa <code>Tabs.Tab</code> và <code>Tabs.Panel</code> không cần prop drilling.
-            </p>
-          </div>
+            {/* BÀI 2: Tabs Compound Component */}
+            <Col xs={24} lg={12}>
+              <Card
+                title={
+                  <Space align="center">
+                    <CodeOutlined style={{ color: '#722ed1' }} />
+                    <span>Bài 2/3: Tabs Compound Component</span>
+                  </Space>
+                }
+                style={{ borderRadius: 8, border: '1px solid #e5e7eb', height: '100%', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)' }}
+                extra={<Tag color="purple">Context API</Tag>}
+              >
+                <Paragraph type="secondary" style={{ fontSize: 13, marginBottom: 16 }}>
+                  Tự xây dựng Tabs Compound Component dùng Context API chia sẻ trạng thái activeTab ẩn giữa <code>Tabs.List</code>, <code>Tabs.Tab</code> và <code>Tabs.Panel</code>.
+                </Paragraph>
 
-          <div className="code-preview">
-            <div className="code-preview__header">
-              <span className="code-dot code-dot--red" /><span className="code-dot code-dot--yellow" /><span className="code-dot code-dot--green" />
-              <span className="code-preview__title">Tabs Usage (Compound Component)</span>
-            </div>
-            <pre className="code-preview__body">{`<Tabs defaultValue="tab1">
+                <div style={{ background: '#ffffff', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+                  <Tabs defaultValue="intro">
+                    <Tabs.List>
+                      <Tabs.Tab value="intro">Giới Thiệu</Tabs.Tab>
+                      <Tabs.Tab value="principles">Nguyên Lý</Tabs.Tab>
+                      <Tabs.Tab value="code">Mã Nguồn</Tabs.Tab>
+                    </Tabs.List>
+
+                    <Tabs.Panel value="intro">
+                      <p style={{ margin: '12px 0 0', color: '#4b5563', lineHeight: 1.6 }}>
+                        Compound Component giúp người phát triển sử dụng các component con linh hoạt và tự do bố cục mà không phải truyền hàng chục prop lồng nhau.
+                      </p>
+                    </Tabs.Panel>
+
+                    <Tabs.Panel value="principles">
+                      <p style={{ margin: '12px 0 0', color: '#4b5563', lineHeight: 1.6 }}>
+                        Sử dụng <code>React.createContext</code> để tạo kênh giao tiếp nội bộ. Component con tự trích xuất <code>value</code> và <code>setValue</code> thông qua custom hook.
+                      </p>
+                    </Tabs.Panel>
+
+                    <Tabs.Panel value="code">
+                      <pre style={{ margin: '12px 0 0', padding: 10, background: '#f9fafb', borderRadius: 6, fontSize: 12, border: '1px solid #f3f4f6' }}>
+                        {`<Tabs defaultValue="tab1">
   <Tabs.List>
-    <Tabs.Tab value="tab1">Giới thiệu</Tabs.Tab>
-    <Tabs.Tab value="tab2">Chi tiết</Tabs.Tab>
-    <Tabs.Tab value="tab3">Tài liệu</Tabs.Tab>
+    <Tabs.Tab value="tab1">Tab 1</Tabs.Tab>
   </Tabs.List>
-  <Tabs.Panel value="tab1">...</Tabs.Panel>
-  <Tabs.Panel value="tab2">...</Tabs.Panel>
-  <Tabs.Panel value="tab3">...</Tabs.Panel>
-</Tabs>`}</pre>
-          </div>
+  <Tabs.Panel value="tab1">Nội dung</Tabs.Panel>
+</Tabs>`}
+                      </pre>
+                    </Tabs.Panel>
+                  </Tabs>
+                </div>
+              </Card>
+            </Col>
 
-          <Tabs defaultValue="intro">
-            <Tabs.List>
-              <Tabs.Tab value="intro">🧩 Compound Component</Tabs.Tab>
-              <Tabs.Tab value="context">⚡ Context API</Tabs.Tab>
-              <Tabs.Tab value="hoc">🎭 HOC Pattern</Tabs.Tab>
-              <Tabs.Tab value="hooks">🎣 Custom Hooks</Tabs.Tab>
-            </Tabs.List>
+            {/* BÀI 3: useFetch<T> Hook */}
+            <Col xs={24}>
+              <Card
+                title={
+                  <Space align="center">
+                    <GlobalOutlined style={{ color: '#52c41a' }} />
+                    <span>Bài 3/3: Custom Hook useFetch&lt;T&gt; với Generic TypeScript</span>
+                  </Space>
+                }
+                style={{ borderRadius: 8, border: '1px solid #e5e7eb', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)' }}
+                extra={<Tag color="green">Custom Hook</Tag>}
+              >
+                <Paragraph type="secondary" style={{ fontSize: 13, marginBottom: 16 }}>
+                  Hook generic <code>useFetch&lt;T&gt;(url)</code> tự động quản lý vòng đời HTTP request: <code>data</code>, <code>loading</code>, <code>error</code> và hàm <code>refetch</code>.
+                </Paragraph>
 
-            <Tabs.Panel value="intro">
-              <div className="tab-content">
-                <h3>Compound Component Pattern</h3>
-                <p>Nhiều component nhỏ phối hợp với nhau để tạo thành 1 khối chức năng hoàn chỉnh.
-                  Ví dụ điển hình: <code>&lt;Tabs&gt;</code>, <code>&lt;Accordion&gt;</code>, <code>&lt;Select&gt;</code>, <code>&lt;Menu&gt;</code>.</p>
-                <ul>
-                  <li>✅ API sử dụng tự nhiên, linh hoạt sắp xếp lại các phần con</li>
-                  <li>✅ Không prop drilling — Context lo việc chia sẻ state</li>
-                  <li>✅ Dễ mở rộng thêm sub-component mới</li>
-                </ul>
-              </div>
-            </Tabs.Panel>
+                <ProductListDemo />
+              </Card>
+            </Col>
+          </Row>
+        </Content>
 
-            <Tabs.Panel value="context">
-              <div className="tab-content">
-                <h3>Context API</h3>
-                <p>React Context cho phép chia sẻ state xuống bất kỳ component con nào trong cây,
-                  không cần truyền qua từng lớp (prop drilling).</p>
-                <ul>
-                  <li>🔧 <code>createContext()</code> — Tạo context</li>
-                  <li>🔧 <code>Context.Provider</code> — Cung cấp giá trị</li>
-                  <li>🔧 <code>useContext()</code> — Đọc giá trị trong component con</li>
-                </ul>
-              </div>
-            </Tabs.Panel>
-
-            <Tabs.Panel value="hoc">
-              <div className="tab-content">
-                <h3>Higher-Order Component (HOC)</h3>
-                <p>HOC là hàm nhận vào một Component và trả về một Component mới với logic được bổ sung thêm.</p>
-                <ul>
-                  <li>🛡️ <code>withAuth(Component)</code> — Kiểm tra đăng nhập</li>
-                  <li>📊 <code>withLogging(Component)</code> — Ghi log props thay đổi</li>
-                  <li>🎨 <code>withTheme(Component)</code> — Inject theme vào props</li>
-                </ul>
-              </div>
-            </Tabs.Panel>
-
-            <Tabs.Panel value="hooks">
-              <div className="tab-content">
-                <h3>Custom Hooks</h3>
-                <p>Custom Hook là hàm bắt đầu bằng <code>use</code>, cho phép tái sử dụng stateful logic.</p>
-                <ul>
-                  <li>🎣 <code>useFetch&lt;T&gt;(url)</code> — Fetch dữ liệu generic</li>
-                  <li>🎣 <code>usePagination&lt;T&gt;(data, n)</code> — Phân trang generic</li>
-                  <li>🎣 <code>useLocalStorage(key)</code> — Sync state với localStorage</li>
-                  <li>🎣 <code>useDebounce(value, delay)</code> — Delay input changes</li>
-                </ul>
-              </div>
-            </Tabs.Panel>
-          </Tabs>
-        </section>
-
-        {/* ═══════════════════════════════════════
-            BÀI 3: useFetch<T>
-        ═══════════════════════════════════════ */}
-        <section className="demo-section">
-          <div className="section-label">
-            <span className="section-label__tag">Bài 3/3</span>
-            <h2 className="section-label__title">Custom Hook — useFetch&lt;T&gt;</h2>
-            <p className="section-label__desc">
-              Hook generic fetch dữ liệu từ API. Demo với <strong>FakeStore API</strong> thực tế.
-            </p>
-          </div>
-
-          <div className="code-preview">
-            <div className="code-preview__header">
-              <span className="code-dot code-dot--red" /><span className="code-dot code-dot--yellow" /><span className="code-dot code-dot--green" />
-              <span className="code-preview__title">useFetch&lt;T&gt; Usage</span>
-            </div>
-            <pre className="code-preview__body">{`const { data: products, loading, error, refetch } =
-  useFetch<Product[]>('https://fakestoreapi.com/products?limit=6');
-
-if (loading) return <p>Đang tải...</p>;
-if (error)   return <p>Lỗi: {error}</p>;
-// data: Product[] | null`}</pre>
-          </div>
-
-          <ProductListDemo />
-        </section>
-      </main>
-
-      <footer className="app-footer">
-        <p>LTWNC · HK7 · Lab-02 · HOC + Compound Component + Custom Hook · React + TypeScript + Vite</p>
-      </footer>
-    </div>
+        {/* Footer */}
+        <Footer
+          style={{
+            textAlign: 'center',
+            background: '#ffffff',
+            borderTop: '1px solid #e5e7eb',
+            padding: '20px',
+            marginTop: 'auto',
+          }}
+        >
+          <Text type="secondary" style={{ fontSize: 13 }}>
+            LTWNC Lab-02 • Sinh viên: <strong>Nguyễn Tiến Tuấn</strong> (MSV: <code>B23DCCC173</code>) • PTIT
+          </Text>
+        </Footer>
+      </Layout>
+    </ConfigProvider>
   );
 }

@@ -54,7 +54,7 @@ BaiTap/ (Workspace Root)
 | STT | Tên Lab | Đường Dẫn Thư Mục | Nội Dung / Yêu Cầu Chính | Công Nghệ | Trạng Thái |
 | :---: | :--- | :--- | :--- | :--- | :---: |
 | 01 | [**Lab 01**](./Lab/Lab-01/) | [`Lab/Lab-01/`](./Lab/Lab-01/) | Khởi tạo môi trường & bài thực hành số 1 | HTML/CSS/JS, Node.js | 🟡 Đang chuẩn bị |
-| 02 | [**Lab 02**](./Lab/Lab-02/) | [`Lab/Lab-02/`](./Lab/Lab-02/) | Buổi 2 — HOC `withAuth<P>`, Tabs Compound Component (Context API), Custom Hook `useFetch<T>` | React 19, TypeScript, Vite | 🟢 Hoàn thành |
+| 02 | [**Lab 02**](./Lab/Lab-02/) | [`Lab/Lab-02/`](./Lab/Lab-02/) | Buổi 2 — HOC `withAuth<P>`, Tabs Compound Component (Context API), Custom Hook `useFetch<T>` | React 19, Ant Design 5.x (Light Theme), TS, Vite | 🟢 Hoàn thành |
 
 ---
 
@@ -63,8 +63,8 @@ BaiTap/ (Workspace Root)
 | STT | Tên Bài Tập | Đường Dẫn Thư Mục | Nội Dung / Yêu Cầu Chính | Công Nghệ | Trạng Thái |
 | :---: | :--- | :--- | :--- | :--- | :---: |
 | 01 | [**Ex 01**](./Ex/Ex-01/) | [`Ex/Ex-01/`](./Ex/Ex-01/) | Thiết kế bộ type TypeScript cho module Quản lý đơn hàng (Order, OrderItem, Product, Customer) | TypeScript, Generics, Utility Types | 🟢 Hoàn thành |
-| 02 | [**Ex 02**](./Ex/Ex-02/) | [`Ex/Ex-02/`](./Ex/Ex-02/) | Accordion Compound Component (Context API, single-open) + Custom Hook `usePagination<T>` cho danh sách sản phẩm | React 19, TypeScript, Vite, Context API, Custom Hooks | 🟢 Hoàn thành |
-| 03 | [**Ex 03**](./Ex/Ex-03/) | [`Ex/Ex-03/`](./Ex/Ex-03/) | Module Giỏ Hàng Redux Toolkit Feature-Based (`cartSlice`, `productsSlice`, RTK Query bonus, Typed Hooks) | Redux Toolkit, RTK Query, React 19, TypeScript, Vite | 🟢 Hoàn thành |
+| 02 | [**Ex 02**](./Ex/Ex-02/) | [`Ex/Ex-02/`](./Ex/Ex-02/) | Accordion Compound Component (Context API, single-open) + Custom Hook `usePagination<T>` cho danh sách sản phẩm | React 19, Ant Design 5.x (Light Theme), TS, Vite | 🟢 Hoàn thành |
+| 03 | [**Ex 03**](./Ex/Ex-03/) | [`Ex/Ex-03/`](./Ex/Ex-03/) | Module Giỏ Hàng Redux Toolkit Feature-Based (`cartSlice`, `productsSlice`, RTK Query bonus, Typed Hooks) | Redux Toolkit, RTK Query, Ant Design 5.x (Light Theme), React 19, TS | 🟢 Hoàn thành |
 
 > *Ghi chú:*
 > - Danh mục chỉ hiển thị các bài tập đã có trong repository. Khi có bài mới sẽ được bổ sung trực tiếp vào bảng tương ứng.

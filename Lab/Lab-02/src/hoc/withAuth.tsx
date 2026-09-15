@@ -1,58 +1,37 @@
-/**
- * withAuth.tsx — Bài Thực Hành 1/3
- * Higher-Order Component (HOC) bảo vệ route bằng xác thực.
- *
- * HOC nhận vào một Component generic <P> và trả về component mới.
- * Component mới tự động kiểm tra đăng nhập trước khi render Component gốc.
- *
- * Pattern: HOC (Higher-Order Component)
- * Khi nào dùng: Cần bọc nhiều component bằng 1 logic chung (auth, logging, tracking)
- */
-
-import { type ComponentType } from "react";
-import { useAuth } from "../hooks/useAuth";
+import { type ComponentType } from 'react';
+import { Button, Result, Spin } from 'antd';
+import { LockOutlined } from '@ant-design/icons';
+import { useAuth } from '../hooks/useAuth.ts';
 
 // ─── Component hiển thị khi chưa đăng nhập ───
 function NotAuthenticated() {
   return (
-    <div className="auth-guard">
-      <div className="auth-guard__icon">🔒</div>
-      <h2 className="auth-guard__title">Yêu cầu đăng nhập</h2>
-      <p className="auth-guard__desc">
-        Bạn cần đăng nhập để truy cập trang này.
-      </p>
-      <a className="auth-guard__btn" href="/login">
-        Đăng nhập ngay →
-      </a>
-    </div>
+    <Result
+      status="403"
+      icon={<LockOutlined style={{ color: '#faad14' }} />}
+      title="Yêu cầu đăng nhập"
+      subTitle="Bạn cần đăng nhập để xem nội dung được bảo vệ bởi withAuth HOC."
+      extra={
+        <Button type="primary" href="#login">
+          Đăng nhập ngay
+        </Button>
+      }
+    />
   );
 }
 
 // ─── Loading state ───
 function AuthLoading() {
   return (
-    <div className="auth-guard">
-      <div className="auth-guard__spinner" />
-      <p>Đang kiểm tra quyền truy cập...</p>
+    <div style={{ textAlign: 'center', padding: '40px 0' }}>
+      <Spin size="large" />
+      <p style={{ marginTop: 12, color: '#6b7280' }}>Đang kiểm tra quyền truy cập...</p>
     </div>
   );
 }
 
-/**
- * withAuth<P> — HOC kiểm tra đăng nhập
- *
- * @param Component - Component cần bảo vệ
- * @returns Component mới với auth guard
- *
- * @example
- * ```tsx
- * const ProtectedDashboard = withAuth(DashboardPage);
- * // <ProtectedDashboard /> sẽ tự kiểm tra đăng nhập
- * ```
- */
 export function withAuth<P extends object>(Component: ComponentType<P>) {
-  // Đặt tên displayName để dễ debug trong React DevTools
-  const displayName = Component.displayName ?? Component.name ?? "Component";
+  const displayName = Component.displayName ?? Component.name ?? 'Component';
 
   function AuthGuard(props: P) {
     const { user, isLoading } = useAuth();
@@ -60,7 +39,6 @@ export function withAuth<P extends object>(Component: ComponentType<P>) {
     if (isLoading) return <AuthLoading />;
     if (!user) return <NotAuthenticated />;
 
-    // Đã đăng nhập → render component gốc với đầy đủ props
     return <Component {...props} />;
   }
 

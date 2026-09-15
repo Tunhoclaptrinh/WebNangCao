@@ -1,14 +1,26 @@
-/**
- * Demo components cho Lab-02
- * ProfilePage — Trang cá nhân (được bảo vệ bởi withAuth HOC)
- * ProductListDemo — Demo useFetch<T> với mock API
- */
+import {
+  ReloadOutlined,
+  SafetyCertificateOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+import {
+  Alert,
+  Avatar,
+  Button,
+  Card,
+  Col,
+  Descriptions,
+  Row,
+  Spin,
+  Tag,
+  Typography,
+} from 'antd';
+import { withAuth } from '../../hoc/withAuth.tsx';
+import { useAuth } from '../../hooks/useAuth.ts';
+import { useFetch } from '../../hooks/useFetch.ts';
 
-import { withAuth } from "../../hoc/withAuth";
-import { useAuth } from "../../hooks/useAuth";
-import { useFetch } from "../../hooks/useFetch";
+const { Title, Text, Paragraph } = Typography;
 
-// ─── Định nghĩa type ───
 interface Product {
   id: number;
   title: string;
@@ -18,76 +30,129 @@ interface Product {
 }
 
 // ─── Bài 1: ProfilePage bảo vệ bởi withAuth ───────────
-
 interface ProfilePageProps {
   title?: string;
 }
 
-/** Trang profile thực — chỉ hiển thị khi đã đăng nhập */
-function ProfilePage({ title = "Trang Cá Nhân" }: ProfilePageProps) {
+function ProfilePage({ title = 'Trang Cá Nhân' }: ProfilePageProps) {
   const { user } = useAuth();
+
   return (
-    <div className="profile-card">
-      <div className="profile-card__avatar">👤</div>
-      <h3>{title}</h3>
-      <p><strong>Tên:</strong> {user?.name}</p>
-      <p><strong>Email:</strong> {user?.email}</p>
-      <p><strong>Vai trò:</strong> {user?.role}</p>
-      <div className="hoc-badge">
-        🛡️ Component này được bảo vệ bởi <code>withAuth(ProfilePage)</code>
+    <Card
+      style={{
+        borderRadius: 8,
+        border: '1px solid #e5e7eb',
+        background: '#ffffff',
+        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
+      }}
+      bodyStyle={{ padding: 20 }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
+        <Avatar size={54} icon={<UserOutlined />} style={{ backgroundColor: '#1677ff' }} />
+        <div>
+          <Title level={4} style={{ margin: 0 }}>
+            {title}
+          </Title>
+          <Tag color="green" icon={<SafetyCertificateOutlined />} style={{ marginTop: 4 }}>
+            Đã xác thực qua withAuth HOC
+          </Tag>
+        </div>
       </div>
-    </div>
+
+      <Descriptions size="small" bordered column={1}>
+        <Descriptions.Item label="Họ và tên">
+          <strong>{user?.name}</strong>
+        </Descriptions.Item>
+        <Descriptions.Item label="Email">{user?.email}</Descriptions.Item>
+        <Descriptions.Item label="Vai trò">
+          <Tag color="purple">{user?.role}</Tag>
+        </Descriptions.Item>
+      </Descriptions>
+    </Card>
   );
 }
 
-/** ProfilePage được bọc bởi withAuth HOC */
 export const ProtectedProfile = withAuth(ProfilePage);
 
 // ─── Bài 3: ProductListDemo dùng useFetch ─────────────
-
-/** Demo useFetch<T> với dữ liệu từ FakeStore API */
 export function ProductListDemo() {
   const { data: products, loading, error, refetch } =
-    useFetch<Product[]>("https://fakestoreapi.com/products?limit=6");
+    useFetch<Product[]>('https://fakestoreapi.com/products?limit=6');
 
   return (
-    <div className="fetch-demo">
-      <div className="fetch-demo__header">
-        <span className="hook-tag">useFetch&lt;Product[]&gt;</span>
-        <button className="refetch-btn" onClick={refetch}>
-          🔄 Refetch
-        </button>
+    <Card
+      style={{
+        borderRadius: 8,
+        border: '1px solid #e5e7eb',
+        background: '#ffffff',
+        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
+      }}
+      bodyStyle={{ padding: 20 }}
+    >
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+        <Tag color="cyan" style={{ padding: '3px 8px', fontSize: 12 }}>
+          Hook: <code>useFetch&lt;Product[]&gt;</code>
+        </Tag>
+        <Button icon={<ReloadOutlined />} onClick={refetch} loading={loading} size="small">
+          Refetch API
+        </Button>
       </div>
 
       {loading && (
-        <div className="fetch-loading">
-          <div className="spinner" />
-          <span>Đang gọi API...</span>
+        <div style={{ textAlign: 'center', padding: '40px 0' }}>
+          <Spin size="large" />
+          <p style={{ marginTop: 12, color: '#6b7280' }}>Đang gọi API FakeStore...</p>
         </div>
       )}
 
       {error && (
-        <div className="fetch-error">
-          ⚠️ Lỗi: {error}
-        </div>
+        <Alert
+          message="Lỗi nạp dữ liệu"
+          description={error}
+          type="error"
+          showIcon
+          style={{ marginBottom: 16 }}
+        />
       )}
 
       {!loading && !error && products && (
-        <div className="products-mini-grid">
+        <Row gutter={[12, 12]}>
           {products.map((p) => (
-            <div key={p.id} className="product-mini-card">
-              <span className="product-mini-card__category">{p.category}</span>
-              <p className="product-mini-card__title">
-                {p.title.length > 40 ? p.title.slice(0, 40) + "..." : p.title}
-              </p>
-              <div className="product-mini-card__footer">
-                <strong>${p.price}</strong>
-                <span>⭐ {p.rating.rate} ({p.rating.count})</span>
-              </div>
-            </div>
+            <Col xs={24} sm={12} md={8} key={p.id}>
+              <Card
+                size="small"
+                hoverable
+                style={{
+                  borderRadius: 6,
+                  border: '1px solid #e5e7eb',
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+                bodyStyle={{ display: 'flex', flexDirection: 'column', flex: 1 }}
+              >
+                <Tag color="blue" style={{ width: 'fit-content', marginBottom: 6 }}>
+                  {p.category}
+                </Tag>
+                <Paragraph
+                  ellipsis={{ rows: 2 }}
+                  style={{ fontSize: 13, fontWeight: 600, color: '#111827', marginBottom: 8 }}
+                >
+                  {p.title}
+                </Paragraph>
+                <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Text strong style={{ color: '#1677ff', fontFamily: "'JetBrains Mono', monospace" }}>
+                    ${p.price}
+                  </Text>
+                  <Text type="secondary" style={{ fontSize: 12 }}>
+                    ⭐ {p.rating.rate}
+                  </Text>
+                </div>
+              </Card>
+            </Col>
           ))}
-        </div>
+        </Row>
       )}
-    </div>
+    </Card>
   );
 }
