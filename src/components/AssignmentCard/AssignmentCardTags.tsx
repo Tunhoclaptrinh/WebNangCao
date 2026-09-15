@@ -23,34 +23,40 @@ export const AssignmentCardTags: React.FC<AssignmentCardTagsProps> = ({
 
   return (
     <div className="assignment-card__meta-row">
-      <span 
-        className="assignment-card__tag"
-        style={{ 
-          background: subjectMeta.bg, 
-          color: subjectMeta.textColor, 
-          border: `1px solid ${subjectMeta.borderColor}` 
-        }}
-      >
-        {subjectMeta.name} ({subjectMeta.code})
+      {/* 1. Môn học dạng link tinh tế có dot màu (Không dùng tag khối to) */}
+      <span className="assignment-card__subject-link">
+        <span 
+          className="assignment-card__dot" 
+          style={{ background: subjectMeta.textColor }} 
+        />
+        <span className="assignment-card__subject-text">
+          {subjectMeta.name}
+        </span>
+        <span className="assignment-card__subject-code">
+          ({subjectMeta.code})
+        </span>
       </span>
 
+      <span className="assignment-card__separator">•</span>
+
+      {/* 2. Mức độ ưu tiên dạng text nhẹ nhàng */}
       <span 
-        className="assignment-card__tag"
-        style={{ 
-          background: priorityMeta.bg, 
-          color: priorityMeta.textColor, 
-          border: `1px solid ${priorityMeta.borderColor}` 
-        }}
+        className="assignment-card__priority"
+        style={{ color: priorityMeta.textColor }}
       >
-        Ưu tiên {priorityMeta.label}
+        <span 
+          className="assignment-card__dot" 
+          style={{ background: priorityMeta.textColor }} 
+        />
+        <span>Ưu tiên {priorityMeta.label}</span>
       </span>
 
+      <span className="assignment-card__separator">•</span>
+
+      {/* 3. Tag hạn nộp duy nhất dạng Badge trực quan */}
       <span 
-        className="assignment-card__tag"
+        className="assignment-card__countdown-tag"
         style={{ 
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '5px',
           background: countdown.bg, 
           color: countdown.textColor, 
           border: `1px solid ${countdown.borderColor}` 

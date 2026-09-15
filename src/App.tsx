@@ -180,10 +180,10 @@ const DeadlineTrackerContent: React.FC = () => {
                 onSearchChange={(q) => dispatch(setSearchQuery(q))}
                 onReset={() => dispatch(clearFilters())}
               >
-                <div style={{ display: 'flex', alignItems: 'flex-end', flexWrap: 'wrap', gap: '14px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+                  <FilterGroup.Search />
                   <FilterGroup.Subject />
                   <FilterGroup.Priority />
-                  <FilterGroup.Search />
                   <FilterGroup.Actions />
                 </div>
               </FilterGroup>

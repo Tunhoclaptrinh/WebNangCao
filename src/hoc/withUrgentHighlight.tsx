@@ -7,7 +7,7 @@ export interface WithUrgentHighlightProps {
 
 /**
  * Higher-Order Component (HOC) - Buổi 2 React Design Patterns
- * Tự động phân tích mức độ khẩn cấp của bài tập và bọc style / badge làm nổi bật
+ * Tự động phân tích mức độ khẩn cấp của bài tập và bọc class làm nổi bật đồng bộ với bo góc
  */
 export function withUrgentHighlight<P extends WithUrgentHighlightProps>(
   WrappedComponent: React.ComponentType<P>
@@ -17,23 +17,16 @@ export function withUrgentHighlight<P extends WithUrgentHighlightProps>(
     const isOverdue = isOverdueAssignment(assignment);
     const isUrgent = isUrgentAssignment(assignment, 24);
 
-    let highlightStyle: React.CSSProperties = {};
+    let highlightClass = '';
 
     if (isOverdue) {
-      highlightStyle = {
-        borderLeft: '4px solid #ff4d4f',
-        transition: 'all 0.3s ease',
-      };
+      highlightClass = 'urgent-highlight-wrapper--overdue';
     } else if (isUrgent) {
-      highlightStyle = {
-        borderLeft: '4px solid #faad14',
-        boxShadow: '0 2px 10px rgba(250, 173, 20, 0.15)',
-        transition: 'all 0.3s ease',
-      };
+      highlightClass = 'urgent-highlight-wrapper--urgent';
     }
 
     return (
-      <div style={highlightStyle} className="urgent-highlight-wrapper">
+      <div className={`urgent-highlight-wrapper ${highlightClass}`}>
         <WrappedComponent {...props} />
       </div>
     );

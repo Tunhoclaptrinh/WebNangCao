@@ -1,3 +1,19 @@
+/* Wrapper HOC đồng bộ hoàn hảo viền màu với góc bo tròn (14px) của thẻ */
+.urgent-highlight-wrapper {
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
+
+.urgent-highlight-wrapper--overdue > .assignment-card {
+  border-color: #fca5a5 !important;
+  box-shadow: inset 4px 0 0 #ef4444, 0 2px 8px rgba(239, 68, 68, 0.05) !important;
+}
+
+.urgent-highlight-wrapper--urgent > .assignment-card {
+  border-color: #fcd34d !important;
+  box-shadow: inset 4px 0 0 #f59e0b, 0 2px 8px rgba(245, 158, 11, 0.05) !important;
+}
+
 .assignment-card {
   border-radius: 14px;
   border: 1px solid #e2e8f0;
@@ -63,24 +79,70 @@
   box-shadow: 0 2px 6px rgba(22, 163, 74, 0.25);
 }
 
+/* Hàng metadata dạng link / breadcrumb tinh tế */
 .assignment-card__meta-row {
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
   margin-bottom: 8px;
+  font-size: 12px;
 }
 
-.assignment-card__tag {
+.assignment-card__subject-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: #1e293b;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.assignment-card__subject-link:hover .assignment-card__subject-text {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.assignment-card__subject-code {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.assignment-card__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.assignment-card__separator {
+  color: #cbd5e1;
+  font-size: 10px;
+}
+
+.assignment-card__priority {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.assignment-card__countdown-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   padding: 2px 8px;
   border-radius: 6px;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.02em;
 }
 
 .assignment-card__title {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: #0f172a;
   line-height: 1.4;

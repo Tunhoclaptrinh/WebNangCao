@@ -4,18 +4,19 @@ import { ReloadOutlined } from '@ant-design/icons';
 import { useFilterContext } from './FilterContext';
 
 export const ActionFilter: React.FC = () => {
-  const { onReset } = useFilterContext();
+  const { onReset, subjectFilter, priorityFilter, searchQuery } = useFilterContext();
+  const hasFilter = subjectFilter !== 'ALL' || priorityFilter !== 'ALL' || searchQuery.trim() !== '';
+
+  if (!hasFilter) return null;
 
   return (
-    <div style={{ display: 'flex', alignItems: 'flex-end', height: '100%' }}>
-      <Button
-        icon={<ReloadOutlined />}
-        onClick={onReset}
-        type="text"
-        className="filter-group__reset-btn"
-      >
-        Đặt lại
-      </Button>
-    </div>
+    <Button
+      icon={<ReloadOutlined />}
+      onClick={onReset}
+      type="text"
+      className="filter-group__reset-btn"
+    >
+      Đặt lại
+    </Button>
   );
 };
