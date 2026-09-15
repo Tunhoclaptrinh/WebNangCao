@@ -20,9 +20,12 @@
 
 ## 🗂️ Cấu Trúc Thư Mục (Repository Structure)
 
-Repository được phân chia đồng bộ làm **2 khu vực chính**:
-1. 🧪 **`Lab/`**: Chứa toàn bộ các bài thực hành trên lớp / phòng máy (`Lab-01`, `Lab-02`,...).
-2. 📝 **`Ex/`**: Chứa toàn bộ các bài tập về nhà, bài tập tuần, bài tập rèn luyện (`Ex-01`, `Ex-02`,...).
+Repository được phân chia làm **2 khu vực chính**:
+1. 🧪 **`Lab/`**: Chứa toàn bộ các **bài thực hành / live-coding minh hoạ trên lớp lý thuyết** (`Lab-01`, `Lab-02`,...).
+   > 💡 **Lưu ý quan trọng về các bài Lab:**  
+   > - Thư mục `Lab/` ở nhánh `main` này chỉ dành cho việc thực hành trực tiếp theo bài giảng trên lớp lý thuyết.  
+   > - Các bài **Lab của buổi thực hành chính thức (Phòng máy / Ca thực hành định kỳ)** sẽ được tổ chức ở **nhánh riêng (`branch riêng`)** (ví dụ: `practice-lab`, `lab-phong-may`...) nhằm phân định rõ ràng giữa bài học lý thuyết và bài kiểm tra/thực hành máy.
+2. 📝 **`Ex/`**: Chứa toàn bộ các **bài tập về nhà / bài tập tuần nộp giảng viên** (`Ex-01`, `Ex-02`, `Ex-03`,...).
 
 ```text
 BaiTap/ (Workspace Root)
@@ -33,12 +36,12 @@ BaiTap/ (Workspace Root)
 │   ├── de-bai/              # Nơi lưu file đề bài (PDF, ảnh, docx...)
 │   └── slides/              # Slide bài giảng (Buoi1_TypeScript_Nang_Cao.pptx...)
 │
-├── Lab/                     # Khu vực 1: BÀI THỰC HÀNH (LAB)
-│   ├── README.md            # Mục lục khu vực Lab
+├── Lab/                     # Khu vực 1: BÀI THỰC HÀNH TRÊN LỚP LÝ THUYẾT (IN-CLASS LABS)
+│   ├── README.md            # Mục lục khu vực Lab & quy định nhánh thực hành phòng máy
 │   ├── Lab-01/              # Bài thực hành số 1
 │   └── Lab-02/              # Buổi 2: HOC, Tabs Compound Component, useFetch
 │
-└── Ex/                      # Khu vực 2: BÀI TẬP (EXERCISES)
+└── Ex/                      # Khu vực 2: BÀI TẬP VỀ NHÀ / TUẦN (EXERCISES)
     ├── README.md            # Mục lục khu vực Bài tập
     ├── Ex-01/               # Bài tập tuần 1: Module Quản lý đơn hàng
     ├── Ex-02/               # Bài tập tuần 2: Accordion + usePagination
@@ -49,7 +52,8 @@ BaiTap/ (Workspace Root)
 
 ## 📋 Danh Mục Các Bài Đã Có
 
-### 🧪 1. Danh Sách Bài Thực Hành (Lab)
+### 🧪 1. Danh Sách Bài Thực Hành Trên Lớp (In-Class Labs)
+*(Lưu ý: Các bài thực hành phòng máy sẽ được lưu tại nhánh riêng)*
 
 | STT | Tên Lab | Đường Dẫn Thư Mục | Nội Dung / Yêu Cầu Chính | Công Nghệ | Trạng Thái |
 | :---: | :--- | :--- | :--- | :--- | :---: |
