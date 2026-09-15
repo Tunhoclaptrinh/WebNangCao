@@ -35,23 +35,14 @@ BaiTap/ (Workspace Root)
 │
 ├── Lab/                     # Khu vực 1: BÀI THỰC HÀNH (LAB)
 │   ├── README.md            # Mục lục khu vực Lab
-│   └── Lab-01/              # Bài thực hành số 1
-│       └── README.md
+│   ├── Lab-01/              # Bài thực hành số 1
+│   └── Lab-02/              # Buổi 2: HOC, Tabs Compound Component, useFetch
 │
 └── Ex/                      # Khu vực 2: BÀI TẬP (EXERCISES)
     ├── README.md            # Mục lục khu vực Bài tập
     ├── Ex-01/               # Bài tập tuần 1: Module Quản lý đơn hàng
-    │   ├── tsconfig.json
-    │   ├── package.json
-    │   ├── order-management.types.ts
-    │   ├── order-management.demo.ts
-    │   └── README.md
-    └── Ex-02/               # Bài tập tuần 2: Accordion + usePagination (React)
-        ├── src/
-        │   ├── components/Accordion/  # Compound Component
-        │   ├── hooks/usePagination.ts # Custom Hook Generic
-        │   └── ...
-        └── README.md
+    ├── Ex-02/               # Bài tập tuần 2: Accordion + usePagination
+    └── Ex-03/               # Bài tập tuần 3: Module Giỏ Hàng Redux Toolkit Feature-Based
 ```
 
 ---
@@ -73,6 +64,7 @@ BaiTap/ (Workspace Root)
 | :---: | :--- | :--- | :--- | :--- | :---: |
 | 01 | [**Ex 01**](./Ex/Ex-01/) | [`Ex/Ex-01/`](./Ex/Ex-01/) | Thiết kế bộ type TypeScript cho module Quản lý đơn hàng (Order, OrderItem, Product, Customer) | TypeScript, Generics, Utility Types | 🟢 Hoàn thành |
 | 02 | [**Ex 02**](./Ex/Ex-02/) | [`Ex/Ex-02/`](./Ex/Ex-02/) | Accordion Compound Component (Context API, single-open) + Custom Hook `usePagination<T>` cho danh sách sản phẩm | React 19, TypeScript, Vite, Context API, Custom Hooks | 🟢 Hoàn thành |
+| 03 | [**Ex 03**](./Ex/Ex-03/) | [`Ex/Ex-03/`](./Ex/Ex-03/) | Module Giỏ Hàng Redux Toolkit Feature-Based (`cartSlice`, `productsSlice`, RTK Query bonus, Typed Hooks) | Redux Toolkit, RTK Query, React 19, TypeScript, Vite | 🟢 Hoàn thành |
 
 > *Ghi chú:*
 > - Danh mục chỉ hiển thị các bài tập đã có trong repository. Khi có bài mới sẽ được bổ sung trực tiếp vào bảng tương ứng.
