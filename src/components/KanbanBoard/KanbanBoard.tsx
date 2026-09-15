@@ -6,7 +6,7 @@ import {
   isUrgentAssignment 
 } from '../../types/assignment.types';
 import { KanbanBoardProps, KanbanColumnConfig } from './KanbanBoard.types';
-import { KanbanCard } from './KanbanCard';
+import { KanbanColumn } from './KanbanColumn';
 import './KanbanBoard.css';
 
 export const KanbanBoard: React.FC<KanbanBoardProps> = ({
@@ -65,46 +65,14 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
     <div className="kanban-board">
       <div className="kanban-board__grid">
         {columns.map(({ config, items }) => (
-          <div key={config.key} className="kanban-column">
-            {/* Header cột Kanban */}
-            <div className="kanban-column__header">
-              <div className="kanban-column__title">
-                <span>{config.title}</span>
-                {config.key === 'urgent' && items.length > 0 && (
-                  <span className="pulse-indicator" />
-                )}
-              </div>
-              <span
-                className="kanban-column__count"
-                style={{
-                  background: config.badgeBg,
-                  color: config.badgeColor,
-                  border: `1px solid ${config.borderColor}`,
-                }}
-              >
-                {items.length}
-              </span>
-            </div>
-
-            {/* Danh sách thẻ trong cột */}
-            <div className="kanban-column__list">
-              {items.length === 0 ? (
-                <div className="kanban-column__empty">
-                  Không có bài tập
-                </div>
-              ) : (
-                items.map((assignment) => (
-                  <KanbanCard
-                    key={assignment.id}
-                    assignment={assignment}
-                    onToggleStatus={onToggleStatus}
-                    onDelete={onDelete}
-                    onClick={() => onSelectAssignment(assignment.id)}
-                  />
-                ))
-              )}
-            </div>
-          </div>
+          <KanbanColumn
+            key={config.key}
+            config={config}
+            items={items}
+            onToggleStatus={onToggleStatus}
+            onDelete={onDelete}
+            onSelectAssignment={onSelectAssignment}
+          />
         ))}
       </div>
     </div>

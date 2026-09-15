@@ -42,17 +42,17 @@ const DeadlineTrackerContent: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
 
-  const { 
-    loading, 
-    submitting, 
-    statusFilter, 
-    subjectFilter, 
-    priorityFilter, 
-    searchQuery, 
-    items, 
-    viewMode, 
-    selectedAssignmentId, 
-    techDrawerOpen 
+  const {
+    loading,
+    submitting,
+    statusFilter,
+    subjectFilter,
+    priorityFilter,
+    searchQuery,
+    items,
+    viewMode,
+    selectedAssignmentId,
+    techDrawerOpen
   } = useAppSelector(selectAssignmentsState);
 
   const filteredAssignments = useAppSelector(selectFilteredAssignments);
