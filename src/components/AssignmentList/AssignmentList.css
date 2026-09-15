@@ -27,7 +27,7 @@
   display: inline-flex;
   align-items: center;
   padding: 1px 8px;
-  border-radius: 9999px;
+  border-radius: 4px;
   background: #f1f5f9;
   color: #475569;
   font-size: 11px;
@@ -37,7 +37,7 @@
 .assignment-list__empty {
   background: #ffffff;
   padding: 54px 24px;
-  border-radius: 16px;
+  border-radius: 4px;
   border: 1px dashed #cbd5e1;
   text-align: center;
   margin-top: 16px;
@@ -46,7 +46,7 @@
 .assignment-list__empty-icon {
   width: 48px;
   height: 48px;
-  border-radius: 12px;
+  border-radius: 4px;
   background: #f8fafc;
   color: #94a3b8;
   display: inline-flex;

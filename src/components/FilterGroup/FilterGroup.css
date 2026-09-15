@@ -1,7 +1,7 @@
 .filter-group {
   background: #ffffff;
   padding: 10px 16px;
-  border-radius: 6px;
+  border-radius: 4px;
   border: 1px solid #e2e8f0;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
   margin-bottom: 16px;
@@ -22,9 +22,11 @@
   border-radius: 4px;
 }
 
-.filter-group__status-segmented {
+.filter-group__status-segmented,
+.filter-group__status-segmented .ant-segmented-item,
+.filter-group__status-segmented .ant-segmented-thumb {
   background: #f1f5f9;
   padding: 2px;
-  border-radius: 4px;
+  border-radius: 4px !important;
   font-weight: 600;
 }

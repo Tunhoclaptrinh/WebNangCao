@@ -262,10 +262,40 @@ export function App() {
           colorWarning: '#d97706',
           colorError: '#dc2626',
           borderRadius: 4,
+          borderRadiusSM: 4,
+          borderRadiusLG: 4,
+          borderRadiusXS: 2,
           fontFamily: "'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
           colorBgLayout: '#f8fafc',
           colorBgContainer: '#ffffff',
           colorBorderSecondary: '#f1f5f9',
+        },
+        components: {
+          Card: {
+            borderRadiusLG: 4,
+            borderRadius: 4,
+          },
+          Button: {
+            borderRadius: 4,
+            borderRadiusSM: 4,
+            borderRadiusLG: 4,
+          },
+          Select: {
+            borderRadius: 4,
+          },
+          Input: {
+            borderRadius: 4,
+          },
+          Segmented: {
+            borderRadius: 4,
+            borderRadiusSM: 4,
+          },
+          Tag: {
+            borderRadiusSM: 4,
+          },
+          Modal: {
+            borderRadiusLG: 4,
+          },
         },
       }}
     >

@@ -57,10 +57,12 @@
   gap: 10px;
 }
 
-.workspace-header__segmented {
+.workspace-header__segmented,
+.workspace-header__segmented .ant-segmented-item,
+.workspace-header__segmented .ant-segmented-thumb {
   background: #f1f5f9;
   padding: 2px;
-  border-radius: 4px;
+  border-radius: 4px !important;
   font-weight: 600;
 }
 

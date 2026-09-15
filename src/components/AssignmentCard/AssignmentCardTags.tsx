@@ -44,10 +44,6 @@ export const AssignmentCardTags: React.FC<AssignmentCardTagsProps> = ({
         className="assignment-card__priority"
         style={{ color: priorityMeta.textColor }}
       >
-        <span 
-          className="assignment-card__dot" 
-          style={{ background: priorityMeta.textColor }} 
-        />
         <span>Ưu tiên {priorityMeta.label}</span>
       </span>
 

@@ -17,9 +17,11 @@ export function withUrgentHighlight<P extends WithUrgentHighlightProps>(
     const isOverdue = isOverdueAssignment(assignment);
     const isUrgent = isUrgentAssignment(assignment, 24);
 
-    let highlightClass = '';
+    let highlightClass = 'urgent-highlight-wrapper--normal';
 
-    if (isOverdue) {
+    if (assignment.completed) {
+      highlightClass = 'urgent-highlight-wrapper--completed';
+    } else if (isOverdue) {
       highlightClass = 'urgent-highlight-wrapper--overdue';
     } else if (isUrgent) {
       highlightClass = 'urgent-highlight-wrapper--urgent';

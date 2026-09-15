@@ -21,7 +21,7 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
     return (
       <Space direction="vertical" size={14} style={{ width: '100%', marginTop: '16px' }}>
         {[1, 2, 3].map((i) => (
-          <div key={i} style={{ background: '#ffffff', padding: '20px', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+          <div key={i} style={{ background: '#ffffff', padding: '20px', borderRadius: '4px', border: '1px solid #e2e8f0' }}>
             <Skeleton active avatar paragraph={{ rows: 2 }} />
           </div>
         ))}
@@ -49,7 +49,7 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
             type="primary" 
             icon={<PlusOutlined />} 
             onClick={onOpenCreateModal}
-            style={{ background: '#2563eb', borderRadius: '8px', fontWeight: 600 }}
+            style={{ background: '#2563eb', borderRadius: '4px', fontWeight: 600 }}
           >
             Tạo bài tập đầu tiên
           </Button>

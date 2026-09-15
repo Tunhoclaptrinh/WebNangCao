@@ -12,7 +12,7 @@
   justify-content: space-between;
   margin-bottom: 20px;
   padding: 12px 16px;
-  border-radius: 12px;
+  border-radius: 4px;
   border: 1px solid #e2e8f0;
 }
 
@@ -28,7 +28,7 @@
 .detail-drawer__desc-box {
   background: #f8fafc;
   padding: 16px;
-  border-radius: 12px;
+  border-radius: 4px;
   border: 1px solid #e2e8f0;
   color: #334155;
   font-size: 14px;

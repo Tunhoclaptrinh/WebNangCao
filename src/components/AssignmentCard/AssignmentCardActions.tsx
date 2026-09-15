@@ -40,8 +40,8 @@ export const AssignmentCardActions: React.FC<AssignmentCardActionsProps> = ({
         description="Bạn có chắc muốn xoá bài tập này khỏi danh sách?"
         okText="Xoá"
         cancelText="Huỷ"
-        okButtonProps={{ danger: true, style: { borderRadius: '6px' } }}
-        cancelButtonProps={{ style: { borderRadius: '6px' } }}
+        okButtonProps={{ danger: true, style: { borderRadius: '4px' } }}
+        cancelButtonProps={{ style: { borderRadius: '4px' } }}
         onConfirm={() => onDelete(id)}
       >
         <Tooltip title="Xoá bài tập">

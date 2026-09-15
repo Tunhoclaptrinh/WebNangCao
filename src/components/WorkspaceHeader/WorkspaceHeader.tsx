@@ -59,7 +59,7 @@ export const WorkspaceHeader: React.FC<WorkspaceHeaderProps> = ({
           <Button
             icon={<SyncOutlined spin={loading} />}
             onClick={onResetMockData}
-            style={{ borderRadius: '8px', color: '#64748b' }}
+            style={{ borderRadius: '4px', color: '#64748b' }}
           />
         </Tooltip>
 
