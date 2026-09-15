@@ -14,11 +14,15 @@ export interface DeadlineCountdownResult {
   diffHours: number;
   isOverdue: boolean;
   formattedDueDate: string;
+  bg: string;
+  textColor: string;
+  borderColor: string;
 }
 
 /**
  * Custom Hook tính toán thời hạn deadline theo thời gian thực (Buổi 2 React Design Pattern)
  * Phục vụ yêu cầu 6: Hiển thị "Còn X ngày" hoặc "Quá hạn Y ngày"
+ * Thiết kế bảng màu Pastel cao cấp theo chuẩn Minimalist Taste
  */
 export function useDeadlineCountdown(
   dueDate: string, 
@@ -32,11 +36,14 @@ export function useDeadlineCountdown(
       return {
         text: 'Đã hoàn thành',
         status: 'completed',
-        color: 'success',
+        color: 'default',
         diffDays: 0,
         diffHours: 0,
         isOverdue: false,
         formattedDueDate,
+        bg: '#f1f5f9',
+        textColor: '#64748b',
+        borderColor: '#e2e8f0',
       };
     }
 
@@ -63,13 +70,16 @@ export function useDeadlineCountdown(
         diffHours,
         isOverdue: true,
         formattedDueDate,
+        bg: '#fef2f2',
+        textColor: '#b91c1c',
+        borderColor: '#fecaca',
       };
     }
 
     // Hôm nay đến hạn (< 24 giờ)
     if (diffHours <= 24) {
       const text = diffHours <= 1 
-        ? 'Hạn nộp trong 1 giờ tới!' 
+        ? 'Hạn nộp trong 1 giờ tới' 
         : `Hôm nay (còn ${diffHours} giờ)`;
 
       return {
@@ -80,6 +90,9 @@ export function useDeadlineCountdown(
         diffHours,
         isOverdue: false,
         formattedDueDate,
+        bg: '#fffbeb',
+        textColor: '#b45309',
+        borderColor: '#fde68a',
       };
     }
 
@@ -92,6 +105,9 @@ export function useDeadlineCountdown(
       diffHours,
       isOverdue: false,
       formattedDueDate,
+      bg: diffDays <= 3 ? '#fff7ed' : '#eff6ff',
+      textColor: diffDays <= 3 ? '#c2410c' : '#1d4ed8',
+      borderColor: diffDays <= 3 ? '#fed7aa' : '#bfdbfe',
     };
   }, [dueDate, isCompleted]);
 }

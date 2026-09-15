@@ -1,102 +1,101 @@
 import React, { useState } from 'react';
-import { Alert, Button, Space, Typography, Collapse } from 'antd';
-import { InfoCircleOutlined, DownOutlined, UpOutlined } from '@ant-design/icons';
-
-const { Text } = Typography;
+import { Button, Space } from 'antd';
+import { 
+  CodeOutlined, 
+  DownOutlined, 
+  UpOutlined,
+  ThunderboltOutlined,
+  BranchesOutlined
+} from '@ant-design/icons';
 
 export const TechArchitectureBanner: React.FC = () => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div style={{ marginBottom: '24px' }}>
-      <Alert
-        message={
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
-            <Space>
-              <InfoCircleOutlined style={{ color: '#1677ff', fontSize: '16px' }} />
-              <Text strong style={{ color: '#1677ff', fontSize: '14px' }}>
-                Tổng hợp kiến thức 3 buổi học: TypeScript Nâng Cao + React Design Patterns + Redux Toolkit
-              </Text>
-            </Space>
-            <Button 
-              type="link" 
-              size="small" 
-              icon={expanded ? <UpOutlined /> : <DownOutlined />}
-              onClick={() => setExpanded(!expanded)}
-              style={{ padding: 0 }}
-            >
-              {expanded ? 'Thu gọn kiến trúc' : 'Xem chi tiết kỹ thuật'}
-            </Button>
+    <div 
+      style={{ 
+        marginBottom: '24px',
+        background: '#ffffff',
+        borderRadius: '14px',
+        border: '1px solid #e2e8f0',
+        padding: '14px 20px',
+        boxShadow: '0 1px 2px rgba(15, 23, 42, 0.03)',
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <CodeOutlined style={{ color: '#2563eb', fontSize: '16px' }} />
+            <span style={{ fontWeight: 700, color: '#0f172a', fontSize: '13px' }}>
+              Kiến Trúc Kỹ Thuật Tổng Hợp:
+            </span>
           </div>
-        }
-        description={
-          expanded && (
-            <div style={{ marginTop: '12px' }}>
-              <Collapse
-                ghost
-                defaultActiveKey={['1', '2', '3']}
-                items={[
-                  {
-                    key: '1',
-                    label: <strong>Buổi 1 — TypeScript Nâng Cao</strong>,
-                    children: (
-                      <div>
-                        <p style={{ margin: '0 0 6px 0' }}>
-                          • <strong>Generics & Utility Types:</strong> Sử dụng <code>CreateAssignmentPayload = Omit&lt;Assignment, ...&gt;</code>, <code>Record&lt;Priority, ...&gt;</code>, <code>ApiResponse&lt;T&gt;</code>, <code>FilterCriteria&lt;T&gt;</code>.
-                        </p>
-                        <p style={{ margin: 0 }}>
-                          • <strong>Type Guards Chuyên Biệt:</strong> <code>isCompletedAssignment()</code>, <code>isOverdueAssignment()</code>, <code>isUrgentAssignment()</code> kiểm tra runtime & compile-time.
-                        </p>
-                      </div>
-                    ),
-                  },
-                  {
-                    key: '2',
-                    label: <strong>Buổi 2 — React Design Patterns</strong>,
-                    children: (
-                      <div>
-                        <p style={{ margin: '0 0 6px 0' }}>
-                          • <strong>Compound Component:</strong> <code>FilterGroup</code> (Context API) gồm <code>FilterGroup.Status</code>, <code>FilterGroup.Subject</code>, <code>FilterGroup.Priority</code>, <code>FilterGroup.Search</code>.
-                        </p>
-                        <p style={{ margin: '0 0 6px 0' }}>
-                          • <strong>Higher-Order Component (HOC):</strong> <code>withUrgentHighlight()</code> tự động bọc thẻ bài tập và làm nổi bật visual viền/shadow khi deadline &lt; 24h hoặc quá hạn.
-                        </p>
-                        <p style={{ margin: 0 }}>
-                          • <strong>Custom Hook:</strong> <code>useDeadlineCountdown()</code> tính toán chính xác <em>"Còn X ngày"</em> hoặc <em>"Quá hạn Y ngày"</em>.
-                        </p>
-                      </div>
-                    ),
-                  },
-                  {
-                    key: '3',
-                    label: <strong>Buổi 3 — Redux Toolkit Feature-Based</strong>,
-                    children: (
-                      <div>
-                        <p style={{ margin: '0 0 6px 0' }}>
-                          • <strong>Feature-Based Architecture:</strong> Toàn bộ state quản lý tại <code>src/features/assignments/</code>.
-                        </p>
-                        <p style={{ margin: '0 0 6px 0' }}>
-                          • <strong>createAsyncThunk & Mock API:</strong> Lấy dữ liệu bài tập mẫu ban đầu (Yêu cầu 7) có mô phỏng độ trễ mạng 700ms.
-                        </p>
-                        <p style={{ margin: 0 }}>
-                          • <strong>Typed Hooks:</strong> <code>useAppDispatch</code> và <code>useAppSelector</code> đảm bảo 100% type-safety.
-                        </p>
-                      </div>
-                    ),
-                  },
-                ]}
-              />
+
+          <Space size={6} wrap>
+            <span style={{ padding: '2px 8px', borderRadius: '6px', background: '#eff6ff', color: '#1d4ed8', fontSize: '11px', fontWeight: 600, border: '1px solid #bfdbfe' }}>
+              Buổi 1: Generics & Type Guards
+            </span>
+            <span style={{ padding: '2px 8px', borderRadius: '6px', background: '#f5f3ff', color: '#6d28d9', fontSize: '11px', fontWeight: 600, border: '1px solid #ddd6fe' }}>
+              Buổi 2: Compound & HOC
+            </span>
+            <span style={{ padding: '2px 8px', borderRadius: '6px', background: '#ecfdf5', color: '#047857', fontSize: '11px', fontWeight: 600, border: '1px solid #a7f3d0' }}>
+              Buổi 3: Redux Toolkit Thunk
+            </span>
+          </Space>
+        </div>
+
+        <Button 
+          type="text" 
+          size="small" 
+          icon={expanded ? <UpOutlined /> : <DownOutlined />}
+          onClick={() => setExpanded(!expanded)}
+          style={{ color: '#64748b', fontSize: '12px', fontWeight: 600, padding: '4px 8px' }}
+        >
+          {expanded ? 'Thu gọn' : 'Chi tiết'}
+        </Button>
+      </div>
+
+      {expanded && (
+        <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid #f1f5f9' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '14px' }}>
+            {/* Cột 1 */}
+            <div style={{ background: '#f8fafc', padding: '14px 16px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px', color: '#1d4ed8', fontWeight: 700, fontSize: '12px' }}>
+                <CodeOutlined /> 1. TypeScript Nâng Cao
+              </div>
+              <ul style={{ paddingLeft: '16px', margin: 0, fontSize: '12px', color: '#475569', lineHeight: 1.6 }}>
+                <li><code>Omit&lt;Assignment, ...&gt;</code>, <code>Record&lt;K, T&gt;</code></li>
+                <li>Generic <code>ApiResponse&lt;T&gt;</code>, <code>FilterCriteria&lt;T&gt;</code></li>
+                <li>Type guards: <code>isOverdueAssignment</code>, <code>isCompletedAssignment</code></li>
+              </ul>
             </div>
-          )
-        }
-        type="info"
-        showIcon={false}
-        style={{
-          borderRadius: '10px',
-          border: '1px solid #bae0ff',
-          background: '#e6f4ff',
-        }}
-      />
+
+            {/* Cột 2 */}
+            <div style={{ background: '#f8fafc', padding: '14px 16px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px', color: '#6d28d9', fontWeight: 700, fontSize: '12px' }}>
+                <BranchesOutlined /> 2. React Design Patterns
+              </div>
+              <ul style={{ paddingLeft: '16px', margin: 0, fontSize: '12px', color: '#475569', lineHeight: 1.6 }}>
+                <li>Compound Component: <code>FilterGroup</code> (Context API)</li>
+                <li>HOC: <code>withUrgentHighlight</code> tự động viền cảnh báo</li>
+                <li>Custom Hook: <code>useDeadlineCountdown</code> đếm ngược thực</li>
+              </ul>
+            </div>
+
+            {/* Cột 3 */}
+            <div style={{ background: '#f8fafc', padding: '14px 16px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px', color: '#047857', fontWeight: 700, fontSize: '12px' }}>
+                <ThunderboltOutlined /> 3. Redux Toolkit
+              </div>
+              <ul style={{ paddingLeft: '16px', margin: 0, fontSize: '12px', color: '#475569', lineHeight: 1.6 }}>
+                <li>Feature-based: <code>src/features/assignments/</code></li>
+                <li><code>createAsyncThunk</code> kết nối API giả lập 700ms</li>
+                <li>Typed hooks: <code>useAppDispatch</code>, <code>useAppSelector</code></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

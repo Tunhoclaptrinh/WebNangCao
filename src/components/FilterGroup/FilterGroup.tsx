@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segmented, Select, Input, Button, Space, Tag } from 'antd';
+import { Segmented, Select, Input, Button, Space } from 'antd';
 import { 
   SearchOutlined, 
   ReloadOutlined, 
@@ -39,10 +39,10 @@ export const FilterGroup: React.FC<FilterGroupProps> & {
         className={className} 
         style={{ 
           background: '#ffffff', 
-          padding: '16px 20px', 
-          borderRadius: '12px', 
-          border: '1px solid #e8e8e8',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+          padding: '18px 22px', 
+          borderRadius: '16px', 
+          border: '1px solid #e2e8f0',
+          boxShadow: '0 1px 3px rgba(15, 23, 42, 0.03)',
           ...style 
         }}
       >
@@ -62,32 +62,36 @@ const StatusFilter: React.FC = () => {
     {
       value: 'ALL',
       label: (
-        <Space size={4}>
-          <AppstoreOutlined /> Tất cả
+        <Space size={6}>
+          <AppstoreOutlined />
+          <span>Tất cả</span>
         </Space>
       ),
     },
     {
       value: 'PENDING',
       label: (
-        <Space size={4}>
-          <ClockCircleOutlined style={{ color: '#1677ff' }} /> Chưa hoàn thành
+        <Space size={6}>
+          <ClockCircleOutlined style={{ color: '#2563eb' }} />
+          <span>Chưa hoàn thành</span>
         </Space>
       ),
     },
     {
       value: 'OVERDUE',
       label: (
-        <Space size={4}>
-          <WarningOutlined style={{ color: '#ff4d4f' }} /> Quá hạn
+        <Space size={6}>
+          <WarningOutlined style={{ color: '#dc2626' }} />
+          <span>Quá hạn</span>
         </Space>
       ),
     },
     {
       value: 'COMPLETED',
       label: (
-        <Space size={4}>
-          <CheckCircleOutlined style={{ color: '#52c41a' }} /> Đã hoàn thành
+        <Space size={6}>
+          <CheckCircleOutlined style={{ color: '#16a34a' }} />
+          <span>Đã hoàn thành</span>
         </Space>
       ),
     },
@@ -95,7 +99,7 @@ const StatusFilter: React.FC = () => {
 
   return (
     <div>
-      <div style={{ fontSize: '12px', fontWeight: 600, color: '#8c8c8c', marginBottom: '6px', textTransform: 'uppercase' }}>
+      <div style={{ fontSize: '11px', fontWeight: 700, color: '#64748b', marginBottom: '8px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
         Trạng thái nộp bài
       </div>
       <Segmented
@@ -103,7 +107,7 @@ const StatusFilter: React.FC = () => {
         onChange={(val) => onStatusChange(val as AssignmentStatusFilter)}
         options={options}
         size="middle"
-        block={false}
+        style={{ background: '#f1f5f9', padding: '3px', borderRadius: '10px' }}
       />
     </div>
   );
@@ -119,13 +123,30 @@ const SubjectFilter: React.FC = () => {
     { value: 'ALL', label: 'Tất cả môn học' },
     ...Object.values(SUBJECT_METAS).map((s) => ({
       value: s.code,
-      label: `${s.iconText} ${s.name} (${s.code})`,
+      label: (
+        <Space size={8}>
+          <span 
+            style={{ 
+              padding: '1px 6px', 
+              borderRadius: '4px', 
+              background: s.bg, 
+              color: s.textColor, 
+              border: `1px solid ${s.borderColor}`,
+              fontSize: '11px',
+              fontWeight: 700,
+            }}
+          >
+            {s.code}
+          </span>
+          <span style={{ fontSize: '13px' }}>{s.name}</span>
+        </Space>
+      ),
     })),
   ];
 
   return (
-    <div style={{ minWidth: '200px' }}>
-      <div style={{ fontSize: '12px', fontWeight: 600, color: '#8c8c8c', marginBottom: '6px', textTransform: 'uppercase' }}>
+    <div style={{ minWidth: '220px' }}>
+      <div style={{ fontSize: '11px', fontWeight: 700, color: '#64748b', marginBottom: '8px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
         Môn học
       </div>
       <Select
@@ -151,9 +172,19 @@ const PriorityFilter: React.FC = () => {
       value: p.priority,
       label: (
         <Space size={6}>
-          <Tag color={p.color} style={{ margin: 0, padding: '0 6px', fontSize: '11px' }}>
+          <span 
+            style={{ 
+              padding: '1px 8px', 
+              borderRadius: '4px', 
+              background: p.bg, 
+              color: p.textColor, 
+              border: `1px solid ${p.borderColor}`,
+              fontSize: '11px',
+              fontWeight: 700,
+            }}
+          >
             {p.label}
-          </Tag>
+          </span>
         </Space>
       ),
     })),
@@ -161,7 +192,7 @@ const PriorityFilter: React.FC = () => {
 
   return (
     <div style={{ minWidth: '160px' }}>
-      <div style={{ fontSize: '12px', fontWeight: 600, color: '#8c8c8c', marginBottom: '6px', textTransform: 'uppercase' }}>
+      <div style={{ fontSize: '11px', fontWeight: 700, color: '#64748b', marginBottom: '8px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
         Độ ưu tiên
       </div>
       <Select
@@ -183,14 +214,14 @@ const SearchFilter: React.FC = () => {
 
   return (
     <div style={{ flex: 1, minWidth: '220px' }}>
-      <div style={{ fontSize: '12px', fontWeight: 600, color: '#8c8c8c', marginBottom: '6px', textTransform: 'uppercase' }}>
+      <div style={{ fontSize: '11px', fontWeight: 700, color: '#64748b', marginBottom: '8px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
         Tìm kiếm bài tập
       </div>
       <Input
         value={searchQuery}
         onChange={(e) => onSearchChange(e.target.value)}
         placeholder="Nhập tên bài tập hoặc nội dung..."
-        prefix={<SearchOutlined style={{ color: '#bfbfbf' }} />}
+        prefix={<SearchOutlined style={{ color: '#94a3b8' }} />}
         allowClear
       />
     </div>
@@ -208,7 +239,7 @@ const ActionFilter: React.FC = () => {
       <Button 
         icon={<ReloadOutlined />} 
         onClick={onReset}
-        title="Đặt lại tất cả bộ lọc"
+        style={{ borderRadius: '8px', color: '#64748b', fontSize: '13px', fontWeight: 500 }}
       >
         Đặt lại
       </Button>

@@ -47,7 +47,7 @@ const DeadlineTrackerContent: React.FC = () => {
   const handleCreateAssignment = async (payload: CreateAssignmentPayload) => {
     try {
       await dispatch(createNewAssignment(payload)).unwrap();
-      messageApi.success('Thêm bài tập mới vào danh sách thành công!');
+      messageApi.success('Đã thêm bài tập mới vào danh sách theo dõi');
       setModalOpen(false);
     } catch (error) {
       messageApi.error(`Thêm bài tập thất bại: ${error}`);
@@ -59,9 +59,9 @@ const DeadlineTrackerContent: React.FC = () => {
     try {
       const updated = await dispatch(toggleAssignmentStatus(id)).unwrap();
       if (updated.completed) {
-        messageApi.success('Tuyệt vời! Đã hoàn thành bài tập 🎉');
+        messageApi.success('Đã hoàn thành bài tập');
       } else {
-        messageApi.info('Đã chuyển bài tập về trạng thái đang chờ.');
+        messageApi.info('Đã chuyển bài tập về trạng thái đang chờ');
       }
     } catch (error) {
       messageApi.error(`Cập nhật thất bại: ${error}`);
@@ -72,7 +72,7 @@ const DeadlineTrackerContent: React.FC = () => {
   const handleDeleteAssignment = async (id: string) => {
     try {
       await dispatch(deleteAssignment(id)).unwrap();
-      messageApi.success('Đã xoá bài tập khỏi danh sách.');
+      messageApi.success('Đã xoá bài tập khỏi danh sách');
     } catch (error) {
       messageApi.error(`Xoá bài tập thất bại: ${error}`);
     }
@@ -82,16 +82,16 @@ const DeadlineTrackerContent: React.FC = () => {
   const handleResetMockData = async () => {
     try {
       await dispatch(resetAssignmentsData()).unwrap();
-      messageApi.success('Đã tải lại dữ liệu mẫu ban đầu thành công!');
+      messageApi.success('Đã khôi phục dữ liệu mẫu ban đầu từ API giả lập');
     } catch (error) {
       messageApi.error(`Khôi phục dữ liệu thất bại: ${error}`);
     }
   };
 
   return (
-    <Layout style={{ minHeight: '100vh', background: '#f5f7fa' }}>
+    <Layout style={{ minHeight: '100vh', background: '#f8fafc' }}>
       {contextHolder}
-      <Content style={{ padding: '32px 24px', maxWidth: '1100px', margin: '0 auto', width: '100%' }}>
+      <Content style={{ padding: '36px 24px', maxWidth: '1080px', margin: '0 auto', width: '100%' }}>
         {/* Header thống kê KPI & Sinh viên */}
         <DeadlineHeader
           stats={stats}
@@ -150,10 +150,10 @@ const DeadlineTrackerContent: React.FC = () => {
         />
       </Content>
 
-      <Footer style={{ textAlign: 'center', background: 'transparent', color: '#8c8c8c', padding: '24px' }}>
+      <Footer style={{ textAlign: 'center', background: 'transparent', color: '#94a3b8', padding: '32px 24px', fontSize: '13px' }}>
         <strong>Student Deadline Tracker</strong> — Học viện Công nghệ Bưu chính Viễn thông (PTIT)
         <br />
-        Sinh viên: <strong>Nguyễn Tiến Tuấn</strong> (MSV: <code>B23DCCC173</code> — Lớp: <code>RIPT1411-20261-02</code>)
+        Sinh viên: <strong style={{ color: '#475569' }}>Nguyễn Tiến Tuấn</strong> (MSV: <code>B23DCCC173</code> — Lớp: <code>RIPT1411-20261-02</code>)
         <br />
         Môn học: Lập trình Web Nâng Cao — Giảng viên: ThS. Ngô Văn Nhận
       </Footer>
@@ -166,10 +166,15 @@ export function App() {
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: '#1677ff',
-          borderRadius: 8,
-          fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-          colorBgLayout: '#f5f7fa',
+          colorPrimary: '#2563eb',
+          colorSuccess: '#16a34a',
+          colorWarning: '#d97706',
+          colorError: '#dc2626',
+          borderRadius: 10,
+          fontFamily: "'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          colorBgLayout: '#f8fafc',
+          colorBgContainer: '#ffffff',
+          colorBorderSecondary: '#f1f5f9',
         },
       }}
     >

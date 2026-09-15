@@ -25,6 +25,9 @@ export interface SubjectMeta {
   name: string;
   color: string;
   iconText: string;
+  bg: string;
+  textColor: string;
+  borderColor: string;
 }
 
 export interface PriorityMeta {
@@ -33,6 +36,9 @@ export interface PriorityMeta {
   color: string;
   badgeStatus: 'default' | 'processing' | 'warning' | 'error';
   weight: number;
+  bg: string;
+  textColor: string;
+  borderColor: string;
 }
 
 export interface Assignment {
@@ -83,19 +89,19 @@ export interface ApiResponse<T> {
 // -------------------------------------------------------------
 
 export const SUBJECT_METAS: Record<SubjectCode, SubjectMeta> = {
-  LTWNC: { code: 'LTWNC', name: 'Lập trình Web Nâng Cao', color: 'blue', iconText: 'WEB' },
-  CSDL: { code: 'CSDL', name: 'Cơ sở Dữ liệu', color: 'green', iconText: 'DB' },
-  KTMT: { code: 'KTMT', name: 'Kiến trúc Máy tính', color: 'purple', iconText: 'ARCH' },
-  MMT: { code: 'MMT', name: 'Mạng Máy tính', color: 'cyan', iconText: 'NET' },
-  OOP: { code: 'OOP', name: 'Lập trình Hướng đối tượng', color: 'orange', iconText: 'OOP' },
-  OTHER: { code: 'OTHER', name: 'Môn học khác', color: 'default', iconText: 'GEN' },
+  LTWNC: { code: 'LTWNC', name: 'Lập trình Web Nâng Cao', color: 'blue', iconText: 'WEB', bg: '#eff6ff', textColor: '#1d4ed8', borderColor: '#bfdbfe' },
+  CSDL: { code: 'CSDL', name: 'Cơ sở Dữ liệu', color: 'green', iconText: 'DB', bg: '#f0fdf4', textColor: '#15803d', borderColor: '#bbf7d0' },
+  KTMT: { code: 'KTMT', name: 'Kiến trúc Máy tính', color: 'purple', iconText: 'ARCH', bg: '#faf5ff', textColor: '#7e22ce', borderColor: '#e9d5ff' },
+  MMT: { code: 'MMT', name: 'Mạng Máy tính', color: 'cyan', iconText: 'NET', bg: '#ecfeff', textColor: '#0e7490', borderColor: '#a5f3fc' },
+  OOP: { code: 'OOP', name: 'Lập trình Hướng đối tượng', color: 'orange', iconText: 'OOP', bg: '#fff7ed', textColor: '#c2410c', borderColor: '#fed7aa' },
+  OTHER: { code: 'OTHER', name: 'Môn học khác', color: 'default', iconText: 'GEN', bg: '#f8fafc', textColor: '#475569', borderColor: '#e2e8f0' },
 };
 
 export const PRIORITY_METAS: Record<Priority, PriorityMeta> = {
-  LOW: { priority: 'LOW', label: 'Thấp', color: '#52c41a', badgeStatus: 'default', weight: 1 },
-  MEDIUM: { priority: 'MEDIUM', label: 'Trung bình', color: '#1677ff', badgeStatus: 'processing', weight: 2 },
-  HIGH: { priority: 'HIGH', label: 'Cao', color: '#fa8c16', badgeStatus: 'warning', weight: 3 },
-  URGENT: { priority: 'URGENT', label: 'Khẩn cấp', color: '#f5222d', badgeStatus: 'error', weight: 4 },
+  LOW: { priority: 'LOW', label: 'Thấp', color: '#16a34a', badgeStatus: 'default', weight: 1, bg: '#f0fdf4', textColor: '#166534', borderColor: '#bbf7d0' },
+  MEDIUM: { priority: 'MEDIUM', label: 'Trung bình', color: '#2563eb', badgeStatus: 'processing', weight: 2, bg: '#eff6ff', textColor: '#1e40af', borderColor: '#bfdbfe' },
+  HIGH: { priority: 'HIGH', label: 'Cao', color: '#d97706', badgeStatus: 'warning', weight: 3, bg: '#fffbeb', textColor: '#92400e', borderColor: '#fde68a' },
+  URGENT: { priority: 'URGENT', label: 'Khẩn cấp', color: '#dc2626', badgeStatus: 'error', weight: 4, bg: '#fef2f2', textColor: '#991b1b', borderColor: '#fecaca' },
 };
 
 // -------------------------------------------------------------
