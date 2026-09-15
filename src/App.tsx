@@ -143,7 +143,6 @@ const DeadlineTrackerContent: React.FC = () => {
         loading={loading}
         onStatusSelect={(s) => dispatch(setStatusFilter(s))}
         onSubjectSelect={(sub) => dispatch(setSubjectFilter(sub))}
-        onOpenCreateModal={() => setModalOpen(true)}
         onResetMockData={handleResetMockData}
         onOpenTechDrawer={() => dispatch(setTechDrawerOpen(true))}
       />
@@ -165,7 +164,7 @@ const DeadlineTrackerContent: React.FC = () => {
         />
 
         {/* Workspace Main Content */}
-        <Content style={{ padding: '24px 32px', maxWidth: '1200px', width: '100%', margin: '0 auto', flex: 1 }}>
+        <Content style={{ padding: '20px 24px', width: '100%', flex: 1 }}>
           {viewMode === 'list' ? (
             <>
               {/* Compound Component Pattern (Buổi 2 React Design Patterns): FilterGroup */}
@@ -180,8 +179,9 @@ const DeadlineTrackerContent: React.FC = () => {
                 onSearchChange={(q) => dispatch(setSearchQuery(q))}
                 onReset={() => dispatch(clearFilters())}
               >
-                <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
                   <FilterGroup.Search />
+                  <FilterGroup.Status />
                   <FilterGroup.Subject />
                   <FilterGroup.Priority />
                   <FilterGroup.Actions />
@@ -261,7 +261,7 @@ export function App() {
           colorSuccess: '#16a34a',
           colorWarning: '#d97706',
           colorError: '#dc2626',
-          borderRadius: 10,
+          borderRadius: 4,
           fontFamily: "'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
           colorBgLayout: '#f8fafc',
           colorBgContainer: '#ffffff',

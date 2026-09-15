@@ -1,6 +1,4 @@
 import React from 'react';
-import { Button } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
 import { SidebarProps } from './Sidebar.types';
 import { SidebarBrand } from './SidebarBrand';
 import { SidebarProfile } from './SidebarProfile';
@@ -17,7 +15,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
   loading,
   onStatusSelect,
   onSubjectSelect,
-  onOpenCreateModal,
   onResetMockData,
   onOpenTechDrawer,
 }) => {
@@ -27,18 +24,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <div>
         <SidebarBrand />
         <SidebarProfile />
-
-        {/* Nút hành động chính */}
-        <Button
-          type="primary"
-          icon={<PlusOutlined />}
-          size="large"
-          block
-          onClick={onOpenCreateModal}
-          className="app-sidebar__add-btn"
-        >
-          Thêm deadline mới
-        </Button>
 
         {/* Nhóm điều hướng trạng thái */}
         <SidebarStatusNav

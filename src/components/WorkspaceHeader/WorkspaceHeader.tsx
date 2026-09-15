@@ -4,7 +4,6 @@ import {
   BarsOutlined,
   AppstoreOutlined,
   PlusOutlined,
-  CodeOutlined,
   SyncOutlined,
   CloseCircleOutlined
 } from '@ant-design/icons';
@@ -19,7 +18,6 @@ export const WorkspaceHeader: React.FC<WorkspaceHeaderProps> = ({
   loading,
   onClearFilters,
   onViewModeChange,
-  onOpenTechDrawer,
   onResetMockData,
   onOpenCreateModal,
 }) => {
@@ -55,15 +53,6 @@ export const WorkspaceHeader: React.FC<WorkspaceHeaderProps> = ({
           ]}
           className="workspace-header__segmented"
         />
-
-        {/* Nút xem hồ sơ kỹ thuật 3 buổi */}
-        <Button
-          icon={<CodeOutlined />}
-          onClick={onOpenTechDrawer}
-          className="workspace-header__tech-btn"
-        >
-          Hồ sơ kỹ thuật
-        </Button>
 
         {/* Nút reset dữ liệu mẫu ban đầu */}
         <Tooltip title="Khôi phục danh sách bài tập ban đầu từ mock API">

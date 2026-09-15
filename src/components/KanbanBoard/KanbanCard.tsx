@@ -7,7 +7,7 @@ import {
   AlertOutlined,
   CalendarOutlined
 } from '@ant-design/icons';
-import { SUBJECT_METAS, PRIORITY_METAS } from '../../types/assignment.types';
+import { SUBJECT_METAS, PRIORITY_METAS, isOverdueAssignment, isUrgentAssignment } from '../../types/assignment.types';
 import { useDeadlineCountdown } from '../../hooks/useDeadlineCountdown';
 import { KanbanCardProps } from './KanbanBoard.types';
 
@@ -22,59 +22,48 @@ export const KanbanCard: React.FC<KanbanCardProps> = ({
   const subjectMeta = SUBJECT_METAS[subject] || SUBJECT_METAS.OTHER;
   const priorityMeta = PRIORITY_METAS[priority];
 
+  const isOverdue = !completed && isOverdueAssignment(assignment);
+  const isUrgent = !completed && isUrgentAssignment(assignment, 24);
+
+  const statusModifier = completed 
+    ? 'kanban-card--completed' 
+    : isOverdue 
+      ? 'kanban-card--overdue' 
+      : isUrgent 
+        ? 'kanban-card--urgent' 
+        : '';
+
   return (
     <Card
       hoverable
       onClick={onClick}
-      className={`kanban-card ${completed ? 'kanban-card--completed' : ''}`}
-      styles={{ body: { padding: '14px 16px' } }}
+      className={`kanban-card ${statusModifier}`}
+      styles={{ body: { padding: '12px 14px' } }}
     >
-      {/* Header Tag Row */}
+      {/* Header Metadata dạng link nhẹ nhàng, đồng bộ giao diện */}
       <div className="kanban-card__tag-row">
-        <span 
-          style={{ 
-            padding: '2px 7px', 
-            borderRadius: '4px', 
-            background: subjectMeta.bg, 
-            color: subjectMeta.textColor, 
-            fontSize: '10px',
-            fontWeight: 700,
-            border: `1px solid ${subjectMeta.borderColor}`
-          }}
-        >
-          {subjectMeta.code}
+        <span className="kanban-card__subject-link">
+          <span 
+            className="kanban-card__dot" 
+            style={{ background: subjectMeta.textColor }} 
+          />
+          <strong>{subjectMeta.code}</strong>
         </span>
 
-        <span 
-          style={{ 
-            padding: '2px 7px', 
-            borderRadius: '4px', 
-            background: priorityMeta.bg, 
-            color: priorityMeta.textColor, 
-            fontSize: '10px',
-            fontWeight: 700,
-            border: `1px solid ${priorityMeta.borderColor}`
-          }}
-        >
+        <span style={{ fontSize: '10px', color: '#94a3b8' }}>•</span>
+
+        <span style={{ fontSize: '11px', color: priorityMeta.textColor, fontWeight: 600 }}>
           {priorityMeta.label}
         </span>
-      </div>
 
-      {/* Tên bài tập */}
-      <div 
-        className={`kanban-card__title ${completed ? 'kanban-card__title--completed' : ''}`}
-      >
-        {title}
-      </div>
+        <span style={{ fontSize: '10px', color: '#94a3b8' }}>•</span>
 
-      {/* Tag Countdown */}
-      <div style={{ marginBottom: '8px' }}>
         <span 
           style={{ 
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '4px',
-            padding: '2px 8px', 
+            gap: '3px',
+            padding: '1px 6px', 
             borderRadius: '4px', 
             background: countdown.bg, 
             color: countdown.textColor, 
@@ -84,11 +73,18 @@ export const KanbanCard: React.FC<KanbanCardProps> = ({
           }}
         >
           {countdown.status === 'urgent' && <span className="pulse-indicator" />}
-          {countdown.status === 'overdue' && <AlertOutlined style={{ fontSize: '10px' }} />}
-          {countdown.status === 'upcoming' && <ClockCircleOutlined style={{ fontSize: '10px' }} />}
-          {countdown.status === 'completed' && <CheckOutlined style={{ fontSize: '10px' }} />}
+          {countdown.status === 'overdue' && <AlertOutlined style={{ fontSize: '9px' }} />}
+          {countdown.status === 'upcoming' && <ClockCircleOutlined style={{ fontSize: '9px' }} />}
+          {countdown.status === 'completed' && <CheckOutlined style={{ fontSize: '9px' }} />}
           <span>{countdown.text}</span>
         </span>
+      </div>
+
+      {/* Tên bài tập */}
+      <div 
+        className={`kanban-card__title ${completed ? 'kanban-card__title--completed' : ''}`}
+      >
+        {title}
       </div>
 
       {/* Card Footer */}
