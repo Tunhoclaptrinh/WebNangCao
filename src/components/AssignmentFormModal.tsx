@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Form, Input, Select, DatePicker, Space, Tag } from 'antd';
+import { FormOutlined } from '@ant-design/icons';
 import dayjs, { Dayjs } from 'dayjs';
 import { 
   CreateAssignmentPayload, 
@@ -47,8 +48,9 @@ export const AssignmentFormModal: React.FC<AssignmentFormModalProps> = ({
   return (
     <Modal
       title={
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '18px', fontWeight: 600 }}>
-          <span>📝 Thêm Deadline Bài Tập Mới</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '17px', fontWeight: 600 }}>
+          <FormOutlined style={{ color: '#1677ff' }} />
+          <span>Thêm Deadline Bài Tập Mới</span>
         </div>
       }
       open={open}
@@ -86,8 +88,7 @@ export const AssignmentFormModal: React.FC<AssignmentFormModalProps> = ({
               value: s.code,
               label: (
                 <Space>
-                  <span>{s.iconText}</span>
-                  <Tag color={s.color} style={{ margin: 0 }}>{s.code}</Tag>
+                  <Tag color={s.color} style={{ margin: 0, fontWeight: 600 }}>{s.code}</Tag>
                   <span>{s.name}</span>
                 </Space>
               ),

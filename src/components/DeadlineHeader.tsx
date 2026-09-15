@@ -7,7 +7,8 @@ import {
   ClockCircleOutlined, 
   CheckCircleOutlined, 
   WarningOutlined,
-  UserOutlined 
+  UserOutlined,
+  ScheduleOutlined
 } from '@ant-design/icons';
 
 const { Title, Text } = Typography;
@@ -51,8 +52,22 @@ export const DeadlineHeader: React.FC<DeadlineHeaderProps> = ({
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
-            <span style={{ fontSize: '28px' }}>🎓</span>
-            <Title level={3} style={{ margin: 0, fontWeight: 700, color: '#1f1f1f' }}>
+            <div 
+              style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                width: '36px', 
+                height: '36px', 
+                borderRadius: '8px', 
+                background: '#e6f4ff', 
+                color: '#1677ff',
+                flexShrink: 0
+              }}
+            >
+              <ScheduleOutlined style={{ fontSize: '20px' }} />
+            </div>
+            <Title level={3} style={{ margin: 0, fontWeight: 700, color: '#1f1f1f', letterSpacing: '-0.02em' }}>
               Student Deadline Tracker
             </Title>
             <Tag color="blue" style={{ fontWeight: 600 }}>Practice Lab 01</Tag>

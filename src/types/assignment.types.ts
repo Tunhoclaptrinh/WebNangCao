@@ -83,12 +83,12 @@ export interface ApiResponse<T> {
 // -------------------------------------------------------------
 
 export const SUBJECT_METAS: Record<SubjectCode, SubjectMeta> = {
-  LTWNC: { code: 'LTWNC', name: 'Lập trình Web Nâng Cao', color: 'blue', iconText: '🌐' },
-  CSDL: { code: 'CSDL', name: 'Cơ sở Dữ liệu', color: 'green', iconText: '💾' },
-  KTMT: { code: 'KTMT', name: 'Kiến trúc Máy tính', color: 'purple', iconText: '💻' },
-  MMT: { code: 'MMT', name: 'Mạng Máy tính', color: 'cyan', iconText: '📡' },
-  OOP: { code: 'OOP', name: 'Lập trình Hướng đối tượng', color: 'orange', iconText: '☕' },
-  OTHER: { code: 'OTHER', name: 'Môn học khác', color: 'default', iconText: '📚' },
+  LTWNC: { code: 'LTWNC', name: 'Lập trình Web Nâng Cao', color: 'blue', iconText: 'WEB' },
+  CSDL: { code: 'CSDL', name: 'Cơ sở Dữ liệu', color: 'green', iconText: 'DB' },
+  KTMT: { code: 'KTMT', name: 'Kiến trúc Máy tính', color: 'purple', iconText: 'ARCH' },
+  MMT: { code: 'MMT', name: 'Mạng Máy tính', color: 'cyan', iconText: 'NET' },
+  OOP: { code: 'OOP', name: 'Lập trình Hướng đối tượng', color: 'orange', iconText: 'OOP' },
+  OTHER: { code: 'OTHER', name: 'Môn học khác', color: 'default', iconText: 'GEN' },
 };
 
 export const PRIORITY_METAS: Record<Priority, PriorityMeta> = {

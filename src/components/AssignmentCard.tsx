@@ -71,8 +71,8 @@ const BaseAssignmentCard: React.FC<AssignmentCardProps> = ({
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
               {/* Tag môn học */}
-              <Tag color={subjectMeta.color} style={{ margin: 0, fontWeight: 500, borderRadius: '4px' }}>
-                {subjectMeta.iconText} {subjectMeta.code}
+              <Tag color={subjectMeta.color} style={{ margin: 0, fontWeight: 600, borderRadius: '4px' }}>
+                {subjectMeta.name}
               </Tag>
 
               {/* Tag mức ưu tiên */}
