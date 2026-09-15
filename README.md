@@ -1,109 +1,117 @@
-# 🌐 LẬP TRÌNH WEB NÂNG CAO - ADVANCED WEB DEVELOPMENT
+# 🧪 LẬP TRÌNH WEB NÂNG CAO - NHÁNH KHỞI TẠO THỰC HÀNH PHÒNG MÁY
 
-[![GitHub repo](https://img.shields.io/badge/Repository-WebNangCao-blue.svg?logo=github)](https://github.com/Tunhoclaptrinh/WebNangCao)
-[![Node.js Version](https://img.shields.io/badge/Node.js-%3E%3D20-green.svg?logo=node.js)](https://nodejs.org/)
-[![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)](#-danh-mục-các-bài-đã-có)
-[![Semester](https://img.shields.io/badge/H%E1%BB%8Dc%20K%E1%BB%B3-HK7-orange.svg)](#)
-
-> Repository quản lý các bài thực hành (**Lab**) và bài tập (**Ex**) môn học **Lập trình Web Nâng Cao** (PTIT - HK7).
-
----
-
-## 📌 Thông Tin Chung
-
-- **Môn học:** Lập trình Web Nâng Cao
-- **Học kỳ:** HK7
-- **Tác giả / Sinh viên:** [Tunhoclaptrinh](https://github.com/Tunhoclaptrinh)
-- **Repository:** [https://github.com/Tunhoclaptrinh/WebNangCao](https://github.com/Tunhoclaptrinh/WebNangCao)
+> **Nhánh:** `practice-lab-init` (Template Starter Branch)  
+> **Sinh viên:** Nguyễn Tiến Tuấn — **MSV:** B23DCCC173  
+> **Lớp:** RIPT1411-20261-02 — **Giảng viên:** ThS. Ngô Văn Nhận  
+> **Học kỳ:** HK7 — Học viện Công nghệ Bưu chính Viễn thông (PTIT)  
+> **Repository:** [https://github.com/Tunhoclaptrinh/WebNangCao](https://github.com/Tunhoclaptrinh/WebNangCao)
 
 ---
 
-## 🗂️ Cấu Trúc Thư Mục (Repository Structure)
+## 📌 1. Mục Đích Của Nhánh `practice-lab-init`
 
-Repository được phân chia làm **2 khu vực chính**:
-1. 🧪 **`Lab/`**: Chứa toàn bộ các **bài thực hành / live-coding minh hoạ trên lớp lý thuyết** (`Lab-01`, `Lab-02`,...).
-   > 💡 **Lưu ý quan trọng về các bài Lab:**  
-   > - Thư mục `Lab/` ở nhánh `main` này chỉ dành cho việc thực hành trực tiếp theo bài giảng trên lớp lý thuyết.  
-   > - Các bài **Lab của buổi thực hành chính thức (Phòng máy / Ca thực hành định kỳ)** sẽ được tổ chức ở **nhánh riêng (`branch riêng`)** (ví dụ: `practice-lab`, `lab-phong-may`...) nhằm phân định rõ ràng giữa bài học lý thuyết và bài kiểm tra/thực hành máy.
-2. 📝 **`Ex/`**: Chứa toàn bộ các **bài tập về nhà / bài tập tuần nộp giảng viên** (`Ex-01`, `Ex-02`, `Ex-03`,...).
+Nhánh **`practice-lab-init`** được tạo ra đóng vai trò là **nhánh mẫu khởi tạo (Starter Template)** chuyên biệt cho tất cả các buổi thực hành phòng máy (Practice Labs). 
+
+- **Đặc điểm:** Nhánh được dọn dẹp sạch sẽ toàn bộ mã nguồn bài tập cũ, chỉ lưu trữ tài liệu tham khảo (`docs/` gồm slides bài giảng, đề bài gốc) và cấu hình chuẩn `.gitignore`.
+- **Lợi ích:** Mỗi khi có một bài thực hành phòng máy mới, sinh viên chỉ việc **checkout một nhánh mới từ `practice-lab-init`** mà không sợ xung đột mã nguồn với bài tập trên lớp lý thuyết (`main`) hay các bài thực hành khác.
+
+---
+
+## 🗂️ 2. Cấu Trúc Nhánh Khởi Tạo
 
 ```text
-BaiTap/ (Workspace Root)
-├── .gitignore               # Cấu hình bỏ qua file build, node_modules, env...
-├── README.md                # Mục lục chính, chỉ gán các bài đã có
-│
-├── docs/                    # Tài liệu tham khảo, slide môn học, file đề bài gốc
-│   ├── de-bai/              # Nơi lưu file đề bài (PDF, ảnh, docx...)
-│   └── slides/              # Slide bài giảng (Buoi1_TypeScript_Nang_Cao.pptx...)
-│
-├── Lab/                     # Khu vực 1: BÀI THỰC HÀNH TRÊN LỚP LÝ THUYẾT (IN-CLASS LABS)
-│   ├── README.md            # Mục lục khu vực Lab & quy định nhánh thực hành phòng máy
-│   ├── Lab-01/              # Bài thực hành số 1
-│   └── Lab-02/              # Buổi 2: HOC, Tabs Compound Component, useFetch
-│
-└── Ex/                      # Khu vực 2: BÀI TẬP VỀ NHÀ / TUẦN (EXERCISES)
-    ├── README.md            # Mục lục khu vực Bài tập
-    ├── Ex-01/               # Bài tập tuần 1: Module Quản lý đơn hàng
-    ├── Ex-02/               # Bài tập tuần 2: Accordion + usePagination
-    └── Ex-03/               # Bài tập tuần 3: Module Giỏ Hàng Redux Toolkit Feature-Based
+BaiTap/ (Root của nhánh practice-lab-init)
+├── .gitignore                   # Cấu hình bỏ qua file build, node_modules, log...
+├── README.md                    # Hướng dẫn quy trình checkout và làm bài thực hành
+└── docs/                        # Tài liệu tham khảo và slide môn học
+    ├── slides/                  # Slide bài giảng chính thức
+    │   ├── Buoi1_TypeScript_Nang_Cao.pptx
+    │   ├── Buoi2_Kien_Truc_Design_Pattern_React.pptx
+    │   └── Buoi3_Redux_Toolkit_TypeScript.pptx
+    └── de-bai/                  # File đề bài gốc qua các buổi
+        ├── Tuan-01-TypeScript.md
+        ├── Tuan-02-React-Patterns.md
+        └── Tuan-03-Redux-Toolkit.md
 ```
 
 ---
 
-## 📋 Danh Mục Các Bài Đã Có
+## 🚀 3. Hướng Dẫn Quy Trình Làm Bài Thực Hành Phòng Máy Mới
 
-### 🧪 1. Danh Sách Bài Thực Hành Trên Lớp (In-Class Labs)
-*(Lưu ý: Các bài thực hành phòng máy sẽ được lưu tại nhánh riêng)*
-
-| STT | Tên Lab | Đường Dẫn Thư Mục | Nội Dung / Yêu Cầu Chính | Công Nghệ | Trạng Thái |
-| :---: | :--- | :--- | :--- | :--- | :---: |
-| 01 | [**Lab 01**](./Lab/Lab-01/) | [`Lab/Lab-01/`](./Lab/Lab-01/) | Khởi tạo môi trường & bài thực hành số 1 | HTML/CSS/JS, Node.js | 🟡 Đang chuẩn bị |
-| 02 | [**Lab 02**](./Lab/Lab-02/) | [`Lab/Lab-02/`](./Lab/Lab-02/) | Buổi 2 — HOC `withAuth<P>`, Tabs Compound Component (Context API), Custom Hook `useFetch<T>` | React 19, Ant Design 5.x (Light Theme), TS, Vite | 🟢 Hoàn thành |
-
----
-
-### 📝 2. Danh Sách Bài Tập (Ex)
-
-| STT | Tên Bài Tập | Đường Dẫn Thư Mục | Nội Dung / Yêu Cầu Chính | Công Nghệ | Trạng Thái |
-| :---: | :--- | :--- | :--- | :--- | :---: |
-| 01 | [**Ex 01**](./Ex/Ex-01/) | [`Ex/Ex-01/`](./Ex/Ex-01/) | Thiết kế bộ type TypeScript cho module Quản lý đơn hàng (Order, OrderItem, Product, Customer) | TypeScript, Generics, Utility Types | 🟢 Hoàn thành |
-| 02 | [**Ex 02**](./Ex/Ex-02/) | [`Ex/Ex-02/`](./Ex/Ex-02/) | Accordion Compound Component (Context API, single-open) + Custom Hook `usePagination<T>` cho danh sách sản phẩm | React 19, Ant Design 5.x (Light Theme), TS, Vite | 🟢 Hoàn thành |
-| 03 | [**Ex 03**](./Ex/Ex-03/) | [`Ex/Ex-03/`](./Ex/Ex-03/) | Module Giỏ Hàng Redux Toolkit Feature-Based (`cartSlice`, `productsSlice`, RTK Query bonus, Typed Hooks) | Redux Toolkit, RTK Query, Ant Design 5.x (Light Theme), React 19, TS | 🟢 Hoàn thành |
-
-> *Ghi chú:*
-> - Danh mục chỉ hiển thị các bài tập đã có trong repository. Khi có bài mới sẽ được bổ sung trực tiếp vào bảng tương ứng.
-> - Trạng thái: 🟢 Hoàn thành | 🟡 Đang thực hiện / chuẩn bị | 🔴 Cần chỉnh sửa.
-
----
-
-## ⚙️ Hướng Dẫn Cài Đặt & Chạy Môi Trường Chung
-
-### 1. Yêu cầu hệ thống
-- [Node.js](https://nodejs.org/) (khuyến nghị phiên bản LTS >= 20.x)
-- Trình quản lý gói: `npm` / `pnpm` / `yarn`
-- [Git](https://git-scm.com/)
-
-### 2. Hướng dẫn chạy bài tập cụ thể
+### Bước 1: Đồng bộ và checkout nhánh mới từ `practice-lab-init`
+Từ thư mục dự án, chạy lệnh sau trong terminal:
 ```bash
-# Clone repository
-git clone https://github.com/Tunhoclaptrinh/WebNangCao.git
-cd WebNangCao
+# 1. Chuyển về nhánh mẫu
+git checkout practice-lab-init
 
-# Vào thư mục bài tập Ex-01
-cd Ex/Ex-01
+# 2. Cập nhật mới nhất từ remote
+git pull origin practice-lab-init
 
-# Kiểm tra tính an toàn kiểu dữ liệu (compile-time type check)
-npx typescript --noEmit
-
-# Chạy kịch bản demo mẫu
-npx tsx order-management.demo.ts
+# 3. Tạo và chuyển sang nhánh bài thực hành mới (Ví dụ: practice-lab-01)
+git checkout -b practice-lab-01
 ```
 
 ---
 
-## 📝 Quy Chuẩn Git Commit
+### Bước 2: Cập nhật tài liệu đề bài
+1. Thêm file mô tả đề bài thực hành vào thư mục `docs/de-bai/`:
+   - Ví dụ: `docs/de-bai/Thuc-Hanh-01-Student-Deadline-Tracker.md`
+2. Ghi rõ: Bối cảnh, mục tiêu kiến thức (Buổi 1, Buổi 2, Buổi 3), yêu cầu chức năng (1..N), và tiêu chí đánh giá.
 
-- `feat(Lab-01): hoàn thành chức năng X`
-- `feat(Ex-01): nộp bài tập số 1`
-- `fix(Lab-01): sửa lỗi giao diện Y`
-- `docs(README): cập nhật bài mới vào danh mục`
+---
+
+### Bước 3: Khởi tạo mã nguồn và cài đặt thư viện
+Khởi tạo dự án trực tiếp tại thư mục làm việc theo công nghệ yêu cầu:
+```bash
+# Cài đặt các package chuẩn (Vite React TypeScript, Ant Design, Redux Toolkit):
+npm install antd @ant-design/icons @reduxjs/toolkit react-redux dayjs
+```
+
+**Cấu trúc thư mục khuyến nghị cho bài thực hành:**
+```text
+src/
+├── api/                         # Mock API giả lập (Promise, setTimeout, network delay)
+├── app/                         # Cấu hình Redux store, typed hooks (useAppDispatch, useAppSelector)
+├── components/                  # UI Components (Compound Components, HOCs, Modals, Cards)
+├── features/                    # Redux slices feature-based (slices, asyncThunks, selectors)
+├── hooks/                       # Custom Hooks (useCountdown, useFilter...)
+├── types/                       # TypeScript Generics, Utility Types, Type Guards
+├── App.tsx                      # ConfigProvider Ant Design Light Theme
+└── main.tsx                     # Entry point React
+```
+
+---
+
+### Bước 4: Kiểm thử và xác minh tính an toàn
+Trước khi nộp bài hoặc đẩy lên Git, luôn kiểm tra:
+```bash
+# 1. Kiểm tra Type-check tuyệt đối không có lỗi:
+npx tsc --noEmit
+
+# 2. Build thử bản production bundle:
+npm run build
+```
+
+---
+
+### Bước 5: Commit và đẩy bài nộp lên GitHub
+```bash
+# Thêm toàn bộ file thay đổi
+git add -A
+
+# Commit theo chuẩn Conventional Commits
+git commit -m "feat(practice-lab-01): hoan thanh ung dung Student Deadline Tracker"
+
+# Push nhánh bài thực hành lên GitHub
+git push -u origin practice-lab-01
+```
+
+---
+
+## 📋 Danh Sách Các Nhánh Thực Hành Trong Repository
+
+| Tên Nhánh | Buổi / Nội Dung | Trạng Thái |
+| :--- | :--- | :---: |
+| `main` | Nhánh chính: Chứa các bài tập lý thuyết trên lớp (`Ex/`, `Lab/`) | 🟢 Đang hoạt động |
+| `practice-lab-init` | Nhánh template gốc cho các bài thực hành phòng máy | 🟢 Đang hoạt động |
+| `practice-lab-01` | Thực hành phòng máy 1: **Student Deadline Tracker** (TS + Design Patterns + Redux Toolkit) | 🟢 Đang triển khai |
