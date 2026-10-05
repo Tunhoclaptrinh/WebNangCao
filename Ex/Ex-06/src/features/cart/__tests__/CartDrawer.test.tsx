@@ -1,4 +1,3 @@
-import React from 'react';
 import { screen, fireEvent } from '@testing-library/react';
 import { CartDrawer } from '../CartDrawer.tsx';
 import { renderWithProviders } from '../../../test-utils.tsx';

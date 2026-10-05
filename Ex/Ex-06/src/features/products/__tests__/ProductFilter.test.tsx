@@ -1,4 +1,3 @@
-import React from 'react';
 import { screen, fireEvent } from '@testing-library/react';
 import { ProductFilter } from '../ProductFilter.tsx';
 import { renderWithProviders } from '../../../test-utils.tsx';

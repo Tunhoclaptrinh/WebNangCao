@@ -1,6 +1,4 @@
-import React from 'react';
-import { screen, waitFor, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { screen, fireEvent } from '@testing-library/react';
 import { ProductList } from '../ProductList.tsx';
 import { fetchProductsAsync } from '../productsSlice.ts';
 import { renderWithProviders, createTestStore } from '../../../test-utils.tsx';
@@ -89,8 +87,7 @@ describe('Async API & ProductList Component Testing (Slide 34 & 36)', () => {
       expect(screen.getByText(/Danh Sách Thiết Bị & Phụ Kiện Công Nghệ/i)).toBeInTheDocument();
     });
 
-    it('hiển thị thông báo lỗi và nút "Thử lại ngay" khi trạng thái failed', async () => {
-      const user = userEvent.setup();
+    it('hiển thị thông báo lỗi và nút "Thử lại ngay" khi trạng thái failed', () => {
       const setDataSource = jest.fn();
 
       const { store } = renderWithProviders(
