@@ -16,7 +16,7 @@
 ---
 
 ## 🎯 MỤC TIÊU BÀI THỰC HÀNH
-Nâng cấp toàn diện ứng dụng **Student Deadline Tracker** từ bài thực hành số 1 theo 3 trụ cột kỹ thuật nâng cao:
+Nâng cấp toàn diện ứng dụng **Student Deadline Tracker** từ bài thực hành số 1 theo 3 trụ cột kỹ thuật:
 1. **Phần A — Quản lý State Phối Hợp:** Tích hợp Zustand store ghim bài tập, ThemeContext độc lập bọc `useMemo`, và Redux Logger Middleware.
 2. **Phần B — Tối Ưu Hiệu Năng & Stress Test 10.000 Items:** Áp dụng 4 kỹ thuật tối ưu (`React.memo` + `useCallback`, `useDebounce` 300ms, ảo hóa danh sách với `react-window`, code-splitting với `React.lazy` + `Suspense`).
 3. **Phần C — Hệ Thống Kiểm Thử Toàn Diện (Testing):** Xây dựng bộ test suite chuẩn Jest 29 + React Testing Library với **45 test cases (100% Pass)** và độ phủ **Coverage Statements đạt 88.65%** (vượt chỉ tiêu $\ge 70\%$).
@@ -34,6 +34,7 @@ Nâng cấp toàn diện ứng dụng **Student Deadline Tracker** từ bài th�
 * **Cơ chế hiển thị:** Danh sách bài tập tự động sắp xếp đưa các bài tập đã ghim lên **vị trí đầu tiên** của danh sách, đồng thời hiển thị huy hiệu `Đã ghim` màu xanh dương nổi bật kèm viền nhận diện.
 * **Lý do tách khỏi Redux Toolkit:** State ghim bài tập mang tính chất giao diện UI cục bộ và cá nhân hoá nhanh, việc tách riêng vào Zustand giúp giảm tải cho Redux Store chính, tránh kích hoạt re-render toàn bộ cây state phân cấp của Redux.
 
+> **Minh chứng 01 — Bài tập được ghim lên đầu danh sách bằng Zustand:**
 ![Zustand Pinned Assignment](docs/screenshots/01_zustand_pinned_assignment.png)
 
 ---
@@ -50,10 +51,12 @@ Nâng cấp toàn diện ứng dụng **Student Deadline Tracker** từ bài th�
   }), [theme, isDark, toggleTheme, setTheme]);
   ```
 * **Bảo vệ Re-render:** Tích hợp `ConfigProvider` của Ant Design chuyển đổi qua lại giữa `antdTheme.defaultAlgorithm` và `antdTheme.darkAlgorithm`.
-* **Chứng minh bằng React DevTools Profiler:** Việc chuyển đổi Theme chỉ cập nhật các thành phần tiêu thụ Theme trực tiếp (Header, Root), không làm re-render thừa danh sách `<AssignmentCard>`.
+* **Chứng minh bằng React DevTools Profiler:** Việc chuyển đổi Theme chỉ cập nhật các thành phần tiêu thụ Theme trực tiếp (Header, Root), hoàn toàn **không làm re-render thừa danh sách `<AssignmentCard>`**.
 
+> **Minh chứng 02 — Giao diện Chế độ Tối (Dark Mode) qua ThemeContext:**
 ![Giao diện Dark Mode](docs/screenshots/02_theme_context_dark_mode.png)
 
+> **Minh chứng 03 — React DevTools Profiler xác nhận đổi Theme không re-render danh sách bài tập:**
 ![React DevTools Profiler Flamegraph](docs/screenshots/03_react_devtools_profiler.png)
 
 ---
@@ -73,13 +76,14 @@ Nâng cấp toàn diện ứng dụng **Student Deadline Tracker** từ bài th�
   * `assignments/delete/fulfilled` (Xoá bài tập)
   * `assignments/create/fulfilled` (Thêm bài tập mới)
 
+> **Minh chứng 04 — Console DevTools ghi nhận đầy đủ Redux Logger:**
 ![Redux Logger Console](docs/screenshots/04_redux_logger_console.png)
 
 ---
 
 ### PHẦN B: TỐI ƯU HIỆU NĂNG & STRESS TEST 10.000 BÀI TẬP
 
-#### 1. Bảng Đối Sánh Hiệu Năng Trước & Sau Tối Ưu (Google Lighthouse & Browser Metrics)
+#### 1. Bảng Đối Sánh Hiệu Năng Trước & Sau Tối Ưu (Lighthouse & Browser Metrics)
 
 | Chỉ Số Đo Lường | Trước Khi Tối Ưu (Baseline) | Sau Khi Tối Ưu (Lab 02) | Kỹ Thuật Áp Dụng | Đánh Giá Cải Thiện |
 | :--- | :---: | :---: | :--- | :---: |
@@ -97,17 +101,27 @@ Nâng cấp toàn diện ứng dụng **Student Deadline Tracker** từ bài th�
 3. **Ảo hoá danh sách (Virtualization) với `react-window`:** Khi danh sách vượt quá 50 phần tử (chế độ stress test 10.000 bài), component `VirtualizedAssignmentList` tự động kích hoạt, chỉ render các phần tử nằm trong khung nhìn viewport (~7-10 thẻ) và tái sử dụng DOM nodes khi cuộn.
 4. **Code Splitting với `React.lazy` & `Suspense`:** Component `AssignmentStats` được tách riêng thành một chunk JS độc lập (`LazyAssignmentStats`), chỉ được trình duyệt nạp về khi người dùng nhấn nút *"Thống kê"*.
 
-#### 3. Minh chứng thực nghiệm:
-* **Dashboard Thống kê Lazy Loaded (`React.lazy` + `Suspense`):**
+---
+
+#### 3. Minh chứng thực nghiệm Hiệu năng & Stress Test:
+
+> **Minh chứng 05 — Dashboard Thống kê tải lười bằng `React.lazy` & `Suspense`:**
 ![Dashboard Thống Kê](docs/screenshots/05_lazy_stats_dashboard.png)
 
-* **Stress Test 10.000 Items & Virtualization 60 FPS:**
+> **Minh chứng 06 — Stress Test 10.000 Items & Virtualization 60 FPS (~7 DOM nodes thay vì 10.000):**
 ![Stress Test 10k Items Virtualization](docs/screenshots/06_stress_test_10k_virtualization.png)
 
-* **Google Lighthouse Trước Tối Ưu (Score 49):**
+> **🎥 Video Thực Nghiệm Cuộn Mượt Mà 60 FPS với 10.000 Bài Tập:**
+> *File video demo gốc đính kèm tại:* [`docs/videos/01_virtualization_10k_stress_test_demo.mp4`](docs/videos/01_virtualization_10k_stress_test_demo.mp4)
+> 
+> <video src="docs/videos/01_virtualization_10k_stress_test_demo.mp4" controls width="100%" poster="docs/screenshots/06_stress_test_10k_virtualization.png">
+>   Trình duyệt không hỗ trợ xem trực tiếp, vui lòng mở file [01_virtualization_10k_stress_test_demo.mp4](docs/videos/01_virtualization_10k_stress_test_demo.mp4).
+> </video>
+
+> **Minh chứng 07 — Báo cáo Google Lighthouse Trước Tối Ưu (Score: 49/100, FCP 3.4s, LCP 6.6s):**
 ![Lighthouse Trước Tối Ưu](docs/screenshots/07_lighthouse_before_optimization.png)
 
-* **Google Lighthouse Sau Tối Ưu (Score 99):**
+> **Minh chứng 08 — Báo cáo Google Lighthouse Sau Tối Ưu (Score: 99/100, FCP 0.6s, LCP 0.9s, TBT 10ms):**
 ![Lighthouse Sau Tối Ưu](docs/screenshots/08_lighthouse_after_optimization.png)
 
 ---
@@ -157,25 +171,25 @@ Time:        8.312 s
 3. **Bất đồng bộ (Async & Mock API Tests, $\ge 2$ cases):** Kiểm thử `AssignmentListAsync` với mock API ở cả 3 trạng thái: Đang tải (`pending`), Thành công (`fulfilled`), Lỗi tải dữ liệu (`rejected` kèm nút Thử lại).
 4. **Custom Hook Tests ($\ge 1$ case):** Kiểm thử `useDebounce` với `jest.useFakeTimers()` và `jest.advanceTimersByTime(300)`, kiểm thử `useDeadlineCountdown` với các mốc thời gian khác nhau.
 
+> **Minh chứng 09 — Bảng Độ Phủ Mã Nguồn (Code Coverage đạt 88.65% Statements):**
 ![Jest Test Coverage](docs/screenshots/09_jest_test_coverage.png)
 
 ---
 
-## 📸 DANH MỤC 9 MINH CHỨNG HÌNH ẢNH (SCREENSHOTS CATALOG)
+## 📸 DANH MỤC TÀI NGUYÊN MINH CHỨNG (SCREENSHOTS & VIDEO)
 
-Toàn bộ 9 hình ảnh minh chứng thực tế được lưu trữ chuẩn mực tại thư mục `docs/screenshots/`:
-
-| STT | Tên File Hình Ảnh | Nội Dung Yêu Cầu Minh Chứng |
-| :---: | :--- | :--- |
-| **01** | [`01_zustand_pinned_assignment.png`](docs/screenshots/01_zustand_pinned_assignment.png) | Tính năng Ghim bài tập bằng Zustand (`usePinStore`), ưu tiên đưa lên đầu danh sách kèm tag `Đã ghim`. |
-| **02** | [`02_theme_context_dark_mode.png`](docs/screenshots/02_theme_context_dark_mode.png) | Giao diện Chế độ Tối (Dark Mode) quản lý bởi `ThemeContext` độc lập bọc `useMemo`. |
-| **03** | [`03_react_devtools_profiler.png`](docs/screenshots/03_react_devtools_profiler.png) | Biểu đồ Flamegraph từ React DevTools Profiler chứng minh đổi Theme không gây re-render thẻ bài tập. |
-| **04** | [`04_redux_logger_console.png`](docs/screenshots/04_redux_logger_console.png) | Console DevTools hiển thị Redux Logger theo dõi 3 actions: Thêm mới, Xóa, Cập nhật hoàn thành. |
-| **05** | [`05_lazy_stats_dashboard.png`](docs/screenshots/05_lazy_stats_dashboard.png) | Code-splitting tải lười Dashboard Thống kê `AssignmentStats` bằng `React.lazy` và `Suspense`. |
-| **06** | [`06_stress_test_10k_virtualization.png`](docs/screenshots/06_stress_test_10k_virtualization.png) | Stress Test 10.000 bài tập mẫu & Ảo hóa danh sách `react-window` mượt mà 60 FPS (~7 DOM nodes). |
-| **07** | [`07_lighthouse_before_optimization.png`](docs/screenshots/07_lighthouse_before_optimization.png) | Báo cáo Google Lighthouse trước tối ưu (Điểm 49/100, FCP 3.4s, LCP 6.6s). |
-| **08** | [`08_lighthouse_after_optimization.png`](docs/screenshots/08_lighthouse_after_optimization.png) | Báo cáo Google Lighthouse sau tối ưu (Điểm 99/100, FCP 0.6s, LCP 0.9s, TBT 10ms). |
-| **09** | [`09_jest_test_coverage.png`](docs/screenshots/09_jest_test_coverage.png) | Bảng kết quả thực thi 45/45 Test Cases Jest & Độ phủ mã nguồn đạt 88.65% Statements. |
+| STT | Tên Tập Tin | Phân Loại | Nội Dung Minh Chứng |
+| :---: | :--- | :---: | :--- |
+| **01** | [`01_zustand_pinned_assignment.png`](docs/screenshots/01_zustand_pinned_assignment.png) | Hình ảnh | Ghim bài tập bằng Zustand (`usePinStore`), ưu tiên đưa lên đầu danh sách kèm tag `Đã ghim`. |
+| **02** | [`02_theme_context_dark_mode.png`](docs/screenshots/02_theme_context_dark_mode.png) | Hình ảnh | Giao diện Chế độ Tối (Dark Mode) quản lý bởi `ThemeContext` độc lập bọc `useMemo`. |
+| **03** | [`03_react_devtools_profiler.png`](docs/screenshots/03_react_devtools_profiler.png) | Hình ảnh | Biểu đồ Flamegraph từ React DevTools Profiler chứng minh đổi Theme không gây re-render thừa. |
+| **04** | [`04_redux_logger_console.png`](docs/screenshots/04_redux_logger_console.png) | Hình ảnh | Console DevTools hiển thị Redux Logger theo dõi 3 actions: Thêm mới, Xóa, Cập nhật hoàn thành. |
+| **05** | [`05_lazy_stats_dashboard.png`](docs/screenshots/05_lazy_stats_dashboard.png) | Hình ảnh | Code-splitting tải lười Dashboard Thống kê `AssignmentStats` bằng `React.lazy` và `Suspense`. |
+| **06** | [`06_stress_test_10k_virtualization.png`](docs/screenshots/06_stress_test_10k_virtualization.png) | Hình ảnh | Stress Test 10.000 bài tập mẫu & Ảo hóa danh sách `react-window` mượt mà 60 FPS (~7 DOM nodes). |
+| **07** | [`07_lighthouse_before_optimization.png`](docs/screenshots/07_lighthouse_before_optimization.png) | Hình ảnh | Báo cáo Google Lighthouse trước tối ưu (Điểm 49/100, FCP 3.4s, LCP 6.6s). |
+| **08** | [`08_lighthouse_after_optimization.png`](docs/screenshots/08_lighthouse_after_optimization.png) | Hình ảnh | Báo cáo Google Lighthouse sau tối ưu (Điểm 99/100, FCP 0.6s, LCP 0.9s, TBT 10ms). |
+| **09** | [`09_jest_test_coverage.png`](docs/screenshots/09_jest_test_coverage.png) | Hình ảnh | Bảng kết quả thực thi 45/45 Test Cases Jest & Độ phủ mã nguồn đạt 88.65% Statements. |
+| **10** | [`01_virtualization_10k_stress_test_demo.mp4`](docs/videos/01_virtualization_10k_stress_test_demo.mp4) | **Video** | **Video thực nghiệm cuộn mượt mà 60 FPS với 10.000 bài tập ảo hóa trong bộ nhớ.** |
 
 ---
 

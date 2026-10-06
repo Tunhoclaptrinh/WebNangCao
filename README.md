@@ -14,11 +14,11 @@ Bài thực hành số 2 nâng cấp toàn diện ứng dụng **Student Deadlin
 2. **Phần B — Tối Ưu Hiệu Năng & Stress Test 10.000 Items:** Áp dụng 4 kỹ thuật tối ưu (`React.memo` + `useCallback`, `useDebounce` 300ms, ảo hóa danh sách với `react-window`, code-splitting với `React.lazy` + `Suspense`).
 3. **Phần C — Hệ Thống Kiểm Thử Toàn Diện (Testing):** Xây dựng bộ test suite chuẩn Jest 29 + React Testing Library với **45 test cases (100% Pass)** và độ phủ **Coverage Statements đạt 88.65%** (vượt chỉ tiêu $\ge 70\%$).
 
-📄 **Báo cáo đầy đủ và chi tiết:** Xem tại [`REPORT_LAB_02.md`](REPORT_LAB_02.md).
+📄 **Báo cáo nộp bài chi tiết:** Xem tại [`REPORT_LAB_02.md`](REPORT_LAB_02.md).
 
 ---
 
-## 🖼️ MINH CHỨNG HÌNH ẢNH THỰC TẾ (SCREENSHOTS)
+## 🖼️ MINH CHỨNG HÌNH ẢNH & VIDEO TRỰC QUAN
 
 ### 1. Tính năng Ghim bài tập bằng Zustand (`usePinStore`)
 *Thẻ bài tập đã ghim luôn được ưu tiên hiển thị lên đầu danh sách kèm huy hiệu "Đã ghim" màu xanh tinh tế và viền phân biệt.*
@@ -54,12 +54,22 @@ Bài thực hành số 2 nâng cấp toàn diện ứng dụng **Student Deadlin
 *Danh sách 10.000 bài tập mẫu cuộn mượt mà 60 FPS, chỉ render đúng ~7-10 DOM nodes trong viewport thay vì 10.000 nodes.*
 ![Stress Test 10k Items Virtualization](docs/screenshots/06_stress_test_10k_virtualization.png)
 
+> **🎥 Video Thực Nghiệm Stress Test 10.000 Bài Tập:**  
+> *Đường dẫn file video demo:* [`docs/videos/01_virtualization_10k_stress_test_demo.mp4`](docs/videos/01_virtualization_10k_stress_test_demo.mp4)
+>
+> <video src="docs/videos/01_virtualization_10k_stress_test_demo.mp4" controls width="100%" poster="docs/screenshots/06_stress_test_10k_virtualization.png">
+>   Trình duyệt không hỗ trợ xem trực tiếp, vui lòng mở file [01_virtualization_10k_stress_test_demo.mp4](docs/videos/01_virtualization_10k_stress_test_demo.mp4).
+> </video>
+
 ---
 
 ### 7. Đo lường Hiệu Năng Google Lighthouse
-| Trước Tối Ưu (Baseline: 49/100) | Sau Tối Ưu (Lab 02: 99/100) |
-| :---: | :---: |
-| ![Lighthouse Trước Tối Ưu](docs/screenshots/07_lighthouse_before_optimization.png) | ![Lighthouse Sau Tối Ưu](docs/screenshots/08_lighthouse_after_optimization.png) |
+
+#### Báo cáo Trước Tối Ưu (Score: 49/100, FCP 3.4s, LCP 6.6s)
+![Lighthouse Trước Tối Ưu](docs/screenshots/07_lighthouse_before_optimization.png)
+
+#### Báo cáo Sau Tối Ưu (Score: 99/100, FCP 0.6s, LCP 0.9s, TBT 10ms)
+![Lighthouse Sau Tối Ưu](docs/screenshots/08_lighthouse_after_optimization.png)
 
 ---
 
