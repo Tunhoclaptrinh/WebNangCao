@@ -92,3 +92,22 @@
   background: #1d4ed8 !important;
   transform: translateY(-1px);
 }
+
+/* Dark Mode Overrides */
+[data-theme='dark'] .workspace-header {
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom-color: #1e293b;
+}
+
+[data-theme='dark'] .workspace-header__title {
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .workspace-header__count-badge {
+  background: #1e293b;
+  color: #94a3b8;
+}
+
+[data-theme='dark'] .workspace-header__segmented {
+  background: #1e293b;
+}

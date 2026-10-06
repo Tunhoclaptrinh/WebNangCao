@@ -58,6 +58,46 @@
   background: #cbd5e1;
 }
 
+.assignment-card--pinned {
+  border-color: #93c5fd !important;
+  background: #f8faff !important;
+}
+
+[data-theme='dark'] .assignment-card,
+[data-theme='dark'] .ant-card.assignment-card {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+[data-theme='dark'] .assignment-card:hover,
+[data-theme='dark'] .ant-card.assignment-card:hover {
+  border-color: #475569 !important;
+}
+
+[data-theme='dark'] .assignment-card--pinned {
+  border-color: #3b82f6 !important;
+  background: #1e2640 !important;
+}
+
+[data-theme='dark'] .assignment-card--completed {
+  background: #0f172a !important;
+  border-color: #1e293b !important;
+  opacity: 0.75;
+}
+
+[data-theme='dark'] .assignment-card__title {
+  color: #f1f5f9;
+}
+
+[data-theme='dark'] .assignment-card__desc {
+  color: #94a3b8;
+}
+
+[data-theme='dark'] .assignment-card__check-btn {
+  background: #334155;
+  border-color: #475569;
+}
+
 .assignment-card--completed {
   background: #fafafa !important;
   border-color: #f1f5f9 !important;

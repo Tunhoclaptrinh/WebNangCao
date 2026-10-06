@@ -160,6 +160,10 @@ export const assignmentSlice = createSlice({
     setTechDrawerOpen: (state, action: PayloadAction<boolean>) => {
       state.techDrawerOpen = action.payload;
     },
+    setBulkAssignments: (state, action: PayloadAction<Assignment[]>) => {
+      state.items = action.payload;
+      state.loading = false;
+    },
   },
   extraReducers: (builder) => {
     // fetchInitialAssignments
@@ -224,6 +228,7 @@ export const {
   setViewMode,
   setSelectedAssignmentId,
   setTechDrawerOpen,
+  setBulkAssignments,
 } = assignmentSlice.actions;
 
 // -------------------------------------------------------------

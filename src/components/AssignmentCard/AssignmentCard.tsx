@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card, Typography, Tooltip } from 'antd';
-import { CheckOutlined, CalendarOutlined } from '@ant-design/icons';
+import { Card, Typography, Tooltip, Tag } from 'antd';
+import { CheckOutlined, CalendarOutlined, PushpinFilled } from '@ant-design/icons';
 import { useDeadlineCountdown } from '../../hooks/useDeadlineCountdown';
 import { withUrgentHighlight } from '../../hoc/withUrgentHighlight';
 import { AssignmentCardProps } from './AssignmentCard.types';
@@ -10,23 +10,29 @@ import './AssignmentCard.css';
 
 const { Text, Paragraph } = Typography;
 
-const BaseAssignmentCard: React.FC<AssignmentCardProps> = ({
+/**
+ * BaseAssignmentCard: Thành phần hiển thị thẻ bài tập
+ * Được tối ưu hóa bằng React.memo để ngăn re-render không cần thiết khi danh sách cập nhật
+ */
+const BaseAssignmentCard: React.FC<AssignmentCardProps> = React.memo(({
   assignment,
+  isPinned = false,
   onToggleStatus,
   onDelete,
   onSelect,
+  onTogglePin,
 }) => {
   const { id, title, subject, dueDate, priority, completed, description } = assignment;
   
-  // Custom Hook tính countdown theo yêu cầu 6
+  // Custom Hook tính countdown theo yêu cầu
   const countdown = useDeadlineCountdown(dueDate, completed);
 
   return (
     <Card
-      className={`assignment-card ${completed ? 'assignment-card--completed' : ''}`}
+      className={`assignment-card ${completed ? 'assignment-card--completed' : ''} ${isPinned ? 'assignment-card--pinned' : ''}`}
       hoverable
       onClick={() => onSelect?.(id)}
-      styles={{ body: { padding: '18px 22px' } }}
+      styles={{ body: { padding: '16px 20px' } }}
     >
       <div className="assignment-card__body">
         {/* Khối bên trái: Nút Checkmark + Chi tiết */}
@@ -47,12 +53,29 @@ const BaseAssignmentCard: React.FC<AssignmentCardProps> = ({
 
           {/* Chi tiết nội dung bài tập */}
           <div style={{ flex: 1, minWidth: 0 }}>
-            {/* Nhãn Tags Pastel */}
-            <AssignmentCardTags
-              subject={subject}
-              priority={priority}
-              countdown={countdown}
-            />
+            {/* Nhãn Tags & Pinned Badge */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap', marginBottom: '8px' }}>
+              {isPinned && (
+                <Tag
+                  color="blue"
+                  icon={<PushpinFilled />}
+                  style={{
+                    borderRadius: '4px',
+                    marginRight: 0,
+                    fontWeight: 500,
+                    fontSize: '11px',
+                    padding: '0 6px',
+                  }}
+                >
+                  Đã ghim
+                </Tag>
+              )}
+              <AssignmentCardTags
+                subject={subject}
+                priority={priority}
+                countdown={countdown}
+              />
+            </div>
 
             {/* Tên bài tập */}
             <Text
@@ -75,7 +98,7 @@ const BaseAssignmentCard: React.FC<AssignmentCardProps> = ({
             {/* Hạn nộp */}
             <div className="assignment-card__deadline">
               <CalendarOutlined style={{ color: '#94a3b8' }} />
-              <span>Hạn nộp: <strong style={{ color: completed ? '#94a3b8' : '#1e293b' }}>{countdown.formattedDueDate}</strong></span>
+              <span>Hạn nộp: <strong style={{ color: completed ? '#94a3b8' : 'inherit' }}>{countdown.formattedDueDate}</strong></span>
             </div>
           </div>
         </div>
@@ -84,13 +107,17 @@ const BaseAssignmentCard: React.FC<AssignmentCardProps> = ({
         <AssignmentCardActions
           id={id}
           completed={completed}
+          isPinned={isPinned}
           onToggleStatus={onToggleStatus}
           onDelete={onDelete}
+          onTogglePin={onTogglePin}
         />
       </div>
     </Card>
   );
-};
+});
 
-// Áp dụng HOC withUrgentHighlight (Buổi 2 React Design Patterns)
+BaseAssignmentCard.displayName = 'BaseAssignmentCard';
+
+// Áp dụng HOC withUrgentHighlight
 export const AssignmentCard = withUrgentHighlight(BaseAssignmentCard);

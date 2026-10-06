@@ -66,7 +66,7 @@ export const AssignmentFormModal: React.FC<AssignmentFormModalProps> = ({
       cancelText="Huỷ"
       okButtonProps={{ style: { borderRadius: '8px', background: '#2563eb', fontWeight: 600 } }}
       cancelButtonProps={{ style: { borderRadius: '8px' } }}
-      destroyOnClose
+      destroyOnHidden
       width={520}
       className="assignment-form-modal"
     >

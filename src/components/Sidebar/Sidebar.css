@@ -172,3 +172,45 @@
   padding: 0 4px;
   height: 28px;
 }
+
+/* Dark Mode Overrides */
+[data-theme='dark'] .app-sidebar {
+  background: #0f172a;
+  border-right-color: #1e293b;
+}
+
+[data-theme='dark'] .app-sidebar__brand {
+  border-bottom-color: #1e293b;
+}
+
+[data-theme='dark'] .app-sidebar__brand-title {
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .app-sidebar__profile {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+[data-theme='dark'] .app-sidebar__profile-name {
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .app-sidebar__nav-item {
+  color: #94a3b8;
+}
+
+[data-theme='dark'] .app-sidebar__nav-item:hover {
+  background: #1e293b;
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .app-sidebar__nav-item--active {
+  background: #1e3a8a !important;
+  color: #93c5fd !important;
+}
+
+[data-theme='dark'] .app-sidebar__footer-card {
+  background: #1e293b;
+  border-color: #334155;
+}
