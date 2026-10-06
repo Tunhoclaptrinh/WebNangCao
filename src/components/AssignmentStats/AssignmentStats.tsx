@@ -1,17 +1,17 @@
-import React, { useMemo } from 'react';
-import { Card, Row, Col, Progress, Typography, Tag, Divider } from 'antd';
+import { useMemo } from 'react';
+import { Card, Row, Col, Progress, Typography, Tag } from 'antd';
 import { 
   CheckCircleOutlined, 
   ClockCircleOutlined, 
   ExclamationCircleOutlined, 
   BookOutlined,
   PushpinOutlined,
-  ThunderboltOutlined,
 } from '@ant-design/icons';
-import { Assignment, SUBJECT_METAS, PRIORITY_METAS } from '../../types/assignment.types';
+import { Assignment, SUBJECT_METAS } from '../../types/assignment.types';
 import { calcStats } from '../../utils/dateCalculations';
+import './AssignmentStats.css';
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 export interface AssignmentStatsProps {
   assignments: Assignment[];
@@ -34,24 +34,16 @@ export const AssignmentStats: React.FC<AssignmentStatsProps> = ({
     return map;
   }, [assignments]);
 
-  const priorityBreakdown = useMemo(() => {
-    const map: Record<string, number> = {};
-    for (const a of assignments) {
-      map[a.priority] = (map[a.priority] || 0) + 1;
-    }
-    return map;
-  }, [assignments]);
-
   return (
-    <div className="assignment-stats" style={{ marginTop: '16px', marginBottom: '24px' }}>
+    <div className="assignment-stats">
       {/* 4 Chỉ số cốt lõi */}
       <Row gutter={[16, 16]}>
         <Col xs={12} sm={6}>
-          <Card size="small" style={{ borderRadius: '4px', border: '1px solid #e2e8f0' }}>
+          <Card size="small" className="assignment-stats__card assignment-stats__card--total">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <div>
                 <Text type="secondary" style={{ fontSize: '12px' }}>Tổng bài tập</Text>
-                <div style={{ fontSize: '22px', fontWeight: 700, color: '#0f172a', marginTop: '2px' }}>
+                <div className="assignment-stats__num assignment-stats__num--total">
                   {stats.total.toLocaleString()}
                 </div>
               </div>
@@ -61,11 +53,11 @@ export const AssignmentStats: React.FC<AssignmentStatsProps> = ({
         </Col>
 
         <Col xs={12} sm={6}>
-          <Card size="small" style={{ borderRadius: '4px', border: '1px solid #bbf7d0', background: '#f0fdf4' }}>
+          <Card size="small" className="assignment-stats__card assignment-stats__card--completed">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <div>
-                <Text style={{ fontSize: '12px', color: '#166534' }}>Đã hoàn thành</Text>
-                <div style={{ fontSize: '22px', fontWeight: 700, color: '#15803d', marginTop: '2px' }}>
+                <span className="assignment-stats__label--completed">Đã hoàn thành</span>
+                <div className="assignment-stats__num assignment-stats__num--completed">
                   {stats.completed.toLocaleString()}
                 </div>
               </div>
@@ -75,11 +67,11 @@ export const AssignmentStats: React.FC<AssignmentStatsProps> = ({
         </Col>
 
         <Col xs={12} sm={6}>
-          <Card size="small" style={{ borderRadius: '4px', border: '1px solid #bfdbfe', background: '#eff6ff' }}>
+          <Card size="small" className="assignment-stats__card assignment-stats__card--pending">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <div>
-                <Text style={{ fontSize: '12px', color: '#1e40af' }}>Đang thực hiện</Text>
-                <div style={{ fontSize: '22px', fontWeight: 700, color: '#2563eb', marginTop: '2px' }}>
+                <span className="assignment-stats__label--pending">Đang thực hiện</span>
+                <div className="assignment-stats__num assignment-stats__num--pending">
                   {stats.pending.toLocaleString()}
                 </div>
               </div>
@@ -89,11 +81,11 @@ export const AssignmentStats: React.FC<AssignmentStatsProps> = ({
         </Col>
 
         <Col xs={12} sm={6}>
-          <Card size="small" style={{ borderRadius: '4px', border: '1px solid #fecaca', background: '#fef2f2' }}>
+          <Card size="small" className="assignment-stats__card assignment-stats__card--overdue">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <div>
-                <Text style={{ fontSize: '12px', color: '#991b1b' }}>Quá hạn nộp</Text>
-                <div style={{ fontSize: '22px', fontWeight: 700, color: '#dc2626', marginTop: '2px' }}>
+                <span className="assignment-stats__label--overdue">Quá hạn nộp</span>
+                <div className="assignment-stats__num assignment-stats__num--overdue">
                   {stats.overdue.toLocaleString()}
                 </div>
               </div>
@@ -106,7 +98,7 @@ export const AssignmentStats: React.FC<AssignmentStatsProps> = ({
       {/* Tiến độ hoàn thành & Phân bố môn học */}
       <Row gutter={[16, 16]} style={{ marginTop: '16px' }}>
         <Col xs={24} md={12}>
-          <Card size="small" title="Tiến độ hoàn thành bài tập" style={{ borderRadius: '4px', border: '1px solid #e2e8f0', height: '100%' }}>
+          <Card size="small" title="Tiến độ hoàn thành bài tập" className="assignment-stats__card assignment-stats__card--panel" style={{ height: '100%' }}>
             <div style={{ padding: '8px 0' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
                 <Text style={{ fontWeight: 600 }}>Tỷ lệ hoàn thành:</Text>
@@ -132,24 +124,21 @@ export const AssignmentStats: React.FC<AssignmentStatsProps> = ({
         </Col>
 
         <Col xs={24} md={12}>
-          <Card size="small" title="Phân bố theo môn học" style={{ borderRadius: '4px', border: '1px solid #e2e8f0', height: '100%' }}>
+          <Card size="small" title="Phân bố theo môn học" className="assignment-stats__card assignment-stats__card--panel" style={{ height: '100%' }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', padding: '6px 0' }}>
               {Object.entries(subjectBreakdown).map(([subCode, count]) => {
                 const meta = SUBJECT_METAS[subCode as keyof typeof SUBJECT_METAS];
                 return (
-                  <Tag
+                  <div
                     key={subCode}
-                    style={{
-                      borderRadius: '4px',
-                      padding: '4px 10px',
-                      background: meta?.bg || '#f1f5f9',
-                      color: meta?.textColor || '#334155',
-                      borderColor: meta?.borderColor || '#cbd5e1',
-                      fontWeight: 600,
-                    }}
+                    className="assignment-stats__subject-pill"
                   >
-                    {meta?.name || subCode}: <strong>{count}</strong>
-                  </Tag>
+                    <span
+                      className={`assignment-card__dot assignment-card__dot--${subCode}`}
+                    />
+                    <span>{meta?.name || subCode}:</span>
+                    <strong style={{ marginLeft: '4px' }}>{count}</strong>
+                  </div>
                 );
               })}
             </div>

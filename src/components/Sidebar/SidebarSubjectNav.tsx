@@ -39,12 +39,10 @@ export const SidebarSubjectNav: React.FC<SidebarSubjectNavProps> = ({
                 </span>
               </div>
               <span
-                className="app-sidebar__nav-item-badge"
-                style={{
-                  background: isActive ? '#2563eb' : '#f1f5f9',
-                  color: isActive ? '#ffffff' : '#64748b',
-                  marginLeft: '6px',
-                }}
+                className={`app-sidebar__nav-item-badge app-sidebar__nav-item-badge--subject ${
+                  isActive ? 'app-sidebar__nav-item-badge--active' : ''
+                }`}
+                style={{ marginLeft: '6px' }}
               >
                 {count}
               </span>

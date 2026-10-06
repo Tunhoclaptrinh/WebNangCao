@@ -6,4 +6,5 @@ export * from './AssignmentList';
 export * from './KanbanBoard';
 export * from './AssignmentDetailDrawer';
 export * from './AssignmentFormModal';
-export * from './TechArchitectureDrawer';
+export type * from './AssignmentStats';
+export * from './VirtualizedAssignmentList';

@@ -42,3 +42,19 @@
   justify-content: space-between;
   padding: 8px 0;
 }
+
+/* Dark Mode Overrides */
+[data-theme='dark'] .detail-drawer__status-bar {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+[data-theme='dark'] .detail-drawer__title {
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .detail-drawer__desc-box {
+  background: #0f172a;
+  border-color: #334155;
+  color: #cbd5e1;
+}

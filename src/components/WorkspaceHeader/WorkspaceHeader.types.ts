@@ -7,7 +7,6 @@ export interface WorkspaceHeaderProps {
   showStats?: boolean;
   onClearFilters: () => void;
   onViewModeChange: (mode: 'list' | 'board') => void;
-  onOpenTechDrawer: () => void;
   onResetMockData: () => void;
   onOpenCreateModal: () => void;
   onGenerate10k?: () => void;

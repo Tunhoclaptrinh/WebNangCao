@@ -126,23 +126,12 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
             {sortedAssignments.length}
           </span>
           {pinnedCount > 0 && (
-            <span style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '4px',
-              fontSize: '12px',
-              fontWeight: 600,
-              color: '#2563eb',
-              background: '#eff6ff',
-              padding: '2px 8px',
-              borderRadius: '4px',
-              border: '1px solid #bfdbfe',
-            }}>
+            <span className="assignment-list__pinned-badge">
               <PushpinFilled style={{ fontSize: '11px' }} /> {pinnedCount} đã ghim
             </span>
           )}
         </div>
-        <Text type="secondary" style={{ fontSize: '12px', color: '#94a3b8' }}>
+        <Text className="assignment-list__count-text">
           Hiển thị <strong>{sortedAssignments.length.toLocaleString()}</strong> / <strong>{totalCount.toLocaleString()}</strong> bài tập
         </Text>
       </div>

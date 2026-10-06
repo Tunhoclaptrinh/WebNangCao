@@ -29,12 +29,7 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
           )}
         </div>
         <span
-          className="kanban-column__count"
-          style={{
-            background: config.badgeBg,
-            color: config.badgeColor,
-            border: `1px solid ${config.borderColor}`,
-          }}
+          className={`kanban-column__count kanban-column__count--${config.key}`}
         >
           {items.length}
         </span>

@@ -10,7 +10,6 @@ import {
   MoonOutlined,
   ThunderboltOutlined,
   BarChartOutlined,
-  CodeOutlined,
 } from '@ant-design/icons';
 import { WorkspaceHeaderProps } from './WorkspaceHeader.types';
 import { useTheme } from '../../context/ThemeContext';
@@ -25,7 +24,6 @@ export const WorkspaceHeader: React.FC<WorkspaceHeaderProps> = ({
   showStats = false,
   onClearFilters,
   onViewModeChange,
-  onOpenTechDrawer,
   onResetMockData,
   onOpenCreateModal,
   onGenerate10k,
@@ -110,15 +108,6 @@ export const WorkspaceHeader: React.FC<WorkspaceHeaderProps> = ({
             onClick={toggleTheme}
             style={{ borderRadius: '4px' }}
             aria-label="Chuyển đổi giao diện Sáng / Tối"
-          />
-        </Tooltip>
-
-        {/* Nút Xem Kiến Trúc Công Nghệ & Benchmark */}
-        <Tooltip title="Xem Kiến trúc Công nghệ & Báo cáo Tối ưu">
-          <Button
-            icon={<CodeOutlined />}
-            onClick={onOpenTechDrawer}
-            style={{ borderRadius: '4px' }}
           />
         </Tooltip>
 

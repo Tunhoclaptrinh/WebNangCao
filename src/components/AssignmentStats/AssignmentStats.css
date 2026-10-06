@@ -1,0 +1,145 @@
+.assignment-stats {
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.assignment-stats__card {
+  border-radius: 4px !important;
+  transition: all 0.2s ease;
+}
+
+.assignment-stats__card--total {
+  background: #ffffff;
+  border: 1px solid #e2e8f0 !important;
+}
+
+[data-theme='dark'] .assignment-stats__card--total {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+.assignment-stats__card--completed {
+  background: #f0fdf4 !important;
+  border: 1px solid #bbf7d0 !important;
+}
+
+[data-theme='dark'] .assignment-stats__card--completed {
+  background: rgba(22, 163, 74, 0.12) !important;
+  border-color: rgba(34, 197, 94, 0.3) !important;
+}
+
+.assignment-stats__card--pending {
+  background: #eff6ff !important;
+  border: 1px solid #bfdbfe !important;
+}
+
+[data-theme='dark'] .assignment-stats__card--pending {
+  background: rgba(37, 99, 235, 0.12) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+.assignment-stats__card--overdue {
+  background: #fef2f2 !important;
+  border: 1px solid #fecaca !important;
+}
+
+[data-theme='dark'] .assignment-stats__card--overdue {
+  background: rgba(220, 38, 38, 0.12) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+.assignment-stats__card--panel {
+  background: #ffffff;
+  border: 1px solid #e2e8f0 !important;
+}
+
+[data-theme='dark'] .assignment-stats__card--panel {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+.assignment-stats__num {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.assignment-stats__num--total {
+  color: #0f172a;
+}
+
+[data-theme='dark'] .assignment-stats__num--total {
+  color: #f8fafc;
+}
+
+.assignment-stats__num--completed {
+  color: #15803d;
+}
+
+[data-theme='dark'] .assignment-stats__num--completed {
+  color: #4ade80;
+}
+
+.assignment-stats__num--pending {
+  color: #2563eb;
+}
+
+[data-theme='dark'] .assignment-stats__num--pending {
+  color: #60a5fa;
+}
+
+.assignment-stats__num--overdue {
+  color: #dc2626;
+}
+
+[data-theme='dark'] .assignment-stats__num--overdue {
+  color: #f87171;
+}
+
+.assignment-stats__label--completed {
+  font-size: 12px;
+  color: #166534;
+}
+
+[data-theme='dark'] .assignment-stats__label--completed {
+  color: #86efac;
+}
+
+.assignment-stats__label--pending {
+  font-size: 12px;
+  color: #1e40af;
+}
+
+[data-theme='dark'] .assignment-stats__label--pending {
+  color: #93c5fd;
+}
+
+.assignment-stats__label--overdue {
+  font-size: 12px;
+  color: #991b1b;
+}
+
+[data-theme='dark'] .assignment-stats__label--overdue {
+  color: #fca5a5;
+}
+
+.assignment-stats__subject-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  transition: all 0.15s ease;
+}
+
+[data-theme='dark'] .assignment-stats__subject-pill {
+  background: #0f172a;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+

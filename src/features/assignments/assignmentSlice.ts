@@ -24,7 +24,6 @@ export interface AssignmentState {
   // Giao diện & Tương tác
   viewMode: 'list' | 'board';
   selectedAssignmentId: string | null;
-  techDrawerOpen: boolean;
 }
 
 const initialState: AssignmentState = {
@@ -38,7 +37,6 @@ const initialState: AssignmentState = {
   searchQuery: '',
   viewMode: 'list',
   selectedAssignmentId: null,
-  techDrawerOpen: false,
 };
 
 // -------------------------------------------------------------
@@ -157,9 +155,6 @@ export const assignmentSlice = createSlice({
     setSelectedAssignmentId: (state, action: PayloadAction<string | null>) => {
       state.selectedAssignmentId = action.payload;
     },
-    setTechDrawerOpen: (state, action: PayloadAction<boolean>) => {
-      state.techDrawerOpen = action.payload;
-    },
     setBulkAssignments: (state, action: PayloadAction<Assignment[]>) => {
       state.items = action.payload;
       state.loading = false;
@@ -227,7 +222,6 @@ export const {
   clearFilters,
   setViewMode,
   setSelectedAssignmentId,
-  setTechDrawerOpen,
   setBulkAssignments,
 } = assignmentSlice.actions;
 

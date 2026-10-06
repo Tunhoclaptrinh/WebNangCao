@@ -16,6 +16,7 @@ module.exports = {
           moduleResolution: 'node',
           allowSyntheticDefaultImports: true,
           target: 'ES2022',
+          types: ['node', 'jest', '@testing-library/jest-dom'],
         },
       },
     ],

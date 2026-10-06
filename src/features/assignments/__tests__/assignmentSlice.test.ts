@@ -6,7 +6,6 @@ import assignmentsReducer, {
   clearFilters,
   setViewMode,
   setSelectedAssignmentId,
-  setTechDrawerOpen,
   setBulkAssignments,
   fetchInitialAssignments,
   createNewAssignment,
@@ -33,7 +32,6 @@ describe('Unit Tests: assignmentsSlice Reducer, Actions & Selectors', () => {
     searchQuery: '',
     viewMode: 'list',
     selectedAssignmentId: null,
-    techDrawerOpen: false,
   };
 
   const sampleAssignment: Assignment = {
@@ -62,15 +60,12 @@ describe('Unit Tests: assignmentsSlice Reducer, Actions & Selectors', () => {
     expect(nextState.priorityFilter).toBe('URGENT');
   });
 
-  it('xử lý setViewMode, setSelectedAssignmentId, setTechDrawerOpen', () => {
+  it('xử lý setViewMode, setSelectedAssignmentId', () => {
     let state = assignmentsReducer(initialTestState, setViewMode('board'));
     expect(state.viewMode).toBe('board');
 
     state = assignmentsReducer(state, setSelectedAssignmentId('test_1'));
     expect(state.selectedAssignmentId).toBe('test_1');
-
-    state = assignmentsReducer(state, setTechDrawerOpen(true));
-    expect(state.techDrawerOpen).toBe(true);
   });
 
   it('xử lý tìm kiếm setSearchQuery và xóa bộ lọc clearFilters', () => {

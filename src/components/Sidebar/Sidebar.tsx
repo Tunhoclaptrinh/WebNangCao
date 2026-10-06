@@ -16,11 +16,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onStatusSelect,
   onSubjectSelect,
   onResetMockData,
-  onOpenTechDrawer,
 }) => {
   return (
     <aside className="app-sidebar">
-      {/* Nửa trên: Logo, Profile, Nút tạo & Điều hướng */}
+      {/* Nửa trên: Logo, Profile & Điều hướng */}
       <div>
         <SidebarBrand />
         <SidebarProfile />
@@ -42,11 +41,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
         />
       </div>
 
-      {/* Nửa dưới: Tiến độ & Công cụ kỹ thuật */}
+      {/* Nửa dưới: Widget Tiến độ */}
       <SidebarProgressWidget
         stats={stats}
         loading={loading}
-        onOpenTechDrawer={onOpenTechDrawer}
         onResetMockData={onResetMockData}
       />
     </aside>

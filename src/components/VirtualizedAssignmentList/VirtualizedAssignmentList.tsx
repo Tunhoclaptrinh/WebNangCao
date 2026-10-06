@@ -94,20 +94,20 @@ export const VirtualizedAssignmentList: React.FC<VirtualizedAssignmentListProps>
         justifyContent: 'space-between',
         padding: '8px 12px',
         marginBottom: '12px',
-        background: 'rgba(37, 99, 235, 0.08)',
-        border: '1px solid rgba(37, 99, 235, 0.2)',
+        background: 'rgba(37, 99, 235, 0.1)',
+        border: '1px solid rgba(59, 130, 246, 0.25)',
         borderRadius: '4px',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Tag color="blue" icon={<ThunderboltOutlined />} style={{ borderRadius: '4px', margin: 0 }}>
             react-window Virtualized
           </Tag>
-          <Text style={{ fontSize: '13px', fontWeight: 600, color: '#1e40af' }}>
+          <Text strong style={{ fontSize: '13px' }}>
             Hiệu năng cao: Render ảo hoá danh sách {assignments.length.toLocaleString()} bài tập
           </Text>
         </div>
-        <Text style={{ fontSize: '12px', color: '#64748b' }}>
-          DOM nodes thực tế trong bộ nhớ: <strong>~{Math.ceil(height / itemHeight) + 2} thẻ</strong> (thay vì {assignments.length.toLocaleString()})
+        <Text type="secondary" style={{ fontSize: '12px' }}>
+          DOM nodes trong bộ nhớ: <strong>~{Math.ceil(height / itemHeight) + 2} thẻ</strong> (thay vì {assignments.length.toLocaleString()})
         </Text>
       </div>
 

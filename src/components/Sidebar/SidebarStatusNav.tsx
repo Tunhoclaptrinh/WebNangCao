@@ -29,32 +29,28 @@ export const SidebarStatusNav: React.FC<SidebarStatusNavProps> = ({
       label: 'Tất cả bài tập',
       icon: <AppstoreOutlined />,
       count: stats.total,
-      badgeBg: '#f1f5f9',
-      badgeColor: '#475569',
+      type: 'ALL',
     },
     {
       key: 'PENDING' as AssignmentStatusFilter,
       label: 'Đang chờ nộp',
       icon: <ClockCircleOutlined style={{ color: '#2563eb' }} />,
       count: stats.pending,
-      badgeBg: '#eff6ff',
-      badgeColor: '#1d4ed8',
+      type: 'PENDING',
     },
     {
       key: 'OVERDUE' as AssignmentStatusFilter,
       label: 'Đã quá hạn',
       icon: <WarningOutlined style={{ color: '#dc2626' }} />,
       count: stats.overdue,
-      badgeBg: '#fef2f2',
-      badgeColor: '#b91c1c',
+      type: 'OVERDUE',
     },
     {
       key: 'COMPLETED' as AssignmentStatusFilter,
       label: 'Đã hoàn thành',
       icon: <CheckCircleOutlined style={{ color: '#16a34a' }} />,
       count: stats.completed,
-      badgeBg: '#f0fdf4',
-      badgeColor: '#15803d',
+      type: 'COMPLETED',
     },
   ];
 
@@ -79,11 +75,9 @@ export const SidebarStatusNav: React.FC<SidebarStatusNavProps> = ({
                 <span>{item.label}</span>
               </div>
               <span
-                className="app-sidebar__nav-item-badge"
-                style={{
-                  background: isActive ? '#2563eb' : item.badgeBg,
-                  color: isActive ? '#ffffff' : item.badgeColor,
-                }}
+                className={`app-sidebar__nav-item-badge app-sidebar__nav-item-badge--${item.type} ${
+                  isActive ? 'app-sidebar__nav-item-badge--active' : ''
+                }`}
               >
                 {item.count}
               </span>

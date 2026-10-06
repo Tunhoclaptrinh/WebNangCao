@@ -72,6 +72,7 @@
 [data-theme='dark'] .assignment-card:hover,
 [data-theme='dark'] .ant-card.assignment-card:hover {
   border-color: #475569 !important;
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.4);
 }
 
 [data-theme='dark'] .assignment-card--pinned {
@@ -86,16 +87,47 @@
 }
 
 [data-theme='dark'] .assignment-card__title {
-  color: #f1f5f9;
+  color: #f1f5f9 !important;
 }
 
 [data-theme='dark'] .assignment-card__desc {
-  color: #94a3b8;
+  color: #94a3b8 !important;
+}
+
+[data-theme='dark'] .assignment-card__subject-link {
+  color: #f1f5f9 !important;
+}
+
+[data-theme='dark'] .assignment-card__subject-text {
+  color: #f1f5f9 !important;
+}
+
+[data-theme='dark'] .assignment-card__subject-code {
+  color: #94a3b8 !important;
+}
+
+[data-theme='dark'] .assignment-card__separator {
+  color: #475569 !important;
+}
+
+[data-theme='dark'] .assignment-card__deadline {
+  color: #94a3b8 !important;
 }
 
 [data-theme='dark'] .assignment-card__check-btn {
-  background: #334155;
+  background: #0f172a;
   border-color: #475569;
+  color: #f1f5f9;
+}
+
+[data-theme='dark'] .assignment-card__check-btn:hover {
+  border-color: #22c55e;
+  background: #064e3b;
+}
+
+[data-theme='dark'] .assignment-card__check-btn--checked {
+  background: #16a34a !important;
+  border-color: #16a34a !important;
 }
 
 .assignment-card--completed {
@@ -200,6 +232,31 @@
   font-size: 11px;
 }
 
+.assignment-card__priority--LOW { color: #16a34a; }
+.assignment-card__priority--MEDIUM { color: #2563eb; }
+.assignment-card__priority--HIGH { color: #ea580c; }
+.assignment-card__priority--URGENT { color: #dc2626; }
+
+[data-theme='dark'] .assignment-card__priority--LOW { color: #4ade80 !important; }
+[data-theme='dark'] .assignment-card__priority--MEDIUM { color: #60a5fa !important; }
+[data-theme='dark'] .assignment-card__priority--HIGH { color: #fbbf24 !important; }
+[data-theme='dark'] .assignment-card__priority--URGENT { color: #f87171 !important; }
+
+/* Subject dots */
+.assignment-card__dot--LTWNC { background: #2563eb; }
+.assignment-card__dot--CSDL { background: #16a34a; }
+.assignment-card__dot--KTMT { background: #9333ea; }
+.assignment-card__dot--MMT { background: #0891b2; }
+.assignment-card__dot--OOP { background: #ea580c; }
+.assignment-card__dot--OTHER { background: #64748b; }
+
+[data-theme='dark'] .assignment-card__dot--LTWNC { background: #60a5fa; }
+[data-theme='dark'] .assignment-card__dot--CSDL { background: #4ade80; }
+[data-theme='dark'] .assignment-card__dot--KTMT { background: #c084fc; }
+[data-theme='dark'] .assignment-card__dot--MMT { background: #22d3ee; }
+[data-theme='dark'] .assignment-card__dot--OOP { background: #fb923c; }
+[data-theme='dark'] .assignment-card__dot--OTHER { background: #94a3b8; }
+
 .assignment-card__countdown-tag {
   display: inline-flex;
   align-items: center;
@@ -208,6 +265,54 @@
   border-radius: 4px;
   font-size: 11px;
   font-weight: 700;
+}
+
+.assignment-card__countdown-tag--completed {
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+}
+
+.assignment-card__countdown-tag--overdue {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+.assignment-card__countdown-tag--urgent {
+  background: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.assignment-card__countdown-tag--upcoming {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+[data-theme='dark'] .assignment-card__countdown-tag--completed {
+  background: #1e293b !important;
+  color: #94a3b8 !important;
+  border-color: #334155 !important;
+}
+
+[data-theme='dark'] .assignment-card__countdown-tag--overdue {
+  background: rgba(239, 68, 68, 0.18) !important;
+  color: #fca5a5 !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+[data-theme='dark'] .assignment-card__countdown-tag--urgent {
+  background: rgba(245, 158, 11, 0.18) !important;
+  color: #fde68a !important;
+  border-color: rgba(245, 158, 11, 0.4) !important;
+}
+
+[data-theme='dark'] .assignment-card__countdown-tag--upcoming {
+  background: rgba(37, 99, 235, 0.18) !important;
+  color: #93c5fd !important;
+  border-color: rgba(37, 99, 235, 0.4) !important;
 }
 
 .assignment-card__title {

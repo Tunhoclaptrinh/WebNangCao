@@ -36,3 +36,20 @@
   color: #2563eb;
   background: #eff6ff;
 }
+
+/* Dark Mode Overrides */
+[data-theme='dark'] .assignment-form-modal__header {
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .assignment-form-modal__preset-btn {
+  background: #1e293b;
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+[data-theme='dark'] .assignment-form-modal__preset-btn:hover {
+  background: #1e3a8a;
+  border-color: #3b82f6;
+  color: #93c5fd;
+}

@@ -1,19 +1,17 @@
 import React from 'react';
 import { Progress, Button } from 'antd';
-import { CodeOutlined, SyncOutlined } from '@ant-design/icons';
+import { SyncOutlined } from '@ant-design/icons';
 import { SidebarStats } from './Sidebar.types';
 
 export interface SidebarProgressWidgetProps {
   stats: SidebarStats;
   loading: boolean;
-  onOpenTechDrawer: () => void;
   onResetMockData: () => void;
 }
 
 export const SidebarProgressWidget: React.FC<SidebarProgressWidgetProps> = ({
   stats,
   loading,
-  onOpenTechDrawer,
   onResetMockData,
 }) => {
   return (
@@ -43,17 +41,6 @@ export const SidebarProgressWidget: React.FC<SidebarProgressWidgetProps> = ({
 
       {/* Nút hành động phụ */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-        <Button
-          type="text"
-          block
-          icon={<CodeOutlined style={{ color: '#2563eb' }} />}
-          onClick={onOpenTechDrawer}
-          className="app-sidebar__footer-btn"
-          style={{ textAlign: 'left', display: 'flex', alignItems: 'center' }}
-        >
-          Kiến trúc kỹ thuật (3 Buổi)
-        </Button>
-
         <Button
           type="text"
           block

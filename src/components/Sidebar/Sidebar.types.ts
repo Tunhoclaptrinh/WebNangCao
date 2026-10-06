@@ -16,7 +16,5 @@ export interface SidebarProps {
   loading: boolean;
   onStatusSelect: (status: AssignmentStatusFilter) => void;
   onSubjectSelect: (subject: SubjectCode | 'ALL') => void;
-  onOpenCreateModal?: () => void;
   onResetMockData: () => void;
-  onOpenTechDrawer: () => void;
 }

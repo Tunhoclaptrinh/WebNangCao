@@ -14,7 +14,6 @@ import {
   clearFilters,
   setViewMode,
   setSelectedAssignmentId,
-  setTechDrawerOpen,
   setBulkAssignments,
   selectFilteredAssignments,
   selectAssignmentStats,
@@ -36,7 +35,6 @@ import {
   KanbanBoard,
   AssignmentDetailDrawer,
   AssignmentFormModal,
-  TechArchitectureDrawer,
 } from './components';
 
 // Kỹ thuật tối ưu #4: Code Splitting với React.lazy & Suspense
@@ -68,7 +66,6 @@ const DeadlineTrackerContent: React.FC = () => {
     items,
     viewMode,
     selectedAssignmentId,
-    techDrawerOpen
   } = useAppSelector(selectAssignmentsState);
 
   const filteredAssignments = useAppSelector(selectFilteredAssignments);
@@ -178,7 +175,6 @@ const DeadlineTrackerContent: React.FC = () => {
         onStatusSelect={(s) => dispatch(setStatusFilter(s))}
         onSubjectSelect={(sub) => dispatch(setSubjectFilter(sub))}
         onResetMockData={handleResetMockData}
-        onOpenTechDrawer={() => dispatch(setTechDrawerOpen(true))}
       />
 
       {/* 2. Main Workspace Layout */}
@@ -193,7 +189,6 @@ const DeadlineTrackerContent: React.FC = () => {
           showStats={showStats}
           onClearFilters={() => dispatch(clearFilters())}
           onViewModeChange={(mode) => dispatch(setViewMode(mode))}
-          onOpenTechDrawer={() => dispatch(setTechDrawerOpen(true))}
           onResetMockData={handleResetMockData}
           onOpenCreateModal={() => setModalOpen(true)}
           onGenerate10k={handleGenerate10k}
@@ -273,12 +268,6 @@ const DeadlineTrackerContent: React.FC = () => {
             onClose={() => dispatch(setSelectedAssignmentId(null))}
             onToggleStatus={handleToggleStatus}
             onDelete={handleDeleteAssignment}
-          />
-
-          {/* Drawer Hồ Sơ Kiến Trúc Kỹ Thuật */}
-          <TechArchitectureDrawer
-            open={techDrawerOpen}
-            onClose={() => dispatch(setTechDrawerOpen(false))}
           />
 
           {/* Modal Form Thêm Bài Tập Mới */}

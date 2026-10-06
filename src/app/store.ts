@@ -4,7 +4,7 @@ import logger from 'redux-logger';
 
 // Check if running in development mode
 const isDev =
-  (typeof import.meta !== 'undefined' && import.meta.env?.DEV) ||
+  (typeof import.meta !== 'undefined' && Boolean((import.meta as unknown as { env?: { DEV?: boolean } }).env?.DEV)) ||
   process.env.NODE_ENV === 'development';
 
 export const store = configureStore({

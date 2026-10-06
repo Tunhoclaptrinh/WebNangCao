@@ -23,6 +23,24 @@ async function clickButtonByText(page, text) {
   }, text);
 }
 
+async function dismissFloatingOverlays(page) {
+  await page.mouse.move(0, 0);
+  await page.evaluate(() => {
+    const style = document.createElement('style');
+    style.id = 'hide-overlays-style';
+    style.innerHTML = '.ant-message, .ant-tooltip { display: none !important; }';
+    document.head.appendChild(style);
+  });
+  await new Promise((r) => setTimeout(r, 300));
+}
+
+async function restoreFloatingOverlays(page) {
+  await page.evaluate(() => {
+    const style = document.getElementById('hide-overlays-style');
+    if (style) style.remove();
+  });
+}
+
 async function main() {
   console.log(`Launching browser from: ${CHROME_PATH}`);
   const browser = await puppeteer.launch({
@@ -50,12 +68,14 @@ async function main() {
     await pinBtns[1].click();
     await new Promise((r) => setTimeout(r, 800));
   }
+  await dismissFloatingOverlays(page);
   await page.screenshot({ path: path.join(SCREENSHOTS_DIR, '01_theme_light_and_pinned.png') });
 
   // 2. Lazy Loaded Stats Dashboard in Light Mode
   console.log('2. Capturing Stats Dashboard...');
   await clickButtonByText(page, 'Thống kê');
   await new Promise((r) => setTimeout(r, 1000));
+  await dismissFloatingOverlays(page);
   await page.screenshot({ path: path.join(SCREENSHOTS_DIR, '02_lazy_stats_dashboard.png') });
 
   // 3. Dark Theme Mode
@@ -65,25 +85,18 @@ async function main() {
     await themeToggle.click();
     await new Promise((r) => setTimeout(r, 1000));
   }
+  await dismissFloatingOverlays(page);
   await page.screenshot({ path: path.join(SCREENSHOTS_DIR, '03_theme_dark_mode.png') });
 
   // 4. Stress Test 10.000 Items & Virtualization
   console.log('4. Capturing 10k Stress Test & Virtualization...');
+  // Close stats dashboard first to show virtualized list prominently
+  await clickButtonByText(page, 'Thống kê');
+  await new Promise((r) => setTimeout(r, 600));
   await clickButtonByText(page, '10.000 bài mẫu');
-  await new Promise((r) => setTimeout(r, 1500));
+  await new Promise((r) => setTimeout(r, 3000));
+  await dismissFloatingOverlays(page);
   await page.screenshot({ path: path.join(SCREENSHOTS_DIR, '04_stress_test_10k_virtualization.png') });
-
-  // 5. Tech Architecture Drawer & Benchmark
-  console.log('5. Capturing Tech Architecture Drawer...');
-  await page.evaluate(() => {
-    const codeIcon = document.querySelector('.anticon-code');
-    if (codeIcon) {
-      const btn = codeIcon.closest('button');
-      if (btn) btn.click();
-    }
-  });
-  await new Promise((r) => setTimeout(r, 1000));
-  await page.screenshot({ path: path.join(SCREENSHOTS_DIR, '05_tech_architecture_drawer.png') });
 
   await browser.close();
   console.log('All screenshots captured with crystal clarity!');

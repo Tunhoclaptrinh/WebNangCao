@@ -1,10 +1,10 @@
-import React, { ReactElement } from 'react';
-import { render, RenderOptions } from '@testing-library/react';
+import type { ReactElement, ReactNode } from 'react';
+import { render, type RenderOptions } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import assignmentsReducer, { AssignmentState } from './features/assignments/assignmentSlice';
+import assignmentsReducer from './features/assignments/assignmentSlice';
 import { ThemeProvider } from './context/ThemeContext';
-import { RootState } from './app/store';
+import type { RootState } from './app/store';
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: Partial<RootState>;
@@ -15,8 +15,8 @@ export function createTestStore(preloadedState?: Partial<RootState>) {
   return configureStore({
     reducer: {
       assignments: assignmentsReducer,
-    },
-    preloadedState,
+    } as any,
+    preloadedState: preloadedState as any,
   });
 }
 
@@ -28,7 +28,7 @@ export function renderWithProviders(
     ...renderOptions
   }: ExtendedRenderOptions = {}
 ) {
-  function Wrapper({ children }: { children: React.ReactNode }) {
+  function Wrapper({ children }: { children: ReactNode }) {
     return (
       <Provider store={store}>
         <ThemeProvider>

@@ -23,11 +23,10 @@ export const AssignmentCardTags: React.FC<AssignmentCardTagsProps> = ({
 
   return (
     <div className="assignment-card__meta-row">
-      {/* 1. Môn học dạng link tinh tế có dot màu (Không dùng tag khối to) */}
+      {/* 1. Môn học dạng link tinh tế có dot màu */}
       <span className="assignment-card__subject-link">
         <span 
-          className="assignment-card__dot" 
-          style={{ background: subjectMeta.textColor }} 
+          className={`assignment-card__dot assignment-card__dot--${subject}`} 
         />
         <span className="assignment-card__subject-text">
           {subjectMeta.name}
@@ -39,10 +38,9 @@ export const AssignmentCardTags: React.FC<AssignmentCardTagsProps> = ({
 
       <span className="assignment-card__separator">•</span>
 
-      {/* 2. Mức độ ưu tiên dạng text nhẹ nhàng */}
+      {/* 2. Mức độ ưu tiên dạng text thanh lịch */}
       <span 
-        className="assignment-card__priority"
-        style={{ color: priorityMeta.textColor }}
+        className={`assignment-card__priority assignment-card__priority--${priority}`}
       >
         <span>Ưu tiên {priorityMeta.label}</span>
       </span>
@@ -51,12 +49,7 @@ export const AssignmentCardTags: React.FC<AssignmentCardTagsProps> = ({
 
       {/* 3. Tag hạn nộp duy nhất dạng Badge trực quan */}
       <span 
-        className="assignment-card__countdown-tag"
-        style={{ 
-          background: countdown.bg, 
-          color: countdown.textColor, 
-          border: `1px solid ${countdown.borderColor}` 
-        }}
+        className={`assignment-card__countdown-tag assignment-card__countdown-tag--${countdown.status}`}
       >
         {countdown.status === 'urgent' && <span className="pulse-indicator" />}
         {countdown.status === 'overdue' && <AlertOutlined style={{ fontSize: '11px' }} />}
