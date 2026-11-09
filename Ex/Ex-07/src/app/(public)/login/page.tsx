@@ -1,3 +1,5 @@
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { Providers } from "@/components/providers";
 import type { Metadata } from "next";
 import { auth, githubConfigured } from "@/auth";
 import { redirect } from "next/navigation";
@@ -47,11 +49,15 @@ export default async function LoginPage({
         <span className="eyebrow">BẮT ĐẦU TẠI ĐÂY</span>
         <h2>Đăng nhập</h2>
         <p className="login-subtitle">Chào mừng trở lại với DevWorkspace.</p>
-        <LoginForm
-          callbackUrl={callbackUrl}
-          githubReady={githubConfigured}
-          oauthError={Boolean(query.error)}
-        />
+        <AntdRegistry>
+          <Providers>
+            <LoginForm
+              callbackUrl={callbackUrl}
+              githubReady={githubConfigured}
+              oauthError={Boolean(query.error)}
+            />
+          </Providers>
+        </AntdRegistry>
       </div>
     </main>
   );

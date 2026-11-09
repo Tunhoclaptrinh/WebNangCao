@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { Providers } from "@/components/providers";
 import { site } from "@/lib/site";
 import "./globals.css";
 export const metadata: Metadata = {
@@ -22,9 +20,7 @@ export default function RootLayout({
         <a href="#main" className="skip-link">
           Đến nội dung chính
         </a>
-        <AntdRegistry>
-          <Providers>{children}</Providers>
-        </AntdRegistry>
+        {children}
       </body>
     </html>
   );

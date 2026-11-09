@@ -28,7 +28,7 @@ async function shot(page: Page, name: string) {
   await mkdir(evidence, { recursive: true });
   await page.screenshot({
     path: `${evidence}/${name}.png`,
-    fullPage: true,
+    fullPage: !name.includes("edit"),
     animations: "disabled",
   });
 }
@@ -58,7 +58,7 @@ test("public pages render and catalogue filters/sorts work", async ({
   await expect(
     page.locator(".catalogue-meta p").filter({ hasText: "2 sản phẩm" }),
   ).toBeVisible();
-  await page.getByRole("textbox", { name: "Tìm sản phẩm" }).fill("SONY");
+  await page.getByRole("searchbox", { name: "Tìm sản phẩm" }).fill("SONY");
   await expect(
     page.getByRole("heading", { name: "Sony WH-1000XM5" }),
   ).toBeVisible();

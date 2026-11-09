@@ -14,7 +14,7 @@ test("search filters products case insensitively", async () => {
   const user = userEvent.setup();
   render(<Catalogue products={fixtures} />);
   await user.type(
-    screen.getByRole("textbox", { name: "Tìm sản phẩm" }),
+    screen.getByRole("searchbox", { name: "Tìm sản phẩm" }),
     "KEYCHRON",
   );
   expect(
@@ -30,7 +30,7 @@ test("category filter and clear handle empty results", async () => {
   await user.click(screen.getByRole("button", { name: "Âm thanh" }));
   expect(screen.getByText("2 sản phẩm")).toBeInTheDocument();
   await user.type(
-    screen.getByRole("textbox", { name: "Tìm sản phẩm" }),
+    screen.getByRole("searchbox", { name: "Tìm sản phẩm" }),
     "missing-item",
   );
   expect(
@@ -43,13 +43,17 @@ test("category filter and clear handle empty results", async () => {
 test("price sort changes the visible product order", async () => {
   const user = userEvent.setup();
   render(<Catalogue products={fixtures} />);
-  await user.click(screen.getByRole("combobox", { name: "Sắp xếp sản phẩm" }));
-  await user.click(screen.getByText("Giá: thấp đến cao"));
+  await user.selectOptions(
+    screen.getByRole("combobox", { name: "Sắp xếp sản phẩm" }),
+    "price-asc",
+  );
   expect(screen.getAllByRole("heading", { level: 3 })[0]).toHaveTextContent(
     "Baseus Monitor Light",
   );
-  await user.click(screen.getByRole("combobox", { name: "Sắp xếp sản phẩm" }));
-  await user.click(screen.getByText("Giá: cao đến thấp"));
+  await user.selectOptions(
+    screen.getByRole("combobox", { name: "Sắp xếp sản phẩm" }),
+    "price-desc",
+  );
   expect(screen.getAllByRole("heading", { level: 3 })[0]).toHaveTextContent(
     "Dell UltraSharp U2723QE",
   );
