@@ -2,107 +2,107 @@ import React from "react";
 import Link from "next/link";
 import { getCurrentActor } from "@/features/auth/guards";
 import { signOut } from "@/auth";
-import {
-  CalendarIcon,
-  BookIcon,
-  DashboardIcon,
-  SettingIcon,
-  LogoutIcon,
-  LoginIcon,
-} from "@/components/icons";
 
 export async function Header() {
   const actor = await getCurrentActor();
 
   return (
-    <header className="border-b border-slate-200 bg-white sticky top-0 z-50 shadow-sm">
-      <div className="container-custom h-16 flex items-center justify-between">
-        {/* Brand / Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:bg-blue-700 transition">
-            <CalendarIcon className="w-5 h-5" />
-          </div>
-          <div>
-            <div className="font-bold text-slate-900 text-base leading-tight group-hover:text-blue-600 transition">
-              Class Deadline Hub
-            </div>
-            <div className="text-[11px] text-slate-500 font-medium">
-              RIPT1411-20261-02 · PTIT
-            </div>
-          </div>
-        </Link>
-
-        {/* Public Navigation */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
-          <Link href="/" className="hover:text-blue-600 transition flex items-center gap-1.5">
-            Trang chủ
-          </Link>
-          <Link href="/deadlines" className="hover:text-blue-600 transition flex items-center gap-1.5">
-            <CalendarIcon className="w-4 h-4 text-slate-400" />
-            Tất cả Deadline
-          </Link>
-          <Link href="/subjects/lap-trinh-web-nang-cao" className="hover:text-blue-600 transition flex items-center gap-1.5">
-            <BookIcon className="w-4 h-4 text-slate-400" />
-            Lập trình Web NC
+    <>
+      <div className="announcement">
+        Cổng Thông Tin Học Tập Chính Thức · Lớp RIPT1411-20261-02 · PTIT
+      </div>
+      <header className="header">
+        <div className="container header-inner">
+          {/* Brand */}
+          <Link href="/" className="brand" aria-label="Class Deadline Hub — Trang chủ">
+            <span className="brand-icon" aria-hidden="true">
+              C<span>↗</span>
+            </span>
+            Class Deadline Hub<span className="brand-dot">.ptit</span>
           </Link>
 
-          {actor && (
-            <>
-              <Link href="/dashboard" className="text-blue-600 font-semibold flex items-center gap-1.5">
-                <DashboardIcon className="w-4 h-4" />
-                Tiến độ của tôi
-              </Link>
-              {actor.role === "admin" && (
-                <Link href="/admin" className="text-purple-600 font-semibold flex items-center gap-1.5">
-                  <SettingIcon className="w-4 h-4" />
-                  Quản trị
+          {/* Navigation */}
+          <nav aria-label="Điều hướng chính">
+            <Link href="/">Trang chủ</Link>
+            <Link href="/deadlines">Tất cả Deadline</Link>
+            <Link href="/subjects/lap-trinh-web-nang-cao">Môn học</Link>
+            {actor && (
+              <>
+                <Link href="/dashboard" style={{ fontWeight: 600, color: "var(--green)" }}>
+                  Tiến độ của tôi
                 </Link>
-              )}
-            </>
-          )}
-        </nav>
+                {actor.role === "admin" && (
+                  <Link href="/admin" style={{ fontWeight: 600, color: "#7c3aed" }}>
+                    Quản trị
+                  </Link>
+                )}
+              </>
+            )}
+          </nav>
 
-        {/* User Account / Auth Actions */}
-        <div className="flex items-center gap-3">
+          {/* Auth State */}
           {actor ? (
-            <div className="flex items-center gap-2">
-              <div className="hidden sm:flex flex-col items-end text-xs">
-                <span className="font-semibold text-slate-800">{actor.name}</span>
-                <span className="text-slate-500">{actor.email}</span>
-              </div>
-              <span
-                className={`text-xs px-2 py-0.5 rounded font-medium ${
-                  actor.role === "admin" ? "bg-purple-100 text-purple-700" : "bg-blue-100 text-blue-700"
-                }`}
-              >
-                {actor.role === "admin" ? "Lớp trưởng" : "Sinh viên"}
-              </span>
+            <div className="private-account">
+              <Link href="/dashboard" className="account-link">
+                <span className="avatar-mini">{actor.name.charAt(0)}</span>
+                <span>
+                  {actor.name}
+                  <small>
+                    {actor.role === "admin" ? "Lớp trưởng (Admin)" : "Sinh viên"}
+                  </small>
+                </span>
+              </Link>
               <form
                 action={async () => {
                   "use server";
                   await signOut({ redirectTo: "/" });
                 }}
               >
-                <button
-                  type="submit"
-                  className="px-2.5 py-1.5 text-xs text-slate-600 hover:text-red-600 hover:bg-red-50 rounded-md border border-slate-200 transition flex items-center gap-1"
-                >
-                  <LogoutIcon className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">Đăng xuất</span>
+                <button type="submit" className="logout-link">
+                  Đăng xuất
                 </button>
               </form>
             </div>
           ) : (
-            <Link
-              href="/login"
-              className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm transition flex items-center gap-1.5"
-            >
-              <LoginIcon className="w-4 h-4" />
-              <span>Đăng nhập</span>
+            <Link href="/login" className="button-primary">
+              Đăng nhập PTIT ↗
             </Link>
           )}
         </div>
+      </header>
+    </>
+  );
+}
+
+export function Footer() {
+  return (
+    <footer className="footer">
+      <div className="container footer-inner">
+        <div>
+          <Link href="/" className="footer-brand">
+            Class Deadline Hub<span style={{ color: "#66815d" }}>.ptit</span>
+          </Link>
+          <p>Hệ thống theo dõi tiến độ nộp bài & đồ án chuyên ngành CNTT 1.</p>
+        </div>
+        <div>
+          <Link href="/deadlines" style={{ display: "block", marginBottom: 8, fontSize: 13, color: "var(--muted)" }}>
+            Khám phá toàn bộ deadline ↗
+          </Link>
+          <Link href="/dashboard" style={{ display: "block", fontSize: 13, color: "var(--muted)" }}>
+            Bảng điều khiển cá nhân ↗
+          </Link>
+        </div>
+        <div className="footer-credit">
+          Bài thực hành số 3 · Next.js App Router
+          <br />
+          Nguyễn Tiến Tuấn · B23DCCC173 · D23CQCC01-B
+          <br />
+          Giảng viên hướng dẫn: ThS. Ngô Văn Nhận
+        </div>
       </div>
-    </header>
+      <div className="container footer-bottom">
+        © 2026 PTIT — Học viện Công nghệ Bưu chính Viễn thông. Bài tập thực hành phòng máy RIPT1411-20261-02.
+      </div>
+    </footer>
   );
 }

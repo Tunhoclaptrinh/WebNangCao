@@ -157,10 +157,11 @@ export function AdminDeadlineTable({ initialDeadlines, subjects }: AdminDeadline
   return (
     <div>
       {/* Top Action Bar */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="section-heading" style={{ marginTop: 20 }}>
         <div>
-          <h2 className="text-xl font-bold text-slate-900 m-0">Quản lý Deadline Lớp học</h2>
-          <p className="text-xs text-slate-500 mt-1">
+          <span className="eyebrow">PHÂN CÔNG BÀI TẬP</span>
+          <h2>Quản lý Deadline Lớp học</h2>
+          <p>
             Quyền hạn Lớp trưởng: Thêm bài tập mới, xóa deadline và kích hoạt On-demand Revalidation.
           </p>
         </div>
@@ -169,7 +170,7 @@ export function AdminDeadlineTable({ initialDeadlines, subjects }: AdminDeadline
           icon={<PlusOutlined />}
           size="large"
           onClick={() => setIsModalOpen(true)}
-          className="bg-blue-600 hover:bg-blue-700"
+          style={{ background: "var(--green)", borderColor: "var(--green)", height: 42, paddingInline: 20 }}
         >
           Thêm Deadline mới
         </Button>

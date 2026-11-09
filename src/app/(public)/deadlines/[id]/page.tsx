@@ -57,32 +57,42 @@ export default async function DeadlineDetailPage({ params }: { params: Promise<{
   ];
 
   return (
-    <div className="container-custom py-8 max-w-4xl">
+    <div className="container" style={{ paddingTop: 30, paddingBottom: 65, maxWidth: 960 }}>
       <BreadcrumbJsonLd items={breadcrumbs} />
 
-      <nav className="mb-6 text-xs text-slate-500 flex items-center gap-1.5" aria-label="Breadcrumb">
-        <Link href="/" className="hover:text-blue-600 transition">Trang chủ</Link>
+      <nav style={{ marginBottom: 24, fontSize: 12, color: "var(--muted)", display: "flex", gap: 8, alignItems: "center" }} aria-label="Breadcrumb">
+        <Link href="/" style={{ color: "var(--muted)" }}>Trang chủ</Link>
         <span>/</span>
-        <Link href="/deadlines" className="hover:text-blue-600 transition">Deadlines</Link>
+        <Link href="/deadlines" style={{ color: "var(--muted)" }}>Deadlines</Link>
         <span>/</span>
-        <span className="font-semibold text-slate-800 line-clamp-1">{deadline.title}</span>
+        <span style={{ fontWeight: 600, color: "var(--ink)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+          {deadline.title}
+        </span>
       </nav>
 
-      <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm mb-6">
-        <div className="flex items-center justify-between gap-2 mb-4 flex-wrap">
-          <div className="flex items-center gap-2">
+      <div
+        style={{
+          background: "#ffffff",
+          border: "1px solid var(--line)",
+          borderRadius: 8,
+          padding: 36,
+          boxShadow: "0 6px 20px rgba(36, 55, 46, 0.04)",
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, flexWrap: "wrap", gap: 12 }}>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
             <Link href={`/subjects/${deadline.subjectSlug}`}>
-              <span className="text-xs px-2.5 py-0.5 font-bold rounded bg-blue-100 text-blue-700 cursor-pointer hover:opacity-80">
-                {deadline.subjectName}
-              </span>
+              <span className="subject-code-pill">{deadline.subjectName}</span>
             </Link>
             <span
-              className={`text-xs px-2.5 py-0.5 font-semibold rounded ${
+              className={`priority-pill ${
                 deadline.priority === "urgent"
-                  ? "bg-red-100 text-red-700"
+                  ? "priority-urgent"
                   : deadline.priority === "high"
-                  ? "bg-amber-100 text-amber-800"
-                  : "bg-orange-100 text-orange-700"
+                  ? "priority-high"
+                  : deadline.priority === "medium"
+                  ? "priority-medium"
+                  : "priority-low"
               }`}
             >
               Ưu tiên {deadline.priority.toUpperCase()}
@@ -91,52 +101,46 @@ export default async function DeadlineDetailPage({ params }: { params: Promise<{
           <CountdownTimer dueDate={deadline.dueDate} isCompleted={isCompleted} />
         </div>
 
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4 leading-tight">
+        <h1 style={{ fontSize: 32, letterSpacing: "-1.2px", margin: "14px 0 20px", color: "var(--ink)" }}>
           {deadline.title}
         </h1>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 bg-slate-50 rounded-xl mb-6 text-xs text-slate-700">
-          <div>
-            <div className="text-slate-400 font-medium mb-0.5">Hạn chót nộp bài:</div>
-            <div className="font-semibold text-slate-800">{formattedDate}</div>
+        <div className="subject-meta-card" style={{ marginBottom: 28 }}>
+          <div className="subject-meta-item">
+            <strong>Hạn chót nộp bài:</strong>
+            <span style={{ fontSize: 13 }}>{formattedDate}</span>
           </div>
-          <div>
-            <div className="text-slate-400 font-medium mb-0.5">Hình thức nộp:</div>
-            <div className="font-semibold text-slate-800">{deadline.format}</div>
+          <div className="subject-meta-item">
+            <strong>Hình thức nộp:</strong>
+            <span style={{ fontSize: 13 }}>{deadline.format}</span>
           </div>
-          <div>
-            <div className="text-slate-400 font-medium mb-0.5">Thang điểm tối đa:</div>
-            <div className="font-semibold text-slate-800">{deadline.maxScore} / 10 điểm</div>
+          <div className="subject-meta-item">
+            <strong>Thang điểm tối đa:</strong>
+            <span style={{ fontSize: 13 }}>{deadline.maxScore} / 10 điểm</span>
           </div>
         </div>
 
-        <div className="mb-6">
-          <h2 className="text-base font-bold text-slate-900 mb-2">Mô tả chi tiết nội dung:</h2>
-          <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
+        <div style={{ marginBottom: 28 }}>
+          <h2 style={{ fontSize: 17, marginBottom: 10, letterSpacing: "-0.3px" }}>Mô tả chi tiết nội dung:</h2>
+          <p style={{ fontSize: 13.5, color: "var(--muted)", lineHeight: 1.85, margin: 0, whiteSpace: "pre-line" }}>
             {deadline.description}
           </p>
         </div>
 
-        <div className="mb-6">
-          <h2 className="text-base font-bold text-slate-900 mb-2">Các tiêu chí đánh giá / chấm điểm:</h2>
-          <ul className="list-disc pl-5 space-y-1 text-xs text-slate-600">
+        <div style={{ marginBottom: 32 }}>
+          <h2 style={{ fontSize: 17, marginBottom: 10, letterSpacing: "-0.3px" }}>Các tiêu chí đánh giá / chấm điểm:</h2>
+          <ul style={{ paddingLeft: 20, margin: 0, fontSize: 13, color: "var(--muted)", lineHeight: 1.8 }}>
             {deadline.requirements.map((req, i) => (
               <li key={i}>{req}</li>
             ))}
           </ul>
         </div>
 
-        <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-          <Link
-            href="/deadlines"
-            className="px-4 py-2 border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-semibold rounded-lg transition"
-          >
+        <div style={{ paddingTop: 20, borderTop: "1px solid var(--line)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <Link href="/deadlines" className="button-outline">
             ← Quay lại danh sách
           </Link>
-          <Link
-            href={`/subjects/${deadline.subjectSlug}`}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow-sm transition"
-          >
+          <Link href={`/subjects/${deadline.subjectSlug}`} className="button-primary">
             Xem môn {deadline.subjectName} →
           </Link>
         </div>

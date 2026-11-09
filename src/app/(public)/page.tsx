@@ -3,13 +3,6 @@ import Link from "next/link";
 import { getSubjects, getDeadlines, calculateStats } from "@/lib/data";
 import { getCurrentActor } from "@/features/auth/guards";
 import { DeadlineCard } from "@/components/deadline-card";
-import {
-  CalendarIcon,
-  BookIcon,
-  ClockIcon,
-  ArrowRightIcon,
-  UserIcon,
-} from "@/components/icons";
 import { WebsiteJsonLd } from "@/components/json-ld";
 import { siteConfig } from "@/lib/site";
 
@@ -28,98 +21,110 @@ export default async function HomePage() {
     .slice(0, 3);
 
   return (
-    <div>
+    <div className="container" style={{ paddingTop: 30, paddingBottom: 60 }}>
       <WebsiteJsonLd
         name={siteConfig.name}
         url={siteConfig.url}
         description={siteConfig.description}
       />
 
-      {/* Hero Banner Section */}
-      <section className="hero-gradient text-white py-16 px-4">
-        <div className="container-custom max-w-4xl text-center">
-          <span className="inline-block mb-4 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider bg-white/20 text-blue-100 backdrop-blur-sm border border-white/20">
-            Cổng Thông Tin Học Tập Chính Thức · {siteConfig.academicYear}
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-black mb-4 tracking-tight leading-tight">
-            Class Deadline Hub
-          </h1>
-          <p className="text-base sm:text-xl text-blue-100 mb-8 max-w-2xl mx-auto font-normal leading-relaxed">
-            Hệ thống quản lý thời hạn nộp bài tập, đồ án và theo dõi tiến độ học tập đồng bộ dành riêng cho tập thể lớp <b>{siteConfig.class}</b>.
-          </p>
+      {/* Hero Editorial Section */}
+      <section className="hero-editorial">
+        <div className="hero-editorial-inner">
+          <div>
+            <span className="eyebrow">
+              <span className="tiny-dot" />
+              CỔNG THÔNG TIN HỌC TẬP CHÍNH THỨC · {siteConfig.academicYear}
+            </span>
+            <h1>
+              Class Deadline <em>Hub</em>
+            </h1>
+            <p>
+              Hệ thống quản lý thời hạn nộp bài tập, đồ án và theo dõi tiến độ học tập đồng bộ dành riêng cho tập thể lớp <b>{siteConfig.class}</b>.
+            </p>
 
-          <div className="flex items-center justify-center gap-3 flex-wrap">
-            <Link
-              href="/deadlines"
-              className="inline-flex items-center gap-2 bg-white text-blue-800 hover:bg-blue-50 font-bold h-12 px-6 rounded-lg shadow-sm transition"
-            >
-              <CalendarIcon className="w-5 h-5 text-blue-700" />
-              Xem Tất Cả Deadline
-            </Link>
+            <div className="hero-actions">
+              <Link href="/deadlines" className="button-primary">
+                Xem Tất Cả Deadline ↗
+              </Link>
 
-            {actor ? (
-              <Link
-                href="/dashboard"
-                className="inline-flex items-center gap-2 bg-blue-700/60 text-white hover:bg-blue-700 border border-blue-400/50 font-medium h-12 px-6 rounded-lg transition"
-              >
-                <UserIcon className="w-5 h-5" />
-                Dashboard Cá Nhân
-              </Link>
-            ) : (
-              <Link
-                href="/login"
-                className="inline-flex items-center gap-2 bg-blue-700/60 text-white hover:bg-blue-700 border border-blue-400/50 font-medium h-12 px-6 rounded-lg transition"
-              >
-                <UserIcon className="w-5 h-5" />
-                Đăng Nhập Sinh Viên
-              </Link>
-            )}
+              {actor ? (
+                <Link href="/dashboard" className="button-outline">
+                  Không Gian Cá Nhân ↗
+                </Link>
+              ) : (
+                <Link href="/login" className="button-outline">
+                  Đăng Nhập Sinh Viên ↗
+                </Link>
+              )}
+            </div>
+          </div>
+
+          <div className="hero-visual-card">
+            <div>
+              <span className="eyebrow" style={{ color: "var(--green)" }}>TỔNG QUAN HỌC KỲ</span>
+              <h3 style={{ fontSize: 20, marginTop: 6, marginBottom: 8 }}>
+                Lớp {siteConfig.class}
+              </h3>
+              <p style={{ fontSize: 13, color: "var(--muted)", margin: 0 }}>
+                Khoa Công nghệ Thông tin 1 — Học viện Công nghệ Bưu chính Viễn thông.
+              </p>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, paddingTop: 12, borderTop: "1px solid var(--line)" }}>
+              <div>
+                <span style={{ fontSize: 11, color: "var(--muted)" }}>Học phần cốt lõi</span>
+                <strong style={{ display: "block", fontSize: 13, color: "var(--ink)" }}>Lập trình Web NC</strong>
+              </div>
+              <div>
+                <span style={{ fontSize: 11, color: "var(--muted)" }}>Giảng viên</span>
+                <strong style={{ display: "block", fontSize: 13, color: "var(--ink)" }}>ThS. Ngô Văn Nhận</strong>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Stats Counter Bar */}
-      <section className="container-custom -mt-8 mb-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-          <div className="text-center p-2 border-r border-slate-100 last:border-none">
-            <div className="text-2xl sm:text-3xl font-extrabold text-blue-600">{stats.subjectsCount}</div>
-            <div className="text-xs font-medium text-slate-500 mt-1">Môn học đang theo</div>
+      <section>
+        <div className="stat-grid">
+          <div className="stat-card">
+            <span>Môn học đang theo</span>
+            <strong style={{ color: "var(--green)" }}>{stats.subjectsCount}</strong>
+            <small>01</small>
           </div>
-          <div className="text-center p-2 border-r border-slate-100 last:border-none">
-            <div className="text-2xl sm:text-3xl font-extrabold text-slate-900">{stats.total}</div>
-            <div className="text-xs font-medium text-slate-500 mt-1">Tổng số deadline</div>
+          <div className="stat-card">
+            <span>Tổng số deadline</span>
+            <strong>{stats.total}</strong>
+            <small>02</small>
           </div>
-          <div className="text-center p-2 border-r border-slate-100 last:border-none">
-            <div className="text-2xl sm:text-3xl font-extrabold text-red-500">{stats.urgent}</div>
-            <div className="text-xs font-medium text-slate-500 mt-1">Hạn nộp khẩn cấp (≤ 3 ngày)</div>
+          <div className="stat-card">
+            <span>Hạn nộp khẩn cấp (≤ 3 ngày)</span>
+            <strong style={{ color: "#c53030" }}>{stats.urgent}</strong>
+            <small>03</small>
           </div>
-          <div className="text-center p-2">
-            <div className="text-2xl sm:text-3xl font-extrabold text-green-600">{stats.upcoming}</div>
-            <div className="text-xs font-medium text-slate-500 mt-1">Bài tập sắp tới</div>
+          <div className="stat-card">
+            <span>Bài tập sắp tới</span>
+            <strong style={{ color: "#2f855a" }}>{stats.upcoming}</strong>
+            <small>04</small>
           </div>
         </div>
       </section>
 
       {/* Urgent Deadlines Section */}
       {urgentDeadlines.length > 0 && (
-        <section className="container-custom mb-14">
-          <div className="flex items-center justify-between mb-6">
+        <section style={{ marginBottom: 50 }}>
+          <div className="section-heading">
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2 m-0">
-                <ClockIcon className="w-5 h-5 text-red-500" />
-                Hạn Chót Cần Ưu Tiên Hoàn Thành
-              </h2>
-              <p className="text-xs text-slate-500 mt-1">Các bài tập và bài kiểm tra có thời hạn nộp gần nhất</p>
+              <span className="eyebrow">ƯU TIÊN XỬ LÝ</span>
+              <h2>Hạn Chót Cần Ưu Tiên Hoàn Thành</h2>
+              <p>Các bài tập và bài kiểm tra có thời hạn nộp gần nhất cần hoàn thành gấp.</p>
             </div>
-            <Link
-              href="/deadlines"
-              className="text-blue-600 hover:text-blue-700 font-semibold text-xs flex items-center gap-1"
-            >
-              Xem tất cả <ArrowRightIcon className="w-3.5 h-3.5" />
+            <Link href="/deadlines" style={{ fontSize: 12.5, fontWeight: 600, color: "var(--green)" }}>
+              Xem tất cả ↗
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="deadline-grid">
             {urgentDeadlines.map((deadline) => (
               <div key={deadline.id}>
                 <DeadlineCard deadline={deadline} />
@@ -130,54 +135,49 @@ export default async function HomePage() {
       )}
 
       {/* Subjects Grid (SSG linked) */}
-      <section className="container-custom mb-14">
-        <div className="mb-6">
-          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2 m-0">
-            <BookIcon className="w-5 h-5 text-blue-600" />
-            Danh Mục Môn Học Học Kỳ 7
-          </h2>
-          <p className="text-xs text-slate-500 mt-1">Thông tin chi tiết giảng viên, lịch học và deadline theo từng môn</p>
+      <section style={{ marginBottom: 50 }}>
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">HỌC KỲ 7 CHUYÊN NGÀNH</span>
+            <h2>Danh Mục Môn Học Học Kỳ 7</h2>
+            <p>Thông tin chi tiết giảng viên, lịch học và phân bổ deadline theo từng môn.</p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {subjects.map((subject) => {
-            const subjectDeadlines = deadlines.filter((d) => d.subjectId === subject.id);
+        <div className="subject-grid">
+          {subjects.map((sub) => {
+            const count = deadlines.filter((d) => d.subjectId === sub.id).length;
             return (
-              <div
-                key={subject.id}
-                className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition flex flex-col h-full"
+              <Link
+                key={sub.code}
+                href={`/subjects/${sub.slug}`}
+                className="deadline-card"
+                style={{ padding: 24, textDecoration: "none" }}
               >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="font-semibold text-xs px-2 py-0.5 rounded bg-blue-100 text-blue-700">{subject.code}</span>
-                  <span className="text-xs px-2 py-0.5 rounded bg-purple-100 text-purple-700">{subject.badge}</span>
+                <div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+                    <span className="subject-code-pill">{sub.code}</span>
+                    <span style={{ fontSize: 11, color: "var(--muted)" }}>{sub.credits} tín chỉ</span>
+                  </div>
+                  <h3 style={{ fontSize: 17, marginBottom: 8 }}>{sub.name}</h3>
+                  <p style={{ fontSize: 12.5, color: "var(--muted)", marginBottom: 16 }}>{sub.description}</p>
                 </div>
 
-                <h3 className="text-base font-bold text-slate-900 mb-2 leading-snug">
-                  <Link href={`/subjects/${subject.slug}`} className="hover:text-blue-600 transition">
-                    {subject.name}
-                  </Link>
-                </h3>
-
-                <p className="text-xs text-slate-500 mb-4 line-clamp-3 leading-relaxed">
-                  {subject.description}
-                </p>
-
-                <div className="mt-auto pt-3 border-t border-slate-100 text-xs text-slate-600 space-y-1">
-                  <div><b>Giảng viên:</b> {subject.lecturer}</div>
-                  <div><b>Lịch học:</b> {subject.schedule}</div>
-                  <div className="pt-2 flex items-center justify-between">
-                    <span className="font-medium text-blue-600">
-                      {subjectDeadlines.length} deadline
-                    </span>
-                    <Link
-                      href={`/subjects/${subject.slug}`}
-                      className="text-blue-600 hover:text-blue-700 font-semibold text-xs"
-                    >
-                      Chi tiết →
-                    </Link>
+                <div style={{ borderTop: "1px solid var(--line)", paddingTop: 14, fontSize: 12, color: "var(--muted)" }}>
+                  <div style={{ marginBottom: 4 }}>
+                    <span style={{ color: "var(--green)", fontWeight: 600 }}>GV: </span>
+                    <b>{sub.lecturer}</b>
+                  </div>
+                  <div>
+                    <span>Lịch học: </span>
+                    <span>{sub.schedule}</span>
+                  </div>
+                  <div style={{ marginTop: 12, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <span className="count-pill">{count} deadline</span>
+                    <span style={{ color: "var(--green)", fontWeight: 600, fontSize: 12 }}>Chi tiết ↗</span>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

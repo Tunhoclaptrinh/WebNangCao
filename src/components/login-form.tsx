@@ -51,11 +51,21 @@ export function LoginForm() {
   };
 
   return (
-    <Card className="shadow-lg border-slate-200 max-w-md w-full mx-auto rounded-2xl p-2 sm:p-4">
-      <div className="text-center mb-6">
-        <h1 className="text-2xl font-bold text-slate-900 mb-1">Đăng nhập Cổng Deadline</h1>
-        <p className="text-xs text-slate-500">
-          Sử dụng tài khoản PTIT hoặc GitHub để theo dõi và quản lý hạn nộp
+    <Card
+      style={{
+        border: "1px solid var(--line)",
+        borderRadius: 8,
+        boxShadow: "0 8px 30px rgba(36, 55, 46, 0.06)",
+        background: "#ffffff",
+      }}
+      styles={{ body: { padding: 28 } }}
+    >
+      <div style={{ marginBottom: 20 }}>
+        <h2 style={{ fontSize: 24, letterSpacing: "-0.8px", margin: "0 0 6px", color: "var(--ink)" }}>
+          Đăng nhập Cổng Deadline
+        </h2>
+        <p style={{ fontSize: 12.5, color: "var(--muted)", margin: 0 }}>
+          Sử dụng tài khoản sinh viên PTIT hoặc GitHub cá nhân để theo dõi hạn nộp bài.
         </p>
       </div>
 
@@ -64,7 +74,7 @@ export function LoginForm() {
           message={errorMessage}
           type="error"
           showIcon
-          className="mb-4"
+          style={{ marginBottom: 16 }}
           closable
           onClose={() => setErrorMessage("")}
         />
@@ -74,19 +84,30 @@ export function LoginForm() {
       <Button
         size="large"
         icon={<GithubOutlined />}
-        className="w-full h-11 flex items-center justify-center font-medium bg-slate-900 text-white hover:bg-slate-800 mb-4"
+        style={{
+          width: "100%",
+          height: 44,
+          background: "#1f2d26",
+          borderColor: "#1f2d26",
+          color: "#ffffff",
+          fontWeight: 600,
+          fontSize: 13,
+          marginBottom: 12,
+        }}
         onClick={() => signIn("github", { callbackUrl })}
       >
         Đăng nhập với GitHub
       </Button>
 
-      <Divider className="text-xs text-slate-400">hoặc bằng tài khoản sinh viên</Divider>
+      <Divider style={{ fontSize: 11, color: "var(--muted)", margin: "14px 0" }}>
+        hoặc bằng tài khoản sinh viên PTIT
+      </Divider>
 
       {/* Credentials Form */}
       <Form form={form} layout="vertical" onFinish={handleCredentialsSubmit}>
         <Form.Item
           name="email"
-          label="Email PTIT / Tài khoản"
+          label={<span style={{ fontSize: 11.5, fontWeight: 600, color: "var(--ink)" }}>Email PTIT / Tài khoản</span>}
           rules={[
             { required: true, message: "Vui lòng nhập email" },
             { type: "email", message: "Email không đúng định dạng" },
@@ -94,19 +115,19 @@ export function LoginForm() {
         >
           <Input
             size="large"
-            prefix={<UserOutlined className="text-slate-400" />}
+            prefix={<UserOutlined style={{ color: "#8a9685" }} />}
             placeholder="admin@ptit.edu.vn hoặc sv@ptit.edu.vn"
           />
         </Form.Item>
 
         <Form.Item
           name="password"
-          label="Mật khẩu"
+          label={<span style={{ fontSize: 11.5, fontWeight: 600, color: "var(--ink)" }}>Mật khẩu tài khoản</span>}
           rules={[{ required: true, message: "Vui lòng nhập mật khẩu" }]}
         >
           <Input.Password
             size="large"
-            prefix={<LockOutlined className="text-slate-400" />}
+            prefix={<LockOutlined style={{ color: "#8a9685" }} />}
             placeholder="Mật khẩu tài khoản"
           />
         </Form.Item>
@@ -117,36 +138,81 @@ export function LoginForm() {
           size="large"
           loading={loading}
           icon={<LoginOutlined />}
-          className="w-full h-11 bg-blue-600 hover:bg-blue-700 font-semibold mt-2"
+          style={{
+            width: "100%",
+            height: 44,
+            background: "var(--green)",
+            borderColor: "var(--green)",
+            fontWeight: 600,
+            fontSize: 13,
+            marginTop: 4,
+          }}
         >
           Đăng nhập hệ thống
         </Button>
       </Form>
 
       {/* Quick Test Accounts */}
-      <div className="mt-6 pt-4 border-t border-slate-100 bg-slate-50 -mx-6 -mb-6 p-4 rounded-b-2xl">
-        <div className="text-xs font-bold text-slate-600 mb-2">⚡ Tài khoản mẫu chấm bài (Bấm để điền nhanh):</div>
-        <div className="flex flex-col gap-1.5 text-xs">
+      <div
+        style={{
+          marginTop: 24,
+          paddingTop: 16,
+          borderTop: "1px solid var(--line)",
+          background: "#f7f9f4",
+          marginInline: -28,
+          marginBottom: -28,
+          padding: "18px 28px",
+          borderRadius: "0 0 8px 8px",
+        }}
+      >
+        <div style={{ fontSize: 11, fontWeight: 700, color: "var(--green)", marginBottom: 8, letterSpacing: 0.5 }}>
+          ⚡ TÀI KHOẢN MẪU CHẤM BÀI (BẤM ĐỂ ĐIỀN NHANH):
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8, fontSize: 11.5 }}>
           <button
             type="button"
             onClick={() => handleFill("admin@ptit.edu.vn", "admin123")}
-            className="text-left px-2.5 py-1.5 bg-white border border-slate-200 rounded-md hover:border-purple-400 hover:bg-purple-50 transition flex items-center justify-between"
+            style={{
+              textAlign: "left",
+              padding: "8px 12px",
+              background: "#ffffff",
+              border: "1px solid #c9d5bf",
+              borderRadius: 6,
+              cursor: "pointer",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              transition: "all 0.15s",
+            }}
           >
             <span>
-              <b className="text-purple-600">Admin (Lớp trưởng):</b> <code>admin@ptit.edu.vn</code>
+              <b style={{ color: "#7c3aed" }}>Admin: </b>
+              <code style={{ fontSize: 11 }}>admin@ptit.edu.vn</code>
             </span>
-            <span className="text-slate-400">pass: <code>admin123</code></span>
+            <span style={{ color: "var(--muted)", fontSize: 10.5 }}>mật khẩu: <code>admin123</code></span>
           </button>
 
           <button
             type="button"
             onClick={() => handleFill("sv@ptit.edu.vn", "sv123456")}
-            className="text-left px-2.5 py-1.5 bg-white border border-slate-200 rounded-md hover:border-blue-400 hover:bg-blue-50 transition flex items-center justify-between"
+            style={{
+              textAlign: "left",
+              padding: "8px 12px",
+              background: "#ffffff",
+              border: "1px solid #c9d5bf",
+              borderRadius: 6,
+              cursor: "pointer",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              transition: "all 0.15s",
+            }}
           >
             <span>
-              <b className="text-blue-600">User (Sinh viên):</b> <code>sv@ptit.edu.vn</code>
+              <b style={{ color: "var(--green)" }}>Sinh viên: </b>
+              <code style={{ fontSize: 11 }}>sv@ptit.edu.vn</code>
             </span>
-            <span className="text-slate-400">pass: <code>sv123456</code></span>
+            <span style={{ color: "var(--muted)", fontSize: 10.5 }}>mật khẩu: <code>sv123456</code></span>
           </button>
         </div>
       </div>

@@ -19,31 +19,60 @@ export default async function AdminPage(): Promise<React.JSX.Element> {
   const stats = calculateStats(deadlines);
 
   return (
-    <div>
-      <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg text-xs text-blue-800 flex justify-between items-center">
+    <div className="container admin-page">
+      {/* Top Session Notice */}
+      <div
+        style={{
+          padding: "10px 16px",
+          background: "#eef4ec",
+          border: "1px solid #d4e2cf",
+          borderRadius: 6,
+          fontSize: 12,
+          color: "#264f40",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: 28,
+        }}
+      >
         <span>
           Đang truy cập với quyền <strong>Quản trị viên / Lớp trưởng</strong>: {actor.name} ({actor.email})
         </span>
-        <span className="font-mono bg-blue-100 px-2 py-0.5 rounded text-[11px]">SSR Dynamic Route</span>
+        <span
+          style={{
+            fontFamily: "monospace",
+            background: "#dbe5d0",
+            padding: "2px 8px",
+            borderRadius: 4,
+            fontSize: 11,
+            fontWeight: 600,
+          }}
+        >
+          SSR Dynamic Route
+        </span>
       </div>
 
-      {/* Admin KPI Summary */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <div className="text-xs text-slate-500 font-medium">Tổng số bài tập</div>
-          <div className="text-2xl font-black text-slate-900 mt-1">{stats.total}</div>
+      {/* 4 Stat Cards */}
+      <div className="admin-stats">
+        <div>
+          <span>Tổng số bài tập</span>
+          <strong>{stats.total}</strong>
+          <small>01</small>
         </div>
-        <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <div className="text-xs text-slate-500 font-medium">Hạn khẩn cấp</div>
-          <div className="text-2xl font-black text-amber-600 mt-1">{stats.urgent}</div>
+        <div>
+          <span>Hạn nộp khẩn cấp</span>
+          <strong style={{ color: "#c53030" }}>{stats.urgent}</strong>
+          <small>02</small>
         </div>
-        <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <div className="text-xs text-slate-500 font-medium">Đã quá hạn</div>
-          <div className="text-2xl font-black text-rose-600 mt-1">{stats.overdue}</div>
+        <div>
+          <span>Đã quá hạn</span>
+          <strong style={{ color: "#744210" }}>{stats.overdue}</strong>
+          <small>03</small>
         </div>
-        <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <div className="text-xs text-slate-500 font-medium">Bài tập sắp tới</div>
-          <div className="text-2xl font-black text-emerald-600 mt-1">{stats.upcoming}</div>
+        <div>
+          <span>Bài tập sắp tới</span>
+          <strong style={{ color: "#2f855a" }}>{stats.upcoming}</strong>
+          <small>04</small>
         </div>
       </div>
 

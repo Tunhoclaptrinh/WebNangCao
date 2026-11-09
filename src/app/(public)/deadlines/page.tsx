@@ -20,14 +20,18 @@ export default async function DeadlinesPage(): Promise<React.JSX.Element> {
   const userCompletions = actor ? await getUserCompletions(actor.email) : [];
 
   return (
-    <div className="container-custom py-8">
+    <div className="container" style={{ paddingTop: 35, paddingBottom: 65 }}>
       {/* Page Header */}
-      <div className="mb-6">
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">
+      <div style={{ marginBottom: 28 }}>
+        <span className="eyebrow">
+          <span className="tiny-dot" />
+          DỮ LIỆU ĐỒNG BỘ ISR (60S) · KHÓA D23 PTIT
+        </span>
+        <h1 style={{ fontSize: 38, margin: "14px 0 10px", letterSpacing: "-1.5px" }}>
           Toàn Bộ Deadline & Bài Tập
         </h1>
-        <p className="text-xs sm:text-sm text-slate-500">
-          Trang tự động tái tạo dữ liệu định kỳ mỗi 60 giây (<b>ISR — Incremental Static Regeneration</b>) kết hợp On-demand revalidation khi có thay đổi từ quản trị.
+        <p style={{ fontSize: 13, color: "var(--muted)", maxWidth: 650, margin: 0 }}>
+          Trang tự động tái tạo dữ liệu định kỳ mỗi 60 giây (<b>ISR — Incremental Static Regeneration</b>) kết hợp On-demand revalidation khi có thao tác thêm/xóa bài tập từ ban cán sự.
         </p>
       </div>
 

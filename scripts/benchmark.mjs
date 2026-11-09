@@ -75,3 +75,4 @@ try {
 } finally {
   await chrome.kill();
 }
+

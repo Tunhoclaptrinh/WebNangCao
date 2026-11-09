@@ -9,3 +9,4 @@ describe("Site Configuration", () => {
     expect(siteConfig.lecturer).toContain("Ngô Văn Nhận");
   });
 });
+

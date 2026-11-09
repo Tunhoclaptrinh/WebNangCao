@@ -20,3 +20,4 @@ for (const signal of ["SIGTERM", "SIGINT"]) {
 }
 
 child.on("exit", (code) => process.exit(code ?? 0));
+

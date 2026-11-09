@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { getSubjects, getSubjectBySlug, getDeadlines } from "@/lib/data";
 import { DeadlineCard } from "@/components/deadline-card";
 import { BreadcrumbJsonLd } from "@/components/json-ld";
-import { UserIcon, CalendarIcon, LocationIcon } from "@/components/icons";
 import { siteConfig } from "@/lib/site";
 import type { Metadata } from "next";
 
@@ -40,72 +39,79 @@ export default async function SubjectDetailPage({ params }: { params: Promise<{ 
   ];
 
   return (
-    <div className="container-custom py-8">
+    <div className="container" style={{ paddingTop: 30, paddingBottom: 65 }}>
       <BreadcrumbJsonLd items={breadcrumbs} />
 
       {/* Breadcrumb Navigation */}
-      <nav className="mb-6 text-xs text-slate-500 flex items-center gap-1.5" aria-label="Breadcrumb">
-        <Link href="/" className="hover:text-blue-600 transition">Trang chủ</Link>
+      <nav style={{ marginBottom: 24, fontSize: 12, color: "var(--muted)", display: "flex", gap: 8, alignItems: "center" }} aria-label="Breadcrumb">
+        <Link href="/" style={{ color: "var(--muted)" }}>Trang chủ</Link>
         <span>/</span>
         <span>Môn học</span>
         <span>/</span>
-        <span className="font-semibold text-slate-800">{subject.name}</span>
+        <span style={{ fontWeight: 600, color: "var(--ink)" }}>{subject.name}</span>
       </nav>
 
       {/* Subject Header Card */}
-      <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm mb-8">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-xs px-2.5 py-0.5 font-bold rounded bg-blue-100 text-blue-700">{subject.code}</span>
-          <span className="text-xs px-2 py-0.5 font-medium rounded bg-purple-100 text-purple-700">{subject.badge}</span>
-          <span className="text-xs px-2 py-0.5 font-medium rounded bg-teal-100 text-teal-700">{subject.credits} Tín chỉ</span>
+      <div
+        style={{
+          background: "#ffffff",
+          border: "1px solid var(--line)",
+          borderRadius: 8,
+          padding: "32px",
+          marginBottom: 36,
+        }}
+      >
+        <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 14 }}>
+          <span className="subject-code-pill">{subject.code}</span>
+          <span style={{ fontSize: 11, background: "#f0f3eb", padding: "2px 8px", borderRadius: 4, color: "var(--green)", fontWeight: 600 }}>
+            {subject.badge}
+          </span>
+          <span style={{ fontSize: 11, background: "#edf1e7", padding: "2px 8px", borderRadius: 4, color: "var(--muted)", fontWeight: 600 }}>
+            {subject.credits} Tín chỉ
+          </span>
         </div>
 
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">
+        <h1 style={{ fontSize: 36, letterSpacing: "-1.5px", margin: "10px 0 14px", color: "var(--ink)" }}>
           {subject.name}
         </h1>
 
-        <p className="text-sm text-slate-600 mb-6 max-w-3xl leading-relaxed">
+        <p style={{ fontSize: 13.5, color: "var(--muted)", lineHeight: 1.85, maxWidth: 800, marginBottom: 24 }}>
           {subject.description}
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-100 text-xs text-slate-600">
-          <div className="flex items-center gap-2">
-            <UserIcon className="w-5 h-5 text-blue-600" />
-            <div>
-              <div className="font-semibold text-slate-800">Giảng viên phụ trách</div>
-              <div>{subject.lecturer} ({subject.lecturerEmail})</div>
-            </div>
+        <div className="subject-meta-card" style={{ marginBottom: 0 }}>
+          <div className="subject-meta-item">
+            <strong>Giảng viên phụ trách</strong>
+            <span>{subject.lecturer}</span>
+            <div style={{ fontSize: 11.5, color: "var(--muted)", marginTop: 2 }}>{subject.lecturerEmail}</div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <CalendarIcon className="w-5 h-5 text-blue-600" />
-            <div>
-              <div className="font-semibold text-slate-800">Lịch học định kỳ</div>
-              <div>{subject.schedule}</div>
-            </div>
+          <div className="subject-meta-item">
+            <strong>Lịch học định kỳ</strong>
+            <span>{subject.schedule}</span>
           </div>
 
-          <div className="flex items-center gap-2">
-            <LocationIcon className="w-5 h-5 text-blue-600" />
-            <div>
-              <div className="font-semibold text-slate-800">Địa điểm học</div>
-              <div>{subject.room}</div>
-            </div>
+          <div className="subject-meta-item">
+            <strong>Địa điểm học</strong>
+            <span>{subject.room}</span>
           </div>
         </div>
       </div>
 
       {/* Subject Deadlines */}
-      <div className="mb-8">
-        <h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center justify-between">
-          <span>Danh sách Deadline môn {subject.code}</span>
-          <span className="text-xs font-normal text-slate-500">
-            Tổng cộng <b>{subjectDeadlines.length}</b> bài tập
-          </span>
-        </h2>
+      <div style={{ marginBottom: 40 }}>
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">HẠN NỘP BÀI TẬP</span>
+            <h2>
+              Danh sách Deadline môn {subject.code}{" "}
+              <span className="count-pill">{subjectDeadlines.length} bài tập</span>
+            </h2>
+          </div>
+        </div>
 
         {subjectDeadlines.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="deadline-grid">
             {subjectDeadlines.map((deadline) => (
               <div key={deadline.id}>
                 <DeadlineCard deadline={deadline} />
@@ -113,8 +119,18 @@ export default async function SubjectDetailPage({ params }: { params: Promise<{ 
             ))}
           </div>
         ) : (
-          <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 text-blue-900 text-sm">
-            <b>Chưa có deadline nào:</b> Môn học này hiện chưa có bài tập hoặc hạn nộp nào được giao.
+          <div
+            style={{
+              padding: "40px 20px",
+              border: "1px dashed #d1dbca",
+              borderRadius: 8,
+              textAlign: "center",
+              background: "#f7f9f4",
+              color: "var(--muted)",
+              fontSize: 13,
+            }}
+          >
+            Môn học này hiện chưa có bài tập hoặc hạn nộp nào được giao.
           </div>
         )}
       </div>

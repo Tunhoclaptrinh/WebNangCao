@@ -46,3 +46,4 @@ describe("SVG Icons for Server Components", () => {
     expect(c10.querySelector("svg")).toBeInTheDocument();
   });
 });
+
