@@ -1,0 +1,109 @@
+{
+  "checkedDate": "09/11/2026",
+  "jest": {
+    "suitesPassed": 10,
+    "testsPassed": 70,
+    "failed": 0,
+    "coverage": {
+      "lines": {
+        "total": 182,
+        "covered": 176,
+        "skipped": 0,
+        "pct": 96.7
+      },
+      "statements": {
+        "total": 206,
+        "covered": 195,
+        "skipped": 0,
+        "pct": 94.66
+      },
+      "functions": {
+        "total": 31,
+        "covered": 29,
+        "skipped": 0,
+        "pct": 93.54
+      },
+      "branches": {
+        "total": 82,
+        "covered": 73,
+        "skipped": 0,
+        "pct": 89.02
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "scope": "features auth/products, catalogue, login-form, lib/site; not whole-project coverage"
+  },
+  "e2e": {
+    "startTime": "2026-11-09T02:30:33.054Z",
+    "duration": 97255.34,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "sourceCommit": "3f51d8f2015ec10a1bb469656450a31997f4ceaa"
+  },
+  "screenshots": [
+    "01-home-desktop.png",
+    "02-catalogue-desktop.png",
+    "03-login-desktop.png",
+    "04-forbidden.png",
+    "05-product-desktop.png",
+    "06-dashboard-user.png",
+    "07-admin-desktop.png",
+    "08-admin-edit.png",
+    "09-home-mobile.png",
+    "10-catalogue-mobile.png",
+    "11-product-mobile.png",
+    "12-login-mobile.png",
+    "13-dashboard-mobile.png",
+    "14-admin-mobile.png",
+    "15-admin-edit-mobile.png"
+  ],
+  "audit": {
+    "all": {
+      "info": 0,
+      "low": 6,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 6
+    },
+    "production": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    }
+  },
+  "oauth": {
+    "providerImplemented": "github",
+    "liveVerification": "pending external OAuth App credentials; no simulated OAuth success"
+  },
+  "commits": {
+    "baseline": "8dd4bee2a1c81249d433da981a1150e6beabbcd0",
+    "optimized": "7b5eae023da92ae72089ee548e308ad2605d7974"
+  },
+  "postE2EChecks": {
+    "sourceCommit": "7b5eae023da92ae72089ee548e308ad2605d7974",
+    "changes": [
+      "breadcrumb contrast",
+      "accessible link names",
+      "portable Node CLI invocations"
+    ],
+    "verified": [
+      "70 Jest tests",
+      "production build",
+      "Lighthouse: 3 runs per public page",
+      "npm run setup",
+      "lint",
+      "format"
+    ]
+  }
+}

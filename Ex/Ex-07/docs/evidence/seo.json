@@ -1,0 +1,165 @@
+{
+  "checkedAt": "2026-11-09T02:33:32.258Z",
+  "pages": [
+    {
+      "path": "/products",
+      "status": 200,
+      "canonical": "http://localhost:3000/products",
+      "serverRenderedProductHeadings": true,
+      "openGraphImage": {
+        "url": "http://localhost:3000/products/opengraph-image-116tat?8715f442b49682a1",
+        "status": 200,
+        "contentType": "image/png",
+        "width": 1200,
+        "height": 630
+      },
+      "structuredData": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "CollectionPage",
+              "@id": "http://localhost:3000/products",
+              "name": "Bộ sưu tập thiết bị DevWorkspace",
+              "url": "http://localhost:3000/products",
+              "mainEntity": {
+                "@type": "ItemList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "url": "http://localhost:3000/products/dell-ultrasharp-u2723qe",
+                    "name": "Dell UltraSharp U2723QE"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "url": "http://localhost:3000/products/keychron-q1",
+                    "name": "Keychron Q1"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "url": "http://localhost:3000/products/logitech-mx-master-3s",
+                    "name": "Logitech MX Master 3S"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "url": "http://localhost:3000/products/sony-wh-1000xm5",
+                    "name": "Sony WH-1000XM5"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 5,
+                    "url": "http://localhost:3000/products/human-motion-t6",
+                    "name": "Human Motion T6"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 6,
+                    "url": "http://localhost:3000/products/baseus-monitor-light",
+                    "name": "Baseus Monitor Light"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 7,
+                    "url": "http://localhost:3000/products/apple-magic-keyboard",
+                    "name": "Apple Magic Keyboard"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 8,
+                    "url": "http://localhost:3000/products/marshall-emberton-ii",
+                    "name": "Marshall Emberton II"
+                  }
+                ]
+              }
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Trang chủ",
+                  "item": "http://localhost:3000/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Sản phẩm",
+                  "item": "http://localhost:3000/products"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/products/keychron-q1",
+      "status": 200,
+      "canonical": "http://localhost:3000/products/keychron-q1",
+      "serverRenderedProductHeadings": true,
+      "openGraphImage": {
+        "url": "http://localhost:3000/products/keychron-q1/opengraph-image-1yqe3g?27241ac33944de3c",
+        "status": 200,
+        "contentType": "image/png",
+        "width": 1200,
+        "height": 630
+      },
+      "structuredData": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Product",
+              "name": "Keychron Q1",
+              "description": "Từng phím gõ, một cảm hứng mới. Thiết kế nhôm nguyên khối với trải nghiệm gõ êm và chắc chắn.",
+              "image": [
+                "http://localhost:3000/images/keyboard.webp"
+              ],
+              "sku": "prod-02",
+              "brand": {
+                "@type": "Brand",
+                "name": "Keychron"
+              },
+              "offers": {
+                "@type": "Offer",
+                "url": "http://localhost:3000/products/keychron-q1",
+                "priceCurrency": "VND",
+                "price": 3890000,
+                "availability": "https://schema.org/InStock",
+                "itemCondition": "https://schema.org/NewCondition"
+              }
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Trang chủ",
+                  "item": "http://localhost:3000/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Sản phẩm",
+                  "item": "http://localhost:3000/products"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Keychron Q1",
+                  "item": "http://localhost:3000/products/keychron-q1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

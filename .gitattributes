@@ -1,0 +1,3 @@
+# Preserve Lighthouse exports verbatim and collapse generated evidence in code review.
+Ex/Ex-07/docs/evidence/lighthouse/** linguist-generated=true
+Ex/Ex-07/docs/evidence/lighthouse/**/*.html -diff -whitespace

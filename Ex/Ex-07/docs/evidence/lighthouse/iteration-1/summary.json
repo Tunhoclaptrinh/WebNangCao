@@ -1,0 +1,100 @@
+{
+  "phase": "optimized",
+  "commit": "edc9c9055bbf6bcb2fd6f98406e4472d7d5d7c6c",
+  "mode": "production; mobile simulated throttling; 3 runs/page; performance median",
+  "node": "v22.23.4",
+  "cpu": "Intel(R) Core(TM) i3-1005G1 CPU @ 1.20GHz",
+  "platform": "linux x64",
+  "pages": [
+    {
+      "route": "/products",
+      "medianRun": 3,
+      "runs": [
+        {
+          "run": 1,
+          "performance": 78,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 932.8549,
+          "lcp": 3020.8549,
+          "cls": 0,
+          "tbt": 644.5725500000001,
+          "transferBytes": 362996,
+          "fetchTime": "2026-11-09T02:25:37.505Z"
+        },
+        {
+          "run": 2,
+          "performance": 87,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 1024.1255,
+          "lcp": 3080.8137500000003,
+          "cls": 0,
+          "tbt": 316.9372500000004,
+          "transferBytes": 362712,
+          "fetchTime": "2026-11-09T02:25:45.924Z"
+        },
+        {
+          "run": 3,
+          "performance": 82,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 929.5741,
+          "lcp": 3053.4676249999998,
+          "cls": 0,
+          "tbt": 475.49999999999943,
+          "transferBytes": 362707,
+          "fetchTime": "2026-11-09T02:25:53.698Z"
+        }
+      ]
+    },
+    {
+      "route": "/products/keychron-q1",
+      "medianRun": 3,
+      "runs": [
+        {
+          "run": 1,
+          "performance": 78,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 956.5214,
+          "lcp": 3547.8463000000006,
+          "cls": 0,
+          "tbt": 489.9999999999999,
+          "transferBytes": 338717,
+          "fetchTime": "2026-11-09T02:26:01.269Z"
+        },
+        {
+          "run": 2,
+          "performance": 92,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 933.7138,
+          "lcp": 2095.7138,
+          "cls": 0,
+          "tbt": 319.57155000000034,
+          "transferBytes": 338716,
+          "fetchTime": "2026-11-09T02:26:08.774Z"
+        },
+        {
+          "run": 3,
+          "performance": 80,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 100,
+          "fcp": 941.2517,
+          "lcp": 2467.2517,
+          "cls": 0,
+          "tbt": 724.9999999999993,
+          "transferBytes": 338565,
+          "fetchTime": "2026-11-09T02:26:16.209Z"
+        }
+      ]
+    }
+  ]
+}

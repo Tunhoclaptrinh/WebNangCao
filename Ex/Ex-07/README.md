@@ -54,7 +54,7 @@ Playwright chạy trên production port 3100 với build `.next-e2e` và databas
 | `/api/me/favorites`                  | Đã đăng nhập | Authenticated GET, private/no-store              |
 | `/403`                               | Công khai    | Thông báo bị từ chối truy cập                    |
 
-Header công khai giữ trang cache được; phần tài khoản là client island. Header trang riêng được Server Component render bằng actor đã xác thực. Không đặt `auth()` trong root/public layout vì sẽ biến toàn bộ catalogue thành dynamic.
+Trang công khai dùng controls native để giảm JavaScript; Ant Design và SSR Registry chỉ được nạp ở trang đăng nhập/quản trị. Header công khai giữ trang cache được; phần tài khoản là client island. Header trang riêng được Server Component render bằng actor đã xác thực. Không đặt `auth()` trong root/public layout vì sẽ biến toàn bộ catalogue thành dynamic.
 
 ## Tổ chức
 
