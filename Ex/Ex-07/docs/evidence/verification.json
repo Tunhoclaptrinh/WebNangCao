@@ -84,7 +84,9 @@
   },
   "oauth": {
     "providerImplemented": "github",
-    "liveVerification": "pending external OAuth App credentials; no simulated OAuth success"
+    "liveVerification": "passed on public HTTPS demo",
+    "result": "demo/oauth-results.json",
+    "checkedAt": "2026-11-09T04:26:33.440Z"
   },
   "commits": {
     "baseline": "8dd4bee2a1c81249d433da981a1150e6beabbcd0",
@@ -165,9 +167,9 @@
     ]
   },
   "githubActions": {
-    "runId": 42555022225,
-    "url": "https://github.com/Tunhoclaptrinh/WebNangCao/actions/runs/42555022225",
-    "sourceCommit": "3c12368195fe22039e9efafd3b6612414039c56c",
+    "runId": 42558989673,
+    "url": "https://github.com/Tunhoclaptrinh/WebNangCao/actions/runs/42558989673",
+    "sourceCommit": "6627242",
     "status": "completed",
     "conclusion": "success",
     "checks": [
@@ -179,6 +181,26 @@
       "test:coverage",
       "build",
       "test:e2e"
+    ]
+  },
+  "demo": {
+    "url": "https://devworkspace-ex07-b23dccc173.vercel.app",
+    "status": "ready",
+    "platform": "Vercel Hobby",
+    "database": "Neon PostgreSQL Free",
+    "region": "sin1",
+    "sourceCommit": "6627242",
+    "smokeResults": "demo/smoke-results.json",
+    "oauthResults": "demo/oauth-results.json",
+    "screenshots": [
+      "demo/01-public-home.png",
+      "demo/02-public-catalogue.png",
+      "demo/03-login-github-enabled.png",
+      "demo/04-user-dashboard.png",
+      "demo/05-admin.png",
+      "demo/06-mobile-catalogue.png",
+      "demo/07-github-dashboard.png",
+      "demo/08-github-forbidden.png"
     ]
   }
 }

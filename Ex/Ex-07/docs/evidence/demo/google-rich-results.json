@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-11-09T04:12:35.995827+00:00",
+  "attemptedURL": "https://devworkspace-ex07-b23dccc173.vercel.app/products/keychron-q1",
+  "status": "not_completed",
+  "serviceMessage": [
+    "Something went wrong",
+    "Log in and try again"
+  ],
+  "note": "No completed Google Rich Results validation captured from the unauthenticated tool session. No result is claimed and no authentication barrier was bypassed."
+}

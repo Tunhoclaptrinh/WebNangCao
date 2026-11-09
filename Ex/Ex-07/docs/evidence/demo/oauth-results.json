@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-11-09T04:26:33.440Z",
+  "baseURL": "https://devworkspace-ex07-b23dccc173.vercel.app",
+  "status": "passed",
+  "provider": "github",
+  "visitedGithub": true,
+  "callbackSeen": true,
+  "sessionHasId": true,
+  "role": "user",
+  "dashboardAccessible": true,
+  "adminForbidden": true,
+  "logoutVerified": true,
+  "screenshots": [
+    "07-github-dashboard.png",
+    "08-github-forbidden.png"
+  ]
+}

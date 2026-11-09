@@ -1,5 +1,9 @@
 # Demo Next.js trên Vercel
 
+URL đang hoạt động: https://devworkspace-ex07-b23dccc173.vercel.app
+
+Hosting: Vercel Hobby; database: Neon PostgreSQL Free, vùng Singapore. Đã kiểm chứng browser smoke test và OAuth GitHub thật; xem [kết quả](evidence/demo/oauth-results.json).
+
 GitHub Pages chỉ phục vụ file tĩnh. Bài này có NextAuth, Middleware, Server Actions và dữ liệu theo tài khoản nên demo cần server Next.js.
 
 - Local/CI: SQLite, chạy `npm run setup`, không cần cài PostgreSQL.

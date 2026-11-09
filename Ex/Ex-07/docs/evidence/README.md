@@ -22,7 +22,7 @@
 
 Lighthouse: [baseline](lighthouse/baseline/summary.json), [bản cuối](lighthouse/optimized/summary.json), [vòng trung gian](lighthouse/iteration-1/summary.json). Mỗi thư mục có raw JSON của cả 3 lần/trang và HTML của lần Performance trung vị. Tải file HTML về rồi mở bằng trình duyệt để xem đầy đủ.
 
-Ảnh GitHub OAuth thật chưa có vì chưa cấu hình OAuth App; không dùng ảnh giả thay cho đăng nhập thành công.
+Ảnh GitHub OAuth thật trên demo public nằm trong phần minh chứng demo bên dưới.
 
 ## Ảnh chụp kết quả Lighthouse thực tế
 
@@ -36,3 +36,22 @@ Bốn ảnh dưới đây được chụp trực tiếp khi mở báo cáo HTML 
 | [Chi tiết — sau tối ưu](lighthouse/screenshots/04-product-after.png) | 100 / 100 / 100 / 100 | [optimized/product-median.html](lighthouse/optimized/product-median.html) |
 
 Tổng cộng: **15 ảnh giao diện + 4 ảnh kết quả đo**. Thời điểm đo và báo cáo nguồn của từng ảnh được ghi trong [verification.json](verification.json).
+
+## Demo public: Vercel và Neon PostgreSQL
+
+URL: https://devworkspace-ex07-b23dccc173.vercel.app
+
+Đã kiểm chứng [smoke test cloud](demo/smoke-results.json), [OAuth GitHub thật](demo/oauth-results.json), [SEO HTTPS](demo/seo.json). Các ảnh dưới đây chụp trên domain demo; hai ảnh GitHub được chụp sau khi đăng nhập qua provider thật.
+
+| Ảnh | Nội dung |
+| --- | --- |
+| [01-public-home.png](demo/01-public-home.png) | Trang chủ HTTPS public |
+| [02-public-catalogue.png](demo/02-public-catalogue.png) | Danh sách sản phẩm HTTPS |
+| [03-login-github-enabled.png](demo/03-login-github-enabled.png) | Login có GitHub provider được cấu hình |
+| [04-user-dashboard.png](demo/04-user-dashboard.png) | Dashboard tài khoản user và dữ liệu đã lưu |
+| [05-admin.png](demo/05-admin.png) | Quản trị trên PostgreSQL |
+| [06-mobile-catalogue.png](demo/06-mobile-catalogue.png) | Danh sách mobile trên demo |
+| [07-github-dashboard.png](demo/07-github-dashboard.png) | Dashboard sau GitHub OAuth thật |
+| [08-github-forbidden.png](demo/08-github-forbidden.png) | User GitHub bị chặn khỏi admin |
+
+Google Rich Results Test chưa có kết quả hoàn tất vì dịch vụ trả lỗi/yêu cầu đăng nhập; xem [trạng thái](demo/google-rich-results.json). Không dùng trạng thái này làm bằng chứng Google đã duyệt structured data.

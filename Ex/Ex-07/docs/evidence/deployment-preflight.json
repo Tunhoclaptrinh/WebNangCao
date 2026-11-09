@@ -10,6 +10,8 @@
   "liveReadWriteTransactionVerified": true,
   "temporaryRowRemoved": true,
   "localPrismaClientRestored": "sqlite",
-  "applicationDeployment": "pending production environment configuration",
-  "oauthLiveVerification": "pending"
+  "applicationDeployment": "ready",
+  "oauthLiveVerification": "passed",
+  "demoURL": "https://devworkspace-ex07-b23dccc173.vercel.app",
+  "verificationUpdatedAt": "2026-11-09T04:26:51.709297+00:00"
 }

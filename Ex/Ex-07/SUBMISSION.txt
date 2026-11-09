@@ -10,12 +10,15 @@ Nhánh nộp bài: ex-07-nextjs
 Link bài làm:
 https://github.com/Tunhoclaptrinh/WebNangCao/tree/ex-07-nextjs/Ex/Ex-07
 
+Link demo:
+https://devworkspace-ex07-b23dccc173.vercel.app
+
 Link báo cáo:
 https://github.com/Tunhoclaptrinh/WebNangCao/blob/ex-07-nextjs/Ex/Ex-07/REPORT_EX_07.md
 
-Bài làm triển khai NextAuth với GitHub OAuth và đăng nhập email/mật khẩu; phân quyền admin/user tại Middleware, page và Server Action; bổ sung canonical, Open Graph và JSON-LD cho các trang công khai.
+Bài làm đã kiểm chứng đăng nhập GitHub OAuth thực tế trên demo và đăng nhập email/mật khẩu; phân quyền admin/user tại Middleware, page và Server Action; bổ sung canonical, Open Graph và JSON-LD cho các trang công khai.
 
-Bộ kiểm thử gồm 70 test Jest/React Testing Library và 9 luồng Playwright đã chạy thành công trên GitHub Actions. Báo cáo có sơ đồ các lớp bảo vệ, 15 ảnh giao diện, 4 ảnh chụp kết quả đo và dữ liệu Lighthouse trước/sau tối ưu trên bản production local.
+Bộ kiểm thử gồm 70 test Jest/React Testing Library và 9 luồng Playwright đã chạy thành công trên GitHub Actions. Báo cáo có sơ đồ các lớp bảo vệ, 15 ảnh giao diện local, 4 ảnh chụp kết quả đo và 8 ảnh minh chứng demo/OAuth và dữ liệu Lighthouse trước/sau tối ưu trên bản production local.
 
 Em kính mong Thầy xem xét và góp ý.
 Em xin cảm ơn Thầy.

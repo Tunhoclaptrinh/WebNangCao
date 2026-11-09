@@ -1,5 +1,9 @@
 # Cấu hình GitHub OAuth
 
+Demo đã cấu hình và kiểm chứng: https://devworkspace-ex07-b23dccc173.vercel.app
+
+Callback demo: `https://devworkspace-ex07-b23dccc173.vercel.app/api/auth/callback/github`. Hướng dẫn dưới đây dành cho người muốn cấu hình lại môi trường local.
+
 Credentials chạy ngay sau `npm run setup`. Để hoàn tất provider OAuth thật:
 
 1. Đăng nhập GitHub → Settings → Developer settings → OAuth Apps → New OAuth App.

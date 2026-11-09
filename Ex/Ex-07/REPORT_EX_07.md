@@ -4,14 +4,14 @@ Nguyễn Tiến Tuấn — **B23DCCC173** · RIPT1411-20261-02 · Giảng viên:
 
 ## 1. Kết quả theo đề và slide
 
-| Yêu cầu                    | Cài đặt / minh chứng                                                                                                                                                                                       |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NextAuth + email/mật khẩu  | Auth.js v5, Credentials, bcrypt 12 rounds, JWT httpOnly; đăng nhập/đăng xuất admin và user đã qua E2E                                                                                                      |
-| Ít nhất một OAuth provider | GitHub provider và callback hoàn chỉnh; người dùng mới nhận role user từ server. **Chưa kiểm thử OAuth thật vì chưa có OAuth App ID/Secret**; cấu hình theo [hướng dẫn](docs/OAUTH_SETUP.md) trước khi nộp |
-| Phân quyền nhiều lớp       | Middleware → page; mỗi action/route handler tự xác thực; DAL lọc theo userId từ phiên. Đọc lại role trong DB để chặn JWT admin đã bị thu quyền                                                             |
-| TypeScript và validation   | Session/User/JWT augmentation; role `admin` / `user`; không dùng `any` trong source/test; Zod kiểm tra input, không tin role/userId gửi từ client                                                          |
-| SEO ≥ 2 trang công khai    | `/products` và `/products/[slug]`: canonical, Open Graph 1200×630, JSON-LD. Product + Offer + BreadcrumbList; CollectionPage + ItemList; metadataBase, sitemap, robots; trang riêng noindex                |
-| Báo cáo / hiệu năng        | Bảng trước/sau bên dưới, commit đối chiếu, báo cáo Lighthouse JSON/HTML gốc và 15 ảnh giao diện desktop/mobile + 4 ảnh chụp kết quả đo                                                                     |
+| Yêu cầu                    | Cài đặt / minh chứng                                                                                                                                                                                   |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| NextAuth + email/mật khẩu  | Auth.js v5, Credentials, bcrypt 12 rounds, JWT httpOnly; đăng nhập/đăng xuất admin và user đã qua E2E                                                                                                  |
+| Ít nhất một OAuth provider | GitHub OAuth đã kiểm chứng thật trên demo: callback thành công, phiên có id/role user, dashboard truy cập được, admin bị chặn và logout hoạt động. [Minh chứng](docs/evidence/demo/oauth-results.json) |
+| Phân quyền nhiều lớp       | Middleware → page; mỗi action/route handler tự xác thực; DAL lọc theo userId từ phiên. Đọc lại role trong DB để chặn JWT admin đã bị thu quyền                                                         |
+| TypeScript và validation   | Session/User/JWT augmentation; role `admin` / `user`; không dùng `any` trong source/test; Zod kiểm tra input, không tin role/userId gửi từ client                                                      |
+| SEO ≥ 2 trang công khai    | `/products` và `/products/[slug]`: canonical, Open Graph 1200×630, JSON-LD. Product + Offer + BreadcrumbList; CollectionPage + ItemList; metadataBase, sitemap, robots; trang riêng noindex            |
+| Báo cáo / hiệu năng        | Bảng trước/sau bên dưới, commit đối chiếu, báo cáo Lighthouse JSON/HTML gốc và 15 ảnh giao diện local + 4 ảnh Lighthouse + 8 ảnh demo public                                                           |
 
 Đối chiếu cụ thể slide Buổi 7–8 nằm tại [đề bài](../../docs/de-bai/Tuan-08-NextJS.md). Hai file PowerPoint được giữ nguyên trong `docs/slides/`. Số thứ tự trong repo là Ex-07; tên bài học vẫn là tuần 8.
 
@@ -24,7 +24,7 @@ flowchart TD
     P --> D["DAL: kiểm tra actor, role hiện tại, dữ liệu theo userId"]
     B --> A["Server Action: requireActor và Zod"]
     A --> D
-    D --> DB["Prisma / SQLite"]
+    D --> DB["Prisma: SQLite local / PostgreSQL demo"]
 ```
 
 | Vai trò | `/dashboard`    | `/admin/products` | Sửa/xóa sản phẩm                    | Lưu sản phẩm           |
@@ -55,7 +55,7 @@ Baseline: `8dd4bee`; bản tối ưu: `7b5eae0`. Thay đổi chính: WebP + next
 - [Sau: summary](docs/evidence/lighthouse/optimized/summary.json) · [catalogue HTML](docs/evidence/lighthouse/optimized/catalogue-median.html) · [chi tiết HTML](docs/evidence/lighthouse/optimized/product-median.html).
 - [Vòng đo trung gian](docs/evidence/lighthouse/iteration-1/summary.json) được giữ lại: ảnh nhẹ hơn nhưng TBT còn cao, là căn cứ thu hẹp JavaScript công khai.
 
-Điểm có thể dao động theo máy và tải hệ thống. Đây là số đo lab Lighthouse, **không phải PageSpeed Insights công khai, không có field INP**. TBT không được gọi là INP. Chưa triển khai URL public nên chưa báo kết quả Google Rich Results Test; JSON-LD được kiểm tra cấu trúc/escape và HTML qua test local, không cam kết Google hiển thị rich result.
+Điểm có thể dao động theo máy và tải hệ thống. Đây là số đo lab Lighthouse, **không phải PageSpeed Insights công khai, không có field INP**. TBT không được gọi là INP. Đã kiểm tra thêm canonical/JSON-LD/OG trên domain demo HTTPS. Google Rich Results Test trong phiên kiểm tra trả thông báo “Something went wrong / Log in and try again”, nên chưa ghi nhận kết quả từ công cụ Google; không cam kết Google hiển thị rich result. [Trạng thái kiểm tra](docs/evidence/demo/google-rich-results.json).
 
 ## 4. Kiểm thử và ảnh minh chứng
 
@@ -65,10 +65,22 @@ Baseline: `8dd4bee`; bản tối ưu: `7b5eae0`. Thay đổi chính: WebP + next
 - [15 ảnh giao diện + 4 ảnh Lighthouse và chỉ mục](docs/evidence/README.md) · [kết quả máy đọc](docs/evidence/verification.json) · [HTML/SEO đã lấy từ server](docs/evidence/seo.json).
 - Audit runtime: **0 vulnerabilities**. Toàn bộ dependencies còn **6 low** trong chuỗi Jest/deepmerge; không có moderate/high/critical. [Audit runtime](docs/evidence/audit-production.json), [audit đầy đủ](docs/evidence/audit-all.json). Không downgrade Jest bằng audit fix --force.
 
-Test E2E dùng cả database `e2e.db` và build/cache `.next-e2e` riêng, tự khởi tạo lại; không làm thay đổi dữ liệu/cache của bản thường. GitHub Actions cũng đã chạy thành công từ checkout mới cho commit `3c12368`: npm ci, setup, format, typecheck, lint, coverage, build và E2E. [Kết quả CI](https://github.com/Tunhoclaptrinh/WebNangCao/actions/runs/42555022225). Các commit tài liệu sau đó không thay đổi mã ứng dụng.
+Test E2E dùng cả database `e2e.db` và build/cache `.next-e2e` riêng, tự khởi tạo lại; không làm thay đổi dữ liệu/cache của bản thường. GitHub Actions cũng đã chạy thành công từ checkout mới cho commit `6627242`: npm ci, setup, format, typecheck, lint, coverage, build và E2E. [Kết quả CI](https://github.com/Tunhoclaptrinh/WebNangCao/actions/runs/42558989673). Các commit tài liệu sau đó không thay đổi mã ứng dụng.
 
-## 5. Hoàn tất trước khi nộp
+## 5. Demo public và kiểm chứng OAuth
 
-Tạo GitHub OAuth App, điền `.env.local`, khởi động lại và thực hiện luồng kiểm chứng trong [OAUTH_SETUP.md](docs/OAUTH_SETUP.md); chưa đánh dấu bước này là đã chạy. Không commit env, database, secret hoặc report tạm. Nếu deploy, dùng hostname HTTPS thật cho AUTH_URL / NEXT_PUBLIC_SITE_URL / OAuth callback và build lại; SQLite cần filesystem bền vững. Bài hiện là ứng dụng học tập chạy local, không phải một hệ thống thương mại đã vận hành.
+Demo: https://devworkspace-ex07-b23dccc173.vercel.app
+
+Triển khai Next.js trên Vercel Hobby, PostgreSQL Neon Free tại Singapore. Người chấm mở được link khi chưa đăng nhập Vercel. Local/CI vẫn dùng SQLite; migrations PostgreSQL riêng cho demo, dữ liệu không nằm trên filesystem tạm.
+
+Đã kiểm tra trực tiếp Credentials user/admin, chặn guest và user khỏi trang quản trị, favorites qua refresh, sửa tồn kho rồi khôi phục dữ liệu và cache công khai, logout, desktop/mobile và SEO/ảnh OG trên hostname thật. [Kết quả smoke test](docs/evidence/demo/smoke-results.json) · [SEO HTTPS](docs/evidence/demo/seo.json).
+
+GitHub OAuth đã đi qua github.com và callback `/api/auth/callback/github` thật, kiểm chứng session role user, dashboard, chặn admin và logout. [Kết quả OAuth](docs/evidence/demo/oauth-results.json). Không ghi mật khẩu GitHub, token hoặc cookie vào minh chứng.
+
+Tài khoản demo: admin@devworkspace.local và user@devworkspace.local; mật khẩu mẫu chung Demo@12345. Chỉ dùng dữ liệu mẫu cho bài tập. [Hướng dẫn deploy](docs/DEPLOYMENT.md) · [Mẫu nộp text thuần](SUBMISSION.txt).
+
+## 6. Chạy lại và bảo mật cấu hình
+
+Clone bài và chạy `npm ci`, `npm run setup`, `npm run dev` để dùng SQLite local. Muốn chạy GitHub OAuth local, cấu hình OAuth App theo [OAUTH_SETUP.md](docs/OAUTH_SETUP.md); secret được cung cấp ngoài Git. `.env.local`, dữ liệu local và `.vercel/` được ignore; gói upload cũng loại env/database/report tạm. Callback public dùng domain HTTPS cố định. Mã nguồn và báo cáo không chứa Client Secret hoặc connection string database.
 
 Tài liệu chính thức: [NextAuth v5](https://authjs.dev/getting-started/installation), [GitHub provider](https://authjs.dev/getting-started/providers/github), [Middleware Next 15](https://nextjs.org/docs/15/app/api-reference/file-conventions/middleware), [SEO JSON-LD](https://nextjs.org/docs/app/guides/json-ld), [Ant Design SSR](https://ant.design/docs/react/use-with-next/).

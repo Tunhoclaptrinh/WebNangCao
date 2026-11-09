@@ -8,6 +8,10 @@ Giảng viên: **Ngô Văn Nhận**
 
 Tiếp nối cửa hàng DevWorkspace ở Ex-03–06 bằng ứng dụng Next.js App Router: tra cứu thiết bị, lưu sản phẩm theo tài khoản, đăng nhập email/GitHub, quản trị giá/tồn kho và SEO phía server.
 
+Demo public: https://devworkspace-ex07-b23dccc173.vercel.app
+
+Đã kiểm chứng đăng nhập GitHub thật, Credentials và phân quyền trên demo. [Minh chứng demo](docs/evidence/demo/smoke-results.json) · [OAuth](docs/evidence/demo/oauth-results.json).
+
 ## Chạy bài
 
 Node.js 22 LTS (>= 22.12); npm. Chạy trong đúng thư mục này:

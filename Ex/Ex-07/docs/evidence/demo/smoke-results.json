@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-11-09T04:03:26.096Z",
+  "baseURL": "https://devworkspace-ex07-b23dccc173.vercel.app",
+  "status": "passed",
+  "checks": [
+    "Public demo accessible anonymously",
+    "Canonical, JSON-LD and 1200x630 OG images valid on both HTTPS public pages",
+    "Guest private route/API blocked; GitHub provider enabled",
+    "Credentials user login and typed session role verified on cloud",
+    "User cannot access admin route",
+    "Favorites persist in PostgreSQL across page requests/reload",
+    "Credentials admin login and admin page verified on cloud",
+    "Admin Server Action persists stock changes and invalidates public product cache",
+    "Logout clears access to private routes",
+    "Mobile public layout has no horizontal page overflow",
+    "No browser runtime errors"
+  ],
+  "screenshots": [
+    "01-public-home.png",
+    "02-public-catalogue.png",
+    "03-login-github-enabled.png",
+    "04-user-dashboard.png",
+    "05-admin.png",
+    "06-mobile-catalogue.png"
+  ],
+  "githubOAuth": "Provider configured; full interactive OAuth consent verification pending",
+  "runtimeErrors": []
+}
