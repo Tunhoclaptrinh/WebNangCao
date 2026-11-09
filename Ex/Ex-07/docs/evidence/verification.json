@@ -193,6 +193,7 @@
     "smokeResults": "demo/smoke-results.json",
     "oauthResults": "demo/oauth-results.json",
     "screenshots": [
+      "demo/00-oauth-authorize-consent.jpg",
       "demo/01-public-home.png",
       "demo/02-public-catalogue.png",
       "demo/03-login-github-enabled.png",

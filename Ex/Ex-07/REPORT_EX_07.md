@@ -11,7 +11,7 @@ Nguyễn Tiến Tuấn — **B23DCCC173** · RIPT1411-20261-02 · Giảng viên:
 | Phân quyền nhiều lớp       | Middleware → page; mỗi action/route handler tự xác thực; DAL lọc theo userId từ phiên. Đọc lại role trong DB để chặn JWT admin đã bị thu quyền                                                         |
 | TypeScript và validation   | Session/User/JWT augmentation; role `admin` / `user`; không dùng `any` trong source/test; Zod kiểm tra input, không tin role/userId gửi từ client                                                      |
 | SEO ≥ 2 trang công khai    | `/products` và `/products/[slug]`: canonical, Open Graph 1200×630, JSON-LD. Product + Offer + BreadcrumbList; CollectionPage + ItemList; metadataBase, sitemap, robots; trang riêng noindex            |
-| Báo cáo / hiệu năng        | Bảng trước/sau bên dưới, commit đối chiếu, báo cáo Lighthouse JSON/HTML gốc và 15 ảnh giao diện local + 4 ảnh Lighthouse + 8 ảnh demo public                                                           |
+| Báo cáo / hiệu năng        | Bảng trước/sau bên dưới, commit đối chiếu, báo cáo Lighthouse JSON/HTML gốc và 15 ảnh giao diện local + 4 ảnh Lighthouse + 9 ảnh demo public                                                           |
 
 Đối chiếu cụ thể slide Buổi 7–8 nằm tại [đề bài](../../docs/de-bai/Tuan-08-NextJS.md). Hai file PowerPoint được giữ nguyên trong `docs/slides/`. Số thứ tự trong repo là Ex-07; tên bài học vẫn là tuần 8.
 
@@ -57,6 +57,16 @@ Baseline: `8dd4bee`; bản tối ưu: `7b5eae0`. Thay đổi chính: WebP + next
 
 Điểm có thể dao động theo máy và tải hệ thống. Đây là số đo lab Lighthouse, **không phải PageSpeed Insights công khai, không có field INP**. TBT không được gọi là INP. Đã kiểm tra thêm canonical/JSON-LD/OG trên domain demo HTTPS. Google Rich Results Test trong phiên kiểm tra trả thông báo “Something went wrong / Log in and try again”, nên chưa ghi nhận kết quả từ công cụ Google; không cam kết Google hiển thị rich result. [Trạng thái kiểm tra](docs/evidence/demo/google-rich-results.json).
 
+### Ảnh chụp kết quả đo Lighthouse thực tế
+
+|                  Danh mục sản phẩm (`/products`) — Trước tối ưu (Score 91)                  |                 Danh mục sản phẩm (`/products`) — Sau tối ưu (Score 98)                  |
+| :-----------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: |
+| ![Lighthouse Catalogue Trước](docs/evidence/lighthouse/screenshots/01-catalogue-before.png) | ![Lighthouse Catalogue Sau](docs/evidence/lighthouse/screenshots/02-catalogue-after.png) |
+
+|            Chi tiết sản phẩm (`/products/[slug]`) — Trước tối ưu (Score 96)             |           Chi tiết sản phẩm (`/products/[slug]`) — Sau tối ưu (Score 100)            |
+| :-------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: |
+| ![Lighthouse Product Trước](docs/evidence/lighthouse/screenshots/03-product-before.png) | ![Lighthouse Product Sau](docs/evidence/lighthouse/screenshots/04-product-after.png) |
+
 ## 4. Kiểm thử và ảnh minh chứng
 
 - Typecheck (có next typegen), ESLint, format và production build: đạt.
@@ -66,6 +76,22 @@ Baseline: `8dd4bee`; bản tối ưu: `7b5eae0`. Thay đổi chính: WebP + next
 - Audit runtime: **0 vulnerabilities**. Toàn bộ dependencies còn **6 low** trong chuỗi Jest/deepmerge; không có moderate/high/critical. [Audit runtime](docs/evidence/audit-production.json), [audit đầy đủ](docs/evidence/audit-all.json). Không downgrade Jest bằng audit fix --force.
 
 Test E2E dùng cả database `e2e.db` và build/cache `.next-e2e` riêng, tự khởi tạo lại; không làm thay đổi dữ liệu/cache của bản thường. GitHub Actions cũng đã chạy thành công từ checkout mới cho commit `6627242`: npm ci, setup, format, typecheck, lint, coverage, build và E2E. [Kết quả CI](https://github.com/Tunhoclaptrinh/WebNangCao/actions/runs/42562005882). Các commit tài liệu sau đó không thay đổi mã ứng dụng.
+
+### Một số hình ảnh giao diện chính trên môi trường production local
+
+|                   Trang chủ Desktop (1440 × 1000)                   |                       Bộ sưu tập sản phẩm Desktop                        |
+| :-----------------------------------------------------------------: | :----------------------------------------------------------------------: |
+| ![Trang chủ desktop](docs/evidence/screenshots/01-home-desktop.png) | ![Catalogue desktop](docs/evidence/screenshots/02-catalogue-desktop.png) |
+
+|              Dashboard Thành viên & Danh sách đã lưu               |             Bảng Quản trị Admin Desktop (Ant Design)             |
+| :----------------------------------------------------------------: | :--------------------------------------------------------------: |
+| ![Dashboard user](docs/evidence/screenshots/06-dashboard-user.png) | ![Admin desktop](docs/evidence/screenshots/07-admin-desktop.png) |
+
+|               Màn hình Chặn 403 Forbidden               |              Giao diện Bộ sưu tập trên Mobile (390 × 844)              |
+| :-----------------------------------------------------: | :--------------------------------------------------------------------: |
+| ![Chặn 403](docs/evidence/screenshots/04-forbidden.png) | ![Mobile catalogue](docs/evidence/screenshots/10-catalogue-mobile.png) |
+
+> _Xem đầy đủ toàn bộ 15 ảnh giao diện desktop/mobile tại [docs/evidence/README.md](docs/evidence/README.md)._
 
 ## 5. Demo public và kiểm chứng OAuth
 
@@ -78,6 +104,27 @@ Triển khai Next.js trên Vercel Hobby, PostgreSQL Neon Free tại Singapore. N
 GitHub OAuth đã đi qua github.com và callback `/api/auth/callback/github` thật, kiểm chứng session role user, dashboard, chặn admin và logout. [Kết quả OAuth](docs/evidence/demo/oauth-results.json). Không ghi mật khẩu GitHub, token hoặc cookie vào minh chứng.
 
 Tài khoản demo: admin@devworkspace.local và user@devworkspace.local; mật khẩu mẫu chung Demo@12345. Chỉ dùng dữ liệu mẫu cho bài tập. [Hướng dẫn deploy](docs/DEPLOYMENT.md) · [Mẫu nộp text thuần](SUBMISSION.txt).
+
+### Minh chứng thực tế từ ứng dụng Demo Public & Xác thực GitHub OAuth
+
+#### 1. Hộp thoại Ủy quyền GitHub OAuth thực tế (`github.com`)
+
+_Cửa sổ xác thực thực tế cấp quyền read-only cho ứng dụng `DevWorkspcae Ex-07` của sinh viên Nguyễn Tiến Tuấn._
+![Xác thực GitHub OAuth thực tế](docs/evidence/demo/00-oauth-authorize-consent.jpg)
+
+#### 2. Đăng nhập có hỗ trợ GitHub OAuth & Dashboard Thành viên
+
+|                   Trang Đăng nhập hỗ trợ GitHub                    |            Dashboard Thành viên sau khi Login GitHub thật            |
+| :----------------------------------------------------------------: | :------------------------------------------------------------------: |
+| ![Login có GitHub](docs/evidence/demo/03-login-github-enabled.png) | ![Dashboard GitHub User](docs/evidence/demo/07-github-dashboard.png) |
+
+#### 3. Kiểm soát phân quyền (RBAC) & Quản trị trên PostgreSQL Cloud
+
+|                Chặn User GitHub khỏi Quản trị (`/403`)                 |        Trang Quản trị Admin trên PostgreSQL Cloud         |
+| :--------------------------------------------------------------------: | :-------------------------------------------------------: |
+| ![User GitHub bị chặn 403](docs/evidence/demo/08-github-forbidden.png) | ![Admin trên PostgreSQL](docs/evidence/demo/05-admin.png) |
+
+> _Xem đầy đủ toàn bộ 9 ảnh minh chứng demo public tại [docs/evidence/README.md](docs/evidence/README.md)._
 
 ## 6. Chạy lại và bảo mật cấu hình
 

@@ -12,6 +12,8 @@ Demo public: https://devworkspace-ex07-b23dccc173.vercel.app
 
 Đã kiểm chứng đăng nhập GitHub thật, Credentials và phân quyền trên demo. [Minh chứng demo](docs/evidence/demo/smoke-results.json) · [OAuth](docs/evidence/demo/oauth-results.json).
 
+![Giao diện DevWorkspace Demo](docs/evidence/demo/01-public-home.png)
+
 ## Chạy bài
 
 Node.js 22 LTS (>= 22.12); npm. Chạy trong đúng thư mục này:

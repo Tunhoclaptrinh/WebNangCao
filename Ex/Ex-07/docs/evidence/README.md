@@ -1,57 +1,127 @@
-# Minh chứng Ex-07
+# 📸 Bộ Minh Chứng Kiểm Thử & Giao Diện Ex-07
 
-Ảnh trình duyệt production được chụp ngày 09/11/2026. Desktop 1440×1000, mobile 390×844; modal chụp theo viewport. Các ảnh quản trị trước khi xác nhận thay đổi, dữ liệu test tách khỏi dữ liệu local.
+> **Học phần:** Lập trình Web Nâng Cao · **Bài tập tuần 8 — Next.js**  
+> **Sinh viên:** Nguyễn Tiến Tuấn — **B23DCCC173** · **Lớp:** RIPT1411-20261-02  
+> **Giảng viên hướng dẫn:** ThS. Ngô Văn Nhận  
+> **URL Demo Trực Tuyến:** https://devworkspace-ex07-b23dccc173.vercel.app  
 
-| Ảnh | Nội dung |
-| --- | --- |
-| [01-home-desktop.png](screenshots/01-home-desktop.png) | Trang chủ desktop |
-| [02-catalogue-desktop.png](screenshots/02-catalogue-desktop.png) | Bộ sưu tập desktop |
-| [03-login-desktop.png](screenshots/03-login-desktop.png) | Đăng nhập desktop |
-| [04-forbidden.png](screenshots/04-forbidden.png) | User bị từ chối vào quản trị |
-| [05-product-desktop.png](screenshots/05-product-desktop.png) | Chi tiết sản phẩm desktop, đã lưu |
-| [06-dashboard-user.png](screenshots/06-dashboard-user.png) | Dashboard user |
-| [07-admin-desktop.png](screenshots/07-admin-desktop.png) | Quản trị desktop |
-| [08-admin-edit.png](screenshots/08-admin-edit.png) | Hộp sửa sản phẩm desktop |
-| [09-home-mobile.png](screenshots/09-home-mobile.png) | Trang chủ mobile |
-| [10-catalogue-mobile.png](screenshots/10-catalogue-mobile.png) | Bộ sưu tập mobile |
-| [11-product-mobile.png](screenshots/11-product-mobile.png) | Chi tiết mobile |
-| [12-login-mobile.png](screenshots/12-login-mobile.png) | Đăng nhập mobile |
-| [13-dashboard-mobile.png](screenshots/13-dashboard-mobile.png) | Dashboard mobile |
-| [14-admin-mobile.png](screenshots/14-admin-mobile.png) | Quản trị mobile, cuộn ngang bên trong bảng |
-| [15-admin-edit-mobile.png](screenshots/15-admin-edit-mobile.png) | Hộp sửa sản phẩm mobile |
+Tất cả ảnh chụp dưới đây được ghi nhận trực tiếp từ hệ thống đang hoạt động thực tế (gồm cả môi trường chạy production local và môi trường cloud public trên Vercel / Neon PostgreSQL).
 
-Lighthouse: [baseline](lighthouse/baseline/summary.json), [bản cuối](lighthouse/optimized/summary.json), [vòng trung gian](lighthouse/iteration-1/summary.json). Mỗi thư mục có raw JSON của cả 3 lần/trang và HTML của lần Performance trung vị. Tải file HTML về rồi mở bằng trình duyệt để xem đầy đủ.
+---
 
-Ảnh GitHub OAuth thật trên demo public nằm trong phần minh chứng demo bên dưới.
+## 🌐 PHẦN 1: MINH CHỨNG DEMO PUBLIC & KIỂM CHỨNG GITHUB OAUTH THẬT
 
-## Ảnh chụp kết quả Lighthouse thực tế
+> **URL Ứng dụng Public:** https://devworkspace-ex07-b23dccc173.vercel.app  
+> **Cơ sở dữ liệu:** Neon PostgreSQL Free (Region: Singapore)  
+> **Dữ liệu kiểm thử tự động:** [smoke-results.json](demo/smoke-results.json) · [oauth-results.json](demo/oauth-results.json) · [seo.json](demo/seo.json)
 
-Bốn ảnh dưới đây được chụp trực tiếp khi mở báo cáo HTML gốc của lần đo có Performance trung vị. Ảnh thể hiện URL, bốn nhóm điểm và các chỉ số FCP/LCP/TBT/CLS. Không dựng lại bảng điểm và không đo lại để tạo ảnh. Số liệu chi tiết trong JSON có thể nhiều chữ số hơn giá trị làm tròn trên giao diện Lighthouse.
+### 1. Hộp thoại Ủy quyền GitHub OAuth (Consent Dialog thực tế)
+*Cửa sổ `github.com/login/oauth/authorize` yêu cầu cấp quyền đọc thông tin cơ bản (email & profile read-only) cho ứng dụng `DevWorkspcae Ex-07` của sinh viên Nguyễn Tiến Tuấn.*
+![Xác thực GitHub OAuth thực tế](demo/00-oauth-authorize-consent.jpg)
 
-| Ảnh | Performance / Accessibility / Best Practices / SEO | Báo cáo HTML gốc |
-| --- | --- | --- |
-| [Danh sách — trước tối ưu](lighthouse/screenshots/01-catalogue-before.png) | 91 / 94 / 100 / 100 | [baseline/catalogue-median.html](lighthouse/baseline/catalogue-median.html) |
-| [Danh sách — sau tối ưu](lighthouse/screenshots/02-catalogue-after.png) | 98 / 100 / 100 / 100 | [optimized/catalogue-median.html](lighthouse/optimized/catalogue-median.html) |
-| [Chi tiết — trước tối ưu](lighthouse/screenshots/03-product-before.png) | 96 / 96 / 96 / 100 | [baseline/product-median.html](lighthouse/baseline/product-median.html) |
-| [Chi tiết — sau tối ưu](lighthouse/screenshots/04-product-after.png) | 100 / 100 / 100 / 100 | [optimized/product-median.html](lighthouse/optimized/product-median.html) |
+---
 
-Tổng cộng: **15 ảnh giao diện + 4 ảnh kết quả đo**. Thời điểm đo và báo cáo nguồn của từng ảnh được ghi trong [verification.json](verification.json).
+### 2. Trang Đăng nhập Demo (Hỗ trợ GitHub Provider & Email/Mật khẩu)
+*Tích hợp cả nút 'Đăng nhập với GitHub' và biểu mẫu Credentials thông thường.*
+![Trang đăng nhập có GitHub](demo/03-login-github-enabled.png)
 
-## Demo public: Vercel và Neon PostgreSQL
+---
 
-URL: https://devworkspace-ex07-b23dccc173.vercel.app
+### 3. Dashboard Thành viên sau khi Đăng nhập qua GitHub OAuth thật
+*Hệ thống ghi nhận callback thành công, gán vai trò `user` (Thành viên) và hiển thị chào mừng người dùng GitHub.*
+![Dashboard Thành viên GitHub](demo/07-github-dashboard.png)
 
-Đã kiểm chứng [smoke test cloud](demo/smoke-results.json), [OAuth GitHub thật](demo/oauth-results.json), [SEO HTTPS](demo/seo.json). Các ảnh dưới đây chụp trên domain demo; hai ảnh GitHub được chụp sau khi đăng nhập qua provider thật.
+---
 
-| Ảnh | Nội dung |
-| --- | --- |
-| [01-public-home.png](demo/01-public-home.png) | Trang chủ HTTPS public |
-| [02-public-catalogue.png](demo/02-public-catalogue.png) | Danh sách sản phẩm HTTPS |
-| [03-login-github-enabled.png](demo/03-login-github-enabled.png) | Login có GitHub provider được cấu hình |
-| [04-user-dashboard.png](demo/04-user-dashboard.png) | Dashboard tài khoản user và dữ liệu đã lưu |
-| [05-admin.png](demo/05-admin.png) | Quản trị trên PostgreSQL |
-| [06-mobile-catalogue.png](demo/06-mobile-catalogue.png) | Danh sách mobile trên demo |
-| [07-github-dashboard.png](demo/07-github-dashboard.png) | Dashboard sau GitHub OAuth thật |
-| [08-github-forbidden.png](demo/08-github-forbidden.png) | User GitHub bị chặn khỏi admin |
+### 4. Kiểm tra Phân quyền (RBAC): Chặn User GitHub khỏi Trang Quản trị (`/403`)
+*Khi tài khoản GitHub có role `user` cố gắng truy cập `/admin/products`, Middleware và Page Guard lập tức chặn lại và điều hướng về trang 403 Forbidden.*
+![Chặn truy cập quản trị 403](demo/08-github-forbidden.png)
 
-Google Rich Results Test chưa có kết quả hoàn tất vì dịch vụ trả lỗi/yêu cầu đăng nhập; xem [trạng thái](demo/google-rich-results.json). Không dùng trạng thái này làm bằng chứng Google đã duyệt structured data.
+---
+
+### 5. Trang chủ Công khai trên Domain HTTPS Public
+*Giao diện tĩnh được render trước (SSG + ISR), tốc độ phản hồi cực nhanh trên hạ tầng Vercel Edge.*
+![Trang chủ public](demo/01-public-home.png)
+
+---
+
+### 6. Danh mục Sản phẩm & Bộ lọc trên Demo Public
+*Dữ liệu sản phẩm hiển thị đầy đủ, hỗ trợ lọc theo danh mục và tìm kiếm nhanh.*
+![Danh mục sản phẩm public](demo/02-public-catalogue.png)
+
+---
+
+### 7. Dashboard Tài khoản User (Credentials) & Danh sách Sản phẩm đã lưu
+*Lưu trữ và đồng bộ hóa danh sách sản phẩm yêu thích độc lập theo từng tài khoản trên PostgreSQL.*
+![Dashboard user credentials](demo/04-user-dashboard.png)
+
+---
+
+### 8. Trang Quản trị Sản phẩm trên Cloud Database PostgreSQL (Neon)
+*Bảng quản trị Ant Design chuyên nghiệp: xem tồn kho, giá bán và cập nhật thông tin sản phẩm.*
+![Quản trị sản phẩm PostgreSQL](demo/05-admin.png)
+
+---
+
+### 9. Giao diện Danh mục Sản phẩm trên Thiết bị Di động (Mobile View Demo)
+*Thiết kế Responsive mượt mà trên khung hình điện thoại di động.*
+![Danh mục sản phẩm mobile](demo/06-mobile-catalogue.png)
+
+---
+
+## ⚡ PHẦN 2: BÁO CÁO ĐO LƯỜNG HIỆU NĂNG GOOGLE LIGHTHOUSE
+
+Bốn ảnh dưới đây được chụp trực tiếp từ báo cáo HTML gốc của Google Lighthouse (chạy trên build production local):
+
+### 1. Trang Danh mục Sản phẩm (`/products`) — Trước tối ưu (Score 91)
+*Điểm đo: Performance 91 · Accessibility 94 · Best Practices 100 · SEO 100. [Báo cáo gốc HTML](lighthouse/baseline/catalogue-median.html)*
+![Lighthouse Catalogue Trước](lighthouse/screenshots/01-catalogue-before.png)
+
+---
+
+### 2. Trang Danh mục Sản phẩm (`/products`) — Sau tối ưu (Score 98)
+*Điểm đo: Performance 98 · Accessibility 100 · Best Practices 100 · SEO 100. Tối ưu bundle Ant Design và ảnh webp. [Báo cáo gốc HTML](lighthouse/optimized/catalogue-median.html)*
+![Lighthouse Catalogue Sau](lighthouse/screenshots/02-catalogue-after.png)
+
+---
+
+### 3. Trang Chi tiết Sản phẩm (`/products/[slug]`) — Trước tối ưu (Score 96)
+*Điểm đo: Performance 96 · Accessibility 96 · Best Practices 96 · SEO 100. [Báo cáo gốc HTML](lighthouse/baseline/product-median.html)*
+![Lighthouse Product Trước](lighthouse/screenshots/03-product-before.png)
+
+---
+
+### 4. Trang Chi tiết Sản phẩm (`/products/[slug]`) — Sau tối ưu (Score 100 Tuyệt Đối)
+*Điểm đo: Performance 100 · Accessibility 100 · Best Practices 100 · SEO 100. Đạt điểm số hoàn hảo 4x100. [Báo cáo gốc HTML](lighthouse/optimized/product-median.html)*
+![Lighthouse Product Sau](lighthouse/screenshots/04-product-after.png)
+
+---
+
+## 🖥️ PHẦN 3: GIAO DIỆN DESKTOP & MOBILE TRÊN MÔI TRƯỜNG PRODUCTION LOCAL
+
+### 1. Giao diện Desktop (1440 × 1000)
+
+| STT | Tên ảnh | Minh chứng trực quan |
+| :---: | :--- | :--- |
+| 01 | **Trang chủ Desktop** | ![Trang chủ desktop](screenshots/01-home-desktop.png) |
+| 02 | **Bộ sưu tập Desktop** | ![Bộ sưu tập desktop](screenshots/02-catalogue-desktop.png) |
+| 03 | **Trang Đăng nhập Desktop** | ![Đăng nhập desktop](screenshots/03-login-desktop.png) |
+| 04 | **Màn hình Chặn 403 Forbidden** | ![Chặn 403 desktop](screenshots/04-forbidden.png) |
+| 05 | **Chi tiết Sản phẩm (Đã yêu thích)** | ![Chi tiết desktop](screenshots/05-product-desktop.png) |
+| 06 | **Dashboard Tài khoản User** | ![Dashboard user desktop](screenshots/06-dashboard-user.png) |
+| 07 | **Trang Quản trị Admin Desktop** | ![Admin desktop](screenshots/07-admin-desktop.png) |
+| 08 | **Modal Chỉnh sửa Sản phẩm Admin** | ![Admin edit modal](screenshots/08-admin-edit.png) |
+
+---
+
+### 2. Giao diện Mobile (390 × 844)
+
+| STT | Tên ảnh | Minh chứng trực quan |
+| :---: | :--- | :--- |
+| 09 | **Trang chủ Mobile** | ![Trang chủ mobile](screenshots/09-home-mobile.png) |
+| 10 | **Bộ sưu tập Mobile** | ![Bộ sưu tập mobile](screenshots/10-catalogue-mobile.png) |
+| 11 | **Chi tiết Sản phẩm Mobile** | ![Chi tiết mobile](screenshots/11-product-mobile.png) |
+| 12 | **Trang Đăng nhập Mobile** | ![Đăng nhập mobile](screenshots/12-login-mobile.png) |
+| 13 | **Dashboard Tài khoản Mobile** | ![Dashboard mobile](screenshots/13-dashboard-mobile.png) |
+| 14 | **Quản trị Bảng Sản phẩm Mobile** | ![Admin mobile](screenshots/14-admin-mobile.png) |
+| 15 | **Modal Chỉnh sửa Mobile** | ![Admin edit mobile](screenshots/15-admin-edit-mobile.png) |
