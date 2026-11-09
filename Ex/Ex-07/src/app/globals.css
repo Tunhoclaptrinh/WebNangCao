@@ -606,7 +606,7 @@ summary:focus-visible {
   gap: 12px;
   padding-block: 28px;
   font-size: 10px;
-  color: #74816f;
+  color: #61705b;
 }
 .breadcrumbs span[aria-current] {
   color: var(--ink);

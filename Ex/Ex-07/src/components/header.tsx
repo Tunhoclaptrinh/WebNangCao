@@ -13,7 +13,7 @@ export function Header({ actor }: { actor?: Actor }) {
           <Link
             href="/"
             className="brand"
-            aria-label="DevWorkspace — Trang chủ"
+            aria-label="devworkspace. — Trang chủ"
           >
             <span className="brand-icon" aria-hidden="true">
               d<span>↗</span>

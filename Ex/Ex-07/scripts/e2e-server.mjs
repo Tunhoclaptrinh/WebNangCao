@@ -23,14 +23,23 @@ closeSync(openSync("prisma/e2e.db", "a"));
 for (const args of [
   ["prisma", "migrate", "deploy"],
   ["tsx", "prisma/seed.ts"],
-])
-  execFileSync("npx", args, { env, stdio: "inherit" });
+]) {
+  const [command, ...parameters] = args;
+  const cli =
+    command === "prisma"
+      ? "node_modules/prisma/build/index.js"
+      : "node_modules/tsx/dist/cli.mjs";
+  execFileSync(process.execPath, [cli, ...parameters], {
+    env,
+    stdio: "inherit",
+  });
+}
 rmSync(".next-e2e", { recursive: true, force: true });
 // A real separate production build also isolates Next's compiled ISR paths.
 const originalConfig = readFileSync("tsconfig.json", "utf8");
 const originalNextEnv = readFileSync("next-env.d.ts", "utf8");
 try {
-  execFileSync("node", ["node_modules/next/dist/bin/next", "build"], {
+  execFileSync(process.execPath, ["node_modules/next/dist/bin/next", "build"], {
     env,
     stdio: "inherit",
   });
@@ -39,7 +48,7 @@ try {
   writeFileSync("next-env.d.ts", originalNextEnv);
 }
 const child = spawn(
-  "node",
+  process.execPath,
   ["node_modules/next/dist/bin/next", "start", "-p", "3100"],
   { env, stdio: "inherit" },
 );

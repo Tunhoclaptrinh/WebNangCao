@@ -28,7 +28,15 @@ for (const args of [
   ["prisma", "migrate", "deploy"],
   ["tsx", "prisma/seed.ts"],
 ]) {
-  execFileSync("npx", args, { stdio: "inherit", env: process.env });
+  const [command, ...parameters] = args;
+  const cli =
+    command === "prisma"
+      ? "node_modules/prisma/build/index.js"
+      : "node_modules/tsx/dist/cli.mjs";
+  execFileSync(process.execPath, [cli, ...parameters], {
+    stdio: "inherit",
+    env: process.env,
+  });
 }
 console.log(
   "Sẵn sàng. Chạy npm run dev. GitHub OAuth cần điền ID/Secret trong .env.local.",

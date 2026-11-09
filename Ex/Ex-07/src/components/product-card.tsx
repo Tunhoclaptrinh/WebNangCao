@@ -44,10 +44,7 @@ export function ProductCard({
 }) {
   return (
     <article className="product-card">
-      <Link
-        href={`/products/${product.slug}`}
-        aria-label={`Xem ${product.name}`}
-      >
+      <Link href={`/products/${product.slug}`}>
         <div className="product-visual">
           <ProductArt
             art={product.art}
