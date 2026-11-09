@@ -1,0 +1,13 @@
+.git/
+.next/
+.next-e2e/
+.vercel/
+node_modules/
+.env*
+prisma/*.db*
+coverage/
+test-results/
+playwright-report/
+blob-report/
+docs/evidence/
+*.tsbuildinfo

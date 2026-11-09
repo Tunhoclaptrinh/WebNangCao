@@ -9,3 +9,7 @@ test-results/
 blob-report/
 *.tsbuildinfo
 .next-e2e/
+
+# Hosting CLI metadata and environment files
+.vercel/
+.vercel

@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-11-09T03:55:30.527067+00:00",
+  "platform": "Vercel",
+  "database": "Neon PostgreSQL Free",
+  "region": "sin1",
+  "schemaValidated": true,
+  "migrationsApplied": true,
+  "demoSeedCompleted": true,
+  "productCount": 8,
+  "liveReadWriteTransactionVerified": true,
+  "temporaryRowRemoved": true,
+  "localPrismaClientRestored": "sqlite",
+  "applicationDeployment": "pending production environment configuration",
+  "oauthLiveVerification": "pending"
+}

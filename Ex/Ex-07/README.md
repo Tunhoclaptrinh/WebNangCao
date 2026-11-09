@@ -10,7 +10,7 @@ Tiếp nối cửa hàng DevWorkspace ở Ex-03–06 bằng ứng dụng Next.js
 
 ## Chạy bài
 
-Node.js >= 22.12; npm. Chạy trong đúng thư mục này:
+Node.js 22 LTS (>= 22.12); npm. Chạy trong đúng thư mục này:
 
 ```bash
 npm ci
@@ -77,3 +77,7 @@ prisma/                # Schema, migration SQL, seed
 [Đề bài và đối chiếu slide](../../docs/de-bai/Tuan-08-NextJS.md) · [Báo cáo](REPORT_EX_07.md) · [Slide Buổi 7](../../docs/slides/Buoi7_NextJS_SSR_SSG_ISR.pptx) · [Slide Buổi 8](../../docs/slides/Buoi8_NextJS_Nang_Cao.pptx).
 
 Next.js 15 dùng `middleware.ts` để khớp đề và slide, Auth.js v5 pin chính xác bản beta trong lockfile. Prisma 6 + SQLite phù hợp một bài local; không dùng SQLite file trên filesystem tạm của serverless. Đây là bài tập có kiểm chứng, chưa phải hệ thống thương mại hoặc triển khai nhiều instance.
+
+## Demo trên Vercel
+
+Đã bổ sung PostgreSQL cho môi trường demo lưu bền vững; local/CI tiếp tục dùng SQLite. Cấu hình và cách deploy: [DEPLOYMENT.md](docs/DEPLOYMENT.md). Không dùng GitHub Pages để chạy phần NextAuth/Server Actions.

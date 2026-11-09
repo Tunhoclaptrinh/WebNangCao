@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": ">=22.12.0"
+    "node": "22.x"
   },
   "scripts": {
     "dev": "next dev",
@@ -21,7 +21,8 @@
     "benchmark": "node scripts/benchmark.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "images:build": "node scripts/generate-images.mjs"
+    "images:build": "node scripts/generate-images.mjs",
+    "build:demo": "node scripts/build-demo.mjs"
   },
   "dependencies": {
     "next": "15.5.29",
