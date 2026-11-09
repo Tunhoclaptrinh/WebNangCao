@@ -23,3 +23,16 @@
 Lighthouse: [baseline](lighthouse/baseline/summary.json), [bản cuối](lighthouse/optimized/summary.json), [vòng trung gian](lighthouse/iteration-1/summary.json). Mỗi thư mục có raw JSON của cả 3 lần/trang và HTML của lần Performance trung vị. Tải file HTML về rồi mở bằng trình duyệt để xem đầy đủ.
 
 Ảnh GitHub OAuth thật chưa có vì chưa cấu hình OAuth App; không dùng ảnh giả thay cho đăng nhập thành công.
+
+## Ảnh chụp kết quả Lighthouse thực tế
+
+Bốn ảnh dưới đây được chụp trực tiếp khi mở báo cáo HTML gốc của lần đo có Performance trung vị. Ảnh thể hiện URL, bốn nhóm điểm và các chỉ số FCP/LCP/TBT/CLS. Không dựng lại bảng điểm và không đo lại để tạo ảnh. Số liệu chi tiết trong JSON có thể nhiều chữ số hơn giá trị làm tròn trên giao diện Lighthouse.
+
+| Ảnh | Performance / Accessibility / Best Practices / SEO | Báo cáo HTML gốc |
+| --- | --- | --- |
+| [Danh sách — trước tối ưu](lighthouse/screenshots/01-catalogue-before.png) | 91 / 94 / 100 / 100 | [baseline/catalogue-median.html](lighthouse/baseline/catalogue-median.html) |
+| [Danh sách — sau tối ưu](lighthouse/screenshots/02-catalogue-after.png) | 98 / 100 / 100 / 100 | [optimized/catalogue-median.html](lighthouse/optimized/catalogue-median.html) |
+| [Chi tiết — trước tối ưu](lighthouse/screenshots/03-product-before.png) | 96 / 96 / 96 / 100 | [baseline/product-median.html](lighthouse/baseline/product-median.html) |
+| [Chi tiết — sau tối ưu](lighthouse/screenshots/04-product-after.png) | 100 / 100 / 100 / 100 | [optimized/product-median.html](lighthouse/optimized/product-median.html) |
+
+Tổng cộng: **15 ảnh giao diện + 4 ảnh kết quả đo**. Thời điểm đo và báo cáo nguồn của từng ảnh được ghi trong [verification.json](verification.json).

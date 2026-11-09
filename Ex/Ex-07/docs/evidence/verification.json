@@ -105,5 +105,63 @@
       "lint",
       "format"
     ]
+  },
+  "lighthouseScreenshots": {
+    "capturedAt": "2026-11-09T03:10:03.779662+00:00",
+    "method": "Browser screenshots of the unmodified saved Lighthouse HTML reports; no new benchmark run",
+    "items": [
+      {
+        "image": "lighthouse/screenshots/01-catalogue-before.png",
+        "sourceReport": "lighthouse/baseline/catalogue-median.html",
+        "measuredAt": "2026-11-09T02:15:30.903Z",
+        "measurementCommit": "8dd4bee2a1c81249d433da981a1150e6beabbcd0",
+        "medianRun": 2,
+        "scores": {
+          "performance": 91,
+          "accessibility": 94,
+          "bestPractices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "image": "lighthouse/screenshots/02-catalogue-after.png",
+        "sourceReport": "lighthouse/optimized/catalogue-median.html",
+        "measuredAt": "2026-11-09T02:38:29.721Z",
+        "measurementCommit": "7b5eae023da92ae72089ee548e308ad2605d7974",
+        "medianRun": 2,
+        "scores": {
+          "performance": 98,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "image": "lighthouse/screenshots/03-product-before.png",
+        "sourceReport": "lighthouse/baseline/product-median.html",
+        "measuredAt": "2026-11-09T02:15:45.507Z",
+        "measurementCommit": "8dd4bee2a1c81249d433da981a1150e6beabbcd0",
+        "medianRun": 1,
+        "scores": {
+          "performance": 96,
+          "accessibility": 96,
+          "bestPractices": 96,
+          "seo": 100
+        }
+      },
+      {
+        "image": "lighthouse/screenshots/04-product-after.png",
+        "sourceReport": "lighthouse/optimized/product-median.html",
+        "measuredAt": "2026-11-09T02:38:43.176Z",
+        "measurementCommit": "7b5eae023da92ae72089ee548e308ad2605d7974",
+        "medianRun": 1,
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 100
+        }
+      }
+    ]
   }
 }

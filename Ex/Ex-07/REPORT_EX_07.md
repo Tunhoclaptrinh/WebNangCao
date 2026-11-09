@@ -11,7 +11,7 @@ Nguyễn Tiến Tuấn — **B23DCCC173** · RIPT1411-20261-02 · Giảng viên:
 | Phân quyền nhiều lớp       | Middleware → page; mỗi action/route handler tự xác thực; DAL lọc theo userId từ phiên. Đọc lại role trong DB để chặn JWT admin đã bị thu quyền                                                             |
 | TypeScript và validation   | Session/User/JWT augmentation; role `admin` / `user`; không dùng `any` trong source/test; Zod kiểm tra input, không tin role/userId gửi từ client                                                          |
 | SEO ≥ 2 trang công khai    | `/products` và `/products/[slug]`: canonical, Open Graph 1200×630, JSON-LD. Product + Offer + BreadcrumbList; CollectionPage + ItemList; metadataBase, sitemap, robots; trang riêng noindex                |
-| Báo cáo / hiệu năng        | Bảng trước/sau bên dưới, commit đối chiếu, báo cáo Lighthouse JSON/HTML gốc và 15 ảnh desktop/mobile                                                                                                       |
+| Báo cáo / hiệu năng        | Bảng trước/sau bên dưới, commit đối chiếu, báo cáo Lighthouse JSON/HTML gốc và 15 ảnh giao diện desktop/mobile + 4 ảnh chụp kết quả đo                                                                     |
 
 Đối chiếu cụ thể slide Buổi 7–8 nằm tại [đề bài](../../docs/de-bai/Tuan-08-NextJS.md). Hai file PowerPoint được giữ nguyên trong `docs/slides/`. Số thứ tự trong repo là Ex-07; tên bài học vẫn là tuần 8.
 
@@ -62,7 +62,7 @@ Baseline: `8dd4bee`; bản tối ưu: `7b5eae0`. Thay đổi chính: WebP + next
 - Typecheck (có next typegen), ESLint, format và production build: đạt.
 - Jest + RTL: **10 suites, 70 test pass**. Coverage phạm vi cấu hình trong jest.config.mjs: statements **94.66%**, branches **89.02%**, lines **96.7%**; không mô tả thành coverage toàn dự án.
 - Playwright: **9 luồng pass**, không skip/flaky. Kiểm tra login sai/đúng, cookie/role, user bị chặn admin, sửa/xóa và persistence, cache invalidation, dữ liệu riêng, callback quay lại sản phẩm, SEO/OG thật, desktop/mobile và lỗi runtime.
-- [15 ảnh và chỉ mục](docs/evidence/README.md) · [kết quả máy đọc](docs/evidence/verification.json) · [HTML/SEO đã lấy từ server](docs/evidence/seo.json).
+- [15 ảnh giao diện + 4 ảnh Lighthouse và chỉ mục](docs/evidence/README.md) · [kết quả máy đọc](docs/evidence/verification.json) · [HTML/SEO đã lấy từ server](docs/evidence/seo.json).
 - Audit runtime: **0 vulnerabilities**. Toàn bộ dependencies còn **6 low** trong chuỗi Jest/deepmerge; không có moderate/high/critical. [Audit runtime](docs/evidence/audit-production.json), [audit đầy đủ](docs/evidence/audit-all.json). Không downgrade Jest bằng audit fix --force.
 
 Test E2E dùng cả database `e2e.db` và build/cache `.next-e2e` riêng, tự khởi tạo lại; không làm thay đổi dữ liệu/cache của bản thường. Có workflow GitHub Actions theo path Ex-07; kết quả ở đây là local, chưa có run remote khi chưa push.
