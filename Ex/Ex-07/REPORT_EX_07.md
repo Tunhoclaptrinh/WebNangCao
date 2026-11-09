@@ -65,7 +65,7 @@ Baseline: `8dd4bee`; bản tối ưu: `7b5eae0`. Thay đổi chính: WebP + next
 - [15 ảnh giao diện + 4 ảnh Lighthouse và chỉ mục](docs/evidence/README.md) · [kết quả máy đọc](docs/evidence/verification.json) · [HTML/SEO đã lấy từ server](docs/evidence/seo.json).
 - Audit runtime: **0 vulnerabilities**. Toàn bộ dependencies còn **6 low** trong chuỗi Jest/deepmerge; không có moderate/high/critical. [Audit runtime](docs/evidence/audit-production.json), [audit đầy đủ](docs/evidence/audit-all.json). Không downgrade Jest bằng audit fix --force.
 
-Test E2E dùng cả database `e2e.db` và build/cache `.next-e2e` riêng, tự khởi tạo lại; không làm thay đổi dữ liệu/cache của bản thường. Có workflow GitHub Actions theo path Ex-07; kết quả ở đây là local, chưa có run remote khi chưa push.
+Test E2E dùng cả database `e2e.db` và build/cache `.next-e2e` riêng, tự khởi tạo lại; không làm thay đổi dữ liệu/cache của bản thường. GitHub Actions cũng đã chạy thành công từ checkout mới cho commit `3c12368`: npm ci, setup, format, typecheck, lint, coverage, build và E2E. [Kết quả CI](https://github.com/Tunhoclaptrinh/WebNangCao/actions/runs/42555022225). Các commit tài liệu sau đó không thay đổi mã ứng dụng.
 
 ## 5. Hoàn tất trước khi nộp
 

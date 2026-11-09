@@ -163,5 +163,22 @@
         }
       }
     ]
+  },
+  "githubActions": {
+    "runId": 42555022225,
+    "url": "https://github.com/Tunhoclaptrinh/WebNangCao/actions/runs/42555022225",
+    "sourceCommit": "3c12368195fe22039e9efafd3b6612414039c56c",
+    "status": "completed",
+    "conclusion": "success",
+    "checks": [
+      "npm ci",
+      "setup",
+      "format",
+      "typecheck",
+      "lint",
+      "test:coverage",
+      "build",
+      "test:e2e"
+    ]
   }
 }
