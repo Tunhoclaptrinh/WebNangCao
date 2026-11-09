@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element -- baseline image delivery measured before optimization */
 import Link from "next/link";
+import Image from "next/image";
 import type { Product } from "@prisma/client";
 import { formatPrice } from "@/lib/site";
 export function ProductArt({
@@ -7,23 +7,41 @@ export function ProductArt({
   name,
   color,
   large = false,
+  priority = false,
 }: {
   art: string;
   name: string;
   color: string;
   large?: boolean;
+  priority?: boolean;
 }) {
-  // Baseline asset delivery; measured before next/image optimization.
   return (
     <div
       className={`product-art${large ? " product-art-large" : ""}`}
       style={{ backgroundColor: color }}
     >
-      <img src={`/images/${art}.png`} alt={name} width={800} height={640} />
+      <Image
+        src={`/images/${art}.webp`}
+        alt={name}
+        width={800}
+        height={640}
+        sizes={
+          large
+            ? "(max-width: 760px) calc(100vw - 40px), 600px"
+            : "(max-width: 760px) calc((100vw - 54px) / 2), (max-width: 1100px) 230px, 304px"
+        }
+        priority={large || priority}
+      />
     </div>
   );
 }
-export function ProductCard({ product }: { product: Product }) {
+export function ProductCard({
+  product,
+  priority = false,
+}: {
+  product: Product;
+  priority?: boolean;
+}) {
   return (
     <article className="product-card">
       <Link
@@ -35,6 +53,7 @@ export function ProductCard({ product }: { product: Product }) {
             art={product.art}
             name={product.name}
             color={product.color}
+            priority={priority}
           />
           {product.stock === 0 ? (
             <span className="product-badge sold-out">Tạm hết hàng</span>

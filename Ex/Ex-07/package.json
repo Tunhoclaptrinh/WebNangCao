@@ -9,7 +9,7 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "lint": "eslint . --max-warnings=0",
     "test": "jest --runInBand",
     "test:coverage": "jest --runInBand --coverage",
@@ -20,7 +20,8 @@
     "db:reset": "prisma migrate reset --force",
     "benchmark": "node scripts/benchmark.mjs",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "images:build": "node scripts/generate-images.mjs"
   },
   "dependencies": {
     "next": "15.5.29",

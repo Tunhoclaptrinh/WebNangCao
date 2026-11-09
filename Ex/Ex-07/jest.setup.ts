@@ -19,3 +19,16 @@ class ResizeObserverMock {
   disconnect() {}
 }
 global.ResizeObserver = ResizeObserverMock;
+// jsdom does not implement MessageChannel; Ant Design Select uses it for macrotasks.
+if (typeof globalThis.MessageChannel === "undefined") {
+  class MessageChannelMock {
+    port1 = { onmessage: null as (() => void) | null };
+    port2 = {
+      postMessage: () => setTimeout(() => this.port1.onmessage?.(), 0),
+    };
+  }
+  Object.defineProperty(globalThis, "MessageChannel", {
+    value: MessageChannelMock,
+    writable: true,
+  });
+}

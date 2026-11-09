@@ -1,6 +1,6 @@
-/* eslint-disable @next/next/no-img-element -- baseline image delivery measured before optimization */
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { getProducts } from "@/features/products/data";
 import { ProductCard } from "@/components/product-card";
 import { JsonLd } from "@/components/json-ld";
@@ -51,8 +51,10 @@ export default async function HomePage() {
         </div>
         <div className="hero-visual">
           <span className="hero-index">THE WORKSPACE EDIT / 2026</span>
-          <img
-            src="/images/workspace.png"
+          <Image
+            src="/images/workspace.webp"
+            sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 46vw, 600px"
+            priority
             width={1200}
             height={1050}
             alt="Minh họa góc làm việc tối giản với màn hình, bàn phím và đèn bàn"

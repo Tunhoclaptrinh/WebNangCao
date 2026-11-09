@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { SessionProvider, useSession } from "next-auth/react";
 function AccountStatus() {
   const { data } = useSession();
@@ -22,8 +23,9 @@ function AccountStatus() {
   );
 }
 export function AccountMenu() {
+  const pathname = usePathname();
   return (
-    <SessionProvider refetchOnWindowFocus>
+    <SessionProvider key={pathname} refetchOnWindowFocus>
       <AccountStatus />
     </SessionProvider>
   );

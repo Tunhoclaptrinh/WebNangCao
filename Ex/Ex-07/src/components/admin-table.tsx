@@ -1,6 +1,6 @@
-/* eslint-disable @next/next/no-img-element -- baseline image delivery measured before optimization */
 "use client";
 import { useState, useTransition } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import {
   App,
@@ -40,10 +40,11 @@ export function AdminTable({ products }: { products: AdminProduct[] }) {
       render: (_, item) => (
         <div className="admin-product-cell">
           <span className="admin-art" style={{ backgroundColor: item.color }}>
-            <img
-              src={`/images/${item.art}.svg`}
+            <Image
+              src={`/images/${item.art}.webp`}
               width={62}
               height={50}
+              sizes="62px"
               alt=""
             />
           </span>

@@ -50,7 +50,7 @@ export default async function ProductPage({ params }: Props) {
               "@type": "Product",
               name: product.name,
               description: product.description,
-              image: [absoluteUrl(`/images/${product.art}.png`)],
+              image: [absoluteUrl(`/images/${product.art}.webp`)],
               sku: product.id,
               brand: { "@type": "Brand", name: product.brand },
               offers: {

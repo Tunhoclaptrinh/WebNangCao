@@ -25,6 +25,7 @@ for (const args of [
   ["tsx", "prisma/seed.ts"],
 ])
   execFileSync("npx", args, { env, stdio: "inherit" });
+rmSync(".next-e2e", { recursive: true, force: true });
 // A real separate production build also isolates Next's compiled ISR paths.
 const originalConfig = readFileSync("tsconfig.json", "utf8");
 const originalNextEnv = readFileSync("next-env.d.ts", "utf8");

@@ -66,10 +66,15 @@ export function Catalogue({ products }: { products: Product[] }) {
           ]}
         />
       </div>
+      <h2 className="sr-only">Bộ sưu tập sản phẩm</h2>
       {filtered.length ? (
         <div className="product-grid">
-          {filtered.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {filtered.map((product, index) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              priority={index < 2}
+            />
           ))}
         </div>
       ) : (

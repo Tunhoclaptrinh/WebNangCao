@@ -5,7 +5,11 @@ export default defineConfig({
   workers: 1,
   retries: 0,
   timeout: 45000,
-  reporter: [["list"], ["html", { open: "never" }]],
+  reporter: [
+    ["list"],
+    ["html", { open: "never" }],
+    ["json", { outputFile: "test-results/e2e-results.json" }],
+  ],
   use: {
     baseURL: "http://localhost:3100",
     trace: "retain-on-failure",

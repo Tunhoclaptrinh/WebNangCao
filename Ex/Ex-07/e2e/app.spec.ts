@@ -14,8 +14,23 @@ async function shot(page: Page, name: string) {
   await expect(page.locator(".loading-page")).toHaveCount(0);
   await expect(page.locator("main h1")).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
+  await page.locator("footer").scrollIntoViewIfNeeded();
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await expect
+    .poll(() =>
+      page
+        .locator("img")
+        .evaluateAll((images) =>
+          images.every((img) => (img as HTMLImageElement).complete),
+        ),
+    )
+    .toBe(true);
   await mkdir(evidence, { recursive: true });
-  await page.screenshot({ path: `${evidence}/${name}.png`, fullPage: true });
+  await page.screenshot({
+    path: `${evidence}/${name}.png`,
+    fullPage: true,
+    animations: "disabled",
+  });
 }
 async function login(page: Page, role: "admin" | "user") {
   await page.goto("/login");
@@ -145,6 +160,51 @@ test("user login, server header role, forbidden admin, favorites and logout", as
   await page.goto("/dashboard");
   await expect(page).toHaveURL(/\/login\?callbackUrl=/);
 });
+test("mobile layouts have no horizontal overflow and usable navigation", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const [path, name] of [
+    ["/", "09-home-mobile"],
+    ["/products", "10-catalogue-mobile"],
+    ["/products/sony-wh-1000xm5", "11-product-mobile"],
+    ["/login", "12-login-mobile"],
+  ]) {
+    await page.goto(path);
+    await expect(page.locator("h1")).toBeVisible();
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= window.innerWidth,
+      ),
+    ).toBe(true);
+    await shot(page, name);
+  }
+  await login(page, "user");
+  await shot(page, "13-dashboard-mobile");
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth,
+    ),
+  ).toBe(true);
+  await page.getByRole("button", { name: "Đăng xuất" }).click();
+  await expect(page).toHaveURL(/\/login$/);
+  await login(page, "admin");
+  await page.goto("/admin/products");
+  await expect(
+    page.getByRole("heading", { name: "Quản lý sản phẩm", exact: true }),
+  ).toBeVisible();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth,
+    ),
+  ).toBe(true);
+  await shot(page, "14-admin-mobile");
+  await page
+    .getByRole("button", { name: "Sửa Keychron Q1", exact: true })
+    .click();
+  await expect(page.getByRole("dialog")).toBeVisible();
+  await shot(page, "15-admin-edit-mobile");
+});
 test("admin persists edits, public cache refreshes, deletes real product", async ({
   page,
 }) => {
@@ -189,26 +249,6 @@ test("admin persists edits, public cache refreshes, deletes real product", async
     page.getByRole("heading", { name: "Góc này chưa có gì." }),
   ).toBeVisible();
 });
-test("mobile layouts have no horizontal overflow and usable navigation", async ({
-  page,
-}) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  for (const [path, name] of [
-    ["/", "09-home-mobile"],
-    ["/products", "10-catalogue-mobile"],
-    ["/products/sony-wh-1000xm5", "11-product-mobile"],
-    ["/login", "12-login-mobile"],
-  ]) {
-    await page.goto(path);
-    await expect(page.locator("h1")).toBeVisible();
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth <= window.innerWidth,
-      ),
-    ).toBe(true);
-    await shot(page, name);
-  }
-});
 test("robots, sitemap and missing routes are correct", async ({ request }) => {
   const robots = await (await request.get("/robots.txt")).text();
   expect(robots).toContain("Disallow: /admin/");
@@ -217,4 +257,31 @@ test("robots, sitemap and missing routes are correct", async ({ request }) => {
   expect(sitemap).toContain("/products/keychron-q1");
   expect(sitemap).not.toContain("/dashboard");
   expect((await request.get("/products/does-not-exist")).status()).toBe(404);
+});
+
+test("guest save returns from login to the intended product with refreshed account header", async ({
+  page,
+}) => {
+  await page.goto("/products/sony-wh-1000xm5");
+  await page
+    .getByRole("button", { name: "Lưu vào không gian của tôi" })
+    .click();
+  await expect(page).toHaveURL(/\/login\?callbackUrl=/);
+  await page
+    .getByLabel("Email", { exact: true })
+    .fill("user@devworkspace.local");
+  await page.getByLabel("Mật khẩu", { exact: true }).fill("Demo@12345");
+  await page.getByRole("button", { name: /Đăng nhập bằng email/ }).click();
+  await expect(page).toHaveURL(/\/products\/sony-wh-1000xm5$/);
+  await expect(page.locator("header")).toContainText("Thành viên");
+  await page
+    .getByRole("button", { name: "Lưu vào không gian của tôi" })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Đã lưu sản phẩm" }),
+  ).toBeVisible();
+  await page.reload();
+  await expect(
+    page.getByRole("button", { name: "Đã lưu sản phẩm" }),
+  ).toBeVisible();
 });
