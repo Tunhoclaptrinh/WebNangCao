@@ -48,7 +48,8 @@ BaiTap/ (Workspace Root)
 │   ├── Ex-03/               # Bài tập tuần 3: Module Giỏ Hàng Redux Toolkit Feature-Based
 │   ├── Ex-04/               # Bài tập tuần 4: Sản phẩm yêu thích (Zustand + Context)
 │   ├── Ex-05/               # Bài tập tuần 5: Tối ưu hiệu năng 10k sản phẩm
-│   └── Ex-06/               # Bài tập tuần 6: Kiểm thử Frontend (11 suites, 69 tests, 93% coverage)
+│   ├── Ex-06/               # Bài tập tuần 6: Kiểm thử Frontend (11 suites, 69 tests, 93% coverage)
+│   └── Ex-07/               # Bài tập tuần 8: Next.js, NextAuth, RBAC, SEO
 ```
 
 ---
@@ -74,7 +75,8 @@ BaiTap/ (Workspace Root)
 | 03 | [**Ex 03**](./Ex/Ex-03/) | [`Ex/Ex-03/`](./Ex/Ex-03/) | Module Giỏ Hàng Redux Toolkit Feature-Based (`cartSlice`, `productsSlice`, RTK Query bonus, Typed Hooks) | Redux Toolkit, RTK Query, Ant Design 5.x (Light Theme), React 19, TS | 🟢 Hoàn thành |
 | 04 | [**Ex 04**](./Ex/Ex-04/) | [`Ex/Ex-04/`](./Ex/Ex-04/) | Tính năng "Sản phẩm yêu thích" (Wishlist): Zustand store riêng biệt + Context Nâng Cao + Nhận xét 5–7 dòng | Zustand 5.x, Context API, Redux Toolkit, Ant Design 5.x, React 19, TS | 🟢 Hoàn thành |
 | 05 | [**Ex 05**](./Ex/Ex-05/) | [`Ex/Ex-05/`](./Ex/Ex-05/) | Tối ưu hiệu năng React (10.000 sản phẩm): Virtualization (`react-window`), Memoization (`React.memo`, `useMemo`, `useCallback`), `useDebounce`, Code-splitting & Lighthouse Benchmark (51 ➡️ 95 điểm) | React 19, react-window, TypeScript, Ant Design, Vite, Lighthouse v13.5 | 🟢 Hoàn thành |
-| 06 | [**Ex 06**](./Ex/Ex-06/) | [`Ex/Ex-06/`](./Ex-06/) | Kiểm thử Frontend toàn diện: 11 Test Suites, 69 Test Cases (Unit, Reducer, Hook Fake Timers, RTL, Async Mock API) đạt độ phủ Coverage 93.37% Stmts, 75.64% Branch | Jest 29, React Testing Library 16, ts-jest, Redux Mock, Zustand, Ant Design 5.x | 🟢 Hoàn thành |
+| 06 | [**Ex 06**](./Ex/Ex-06/) | [`Ex/Ex-06/`](./Ex/Ex-06/) | Kiểm thử Frontend toàn diện: 11 Test Suites, 69 Test Cases (Unit, Reducer, Hook Fake Timers, RTL, Async Mock API) đạt độ phủ Coverage 93.37% Stmts, 75.64% Branch | Jest 29, React Testing Library 16, ts-jest, Redux Mock, Zustand, Ant Design 5.x | 🟢 Hoàn thành |
+| 07 | [**Ex 07 — Tuần 8**](./Ex/Ex-07/) | [`Ex/Ex-07/`](./Ex/Ex-07/) | Next.js App Router, NextAuth GitHub + Credentials, RBAC nhiều lớp, SEO và Lighthouse trước/sau | Next.js 15, Prisma/SQLite, Ant Design, Jest/RTL, Playwright | 🟡 Đang kiểm chứng |
 
 > *Ghi chú:*
 > - Danh mục chỉ hiển thị các bài tập đã có trong repository. Khi có bài mới sẽ được bổ sung trực tiếp vào bảng tương ứng.

@@ -1,0 +1,38 @@
+name: Ex-07 Next.js
+on:
+  push:
+    paths: ["Ex/Ex-07/**", ".github/workflows/ex-07.yml"]
+  pull_request:
+    paths: ["Ex/Ex-07/**", ".github/workflows/ex-07.yml"]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Ex/Ex-07
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: Ex/Ex-07/package-lock.json
+      - run: npm ci
+      - run: npm run setup
+      - run: npm run format:check
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run test:coverage
+      - run: npm run build
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ex-07-verification
+          path: |
+            Ex/Ex-07/coverage
+            Ex/Ex-07/playwright-report
+            Ex/Ex-07/test-results
+          retention-days: 7

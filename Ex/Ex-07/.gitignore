@@ -1,0 +1,11 @@
+node_modules/
+.next/
+.env*
+!.env.example
+prisma/*.db*
+coverage/
+playwright-report/
+test-results/
+blob-report/
+*.tsbuildinfo
+.next-e2e/

@@ -13,6 +13,9 @@ Thư mục lưu trữ tài liệu tham khảo, giáo trình, slide bài giảng 
 | 3 | [Buoi3_Redux_Toolkit_TypeScript.pptx](./slides/Buoi3_Redux_Toolkit_TypeScript.pptx) | Quản Lý State Nâng Cao với Redux Toolkit + TypeScript | `configureStore`, `createSlice`, `createAsyncThunk`, RTK Query, Typed Hooks, Feature-Based |
 | 4 | [Buoi4_Zustand_Context_Middleware.pptx](./slides/Buoi4_Zustand_Context_Middleware.pptx) | Quản Lý State Tinh Gọn với Zustand & Context Nâng Cao | Zustand Store, Selector, Middleware `persist`, Context + `useReducer`, So sánh Redux vs Zustand |
 | 5 | [Buoi5_Toi_Uu_Hieu_Nang_React.pptx](./slides/Buoi5_Toi_Uu_Hieu_Nang_React.pptx) | Tối Ưu Hiệu Năng Ứng Dụng React | Virtualization (`react-window`), Memoization (`React.memo`, `useMemo`, `useCallback`), `useDebounce`, Code-splitting, Lighthouse Benchmark |
+| 6 | [Buoi6_Kiem_Thu_Frontend.pptx](./slides/Buoi6_Kiem_Thu_Frontend.pptx) | Kiểm thử Frontend | Jest, React Testing Library, mock, fake timers, coverage |
+| 7 | [Buoi7_NextJS_SSR_SSG_ISR.pptx](./slides/Buoi7_NextJS_SSR_SSG_ISR.pptx) | Nền tảng Next.js | App Router, Server Components, SSR/SSG/ISR, metadata |
+| 8 | [Buoi8_NextJS_Nang_Cao.pptx](./slides/Buoi8_NextJS_Nang_Cao.pptx) | Next.js nâng cao | NextAuth, RBAC nhiều lớp, Server Actions, SEO, Lighthouse |
 
 > **Giảng viên:** ThS. Ngô Văn Nhận · 0888726113 · nhannv@ptit.edu.vn · PTIT - RIPT
 
@@ -27,5 +30,4 @@ Thư mục lưu trữ tài liệu tham khảo, giáo trình, slide bài giảng 
 | 3 | [Tuan-03-Redux-Toolkit.md](./de-bai/Tuan-03-Redux-Toolkit.md) | 3 | Module Giỏ Hàng Redux Toolkit Feature-Based (`cartSlice`, `productsSlice`, RTK Query bonus) | [Ex-03](../Ex/Ex-03/) |
 | 4 | [Tuan-04-Zustand-Wishlist.md](./de-bai/Tuan-04-Zustand-Wishlist.md) | 4 | Tính năng "Sản phẩm yêu thích" (Wishlist): Zustand store riêng biệt + Context Nâng Cao | [Ex-04](../Ex/Ex-04/) |
 | 5 | [Tuan-05-Toi-Uu-React.md](./de-bai/Tuan-05-Toi-Uu-React.md) | 5 | Tối ưu hiệu năng ứng dụng React (10.000 sản phẩm), đo Lighthouse trước/sau, áp dụng ít nhất 2 kỹ thuật | [Ex-05](../Ex/Ex-05/) |
-
-
+| 8 | [Tuan-08-NextJS.md](./de-bai/Tuan-08-NextJS.md) | 8 | NextAuth, admin/user, Middleware/page/action, SEO 2 trang, báo cáo Lighthouse | [Ex-07](../Ex/Ex-07/) |

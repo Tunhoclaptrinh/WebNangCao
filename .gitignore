@@ -57,3 +57,9 @@ coverage/
 .turbo/
 tmp/
 temp/
+
+# Ex-07: keep only the safe environment template
+!Ex/Ex-07/.env.example
+playwright-report/
+test-results/
+blob-report/

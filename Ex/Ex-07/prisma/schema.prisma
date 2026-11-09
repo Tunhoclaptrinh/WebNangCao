@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "sqlite"
+  url = env("DATABASE_URL")
+}
+model User {
+  id           String @id @default(cuid())
+  email        String? @unique
+  name         String
+  passwordHash String?
+  githubId     String? @unique
+  role         String @default("user")
+  createdAt    DateTime @default(now())
+  favorites    Favorite[]
+}
+model Product {
+  id          String @id
+  slug        String @unique
+  name        String
+  brand       String
+  category    String
+  description String
+  specs       String
+  price       Int
+  stock       Int
+  art         String
+  color       String
+  featured    Boolean @default(false)
+  updatedAt   DateTime @updatedAt
+  favorites   Favorite[]
+}
+model Favorite {
+  userId    String
+  productId String
+  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  @@id([userId, productId])
+}
+model LoginAttempt {
+  key         String @id
+  count       Int @default(0)
+  resetAt     DateTime
+}
