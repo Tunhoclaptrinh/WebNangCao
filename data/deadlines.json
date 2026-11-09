@@ -1,0 +1,220 @@
+[
+  {
+    "id": "dl_01",
+    "title": "Bài thực hành số 3 — Xây dựng Class Deadline Hub & NextAuth",
+    "description": "Xây dựng cổng web quản lý deadline học tập cho lớp học với Next.js 15 App Router: SSG cho trang chủ/môn học, ISR cho danh sách và chi tiết deadline, SSR cho dashboard và admin; phân quyền 2 vai trò Admin/User qua NextAuth v5 và Middleware.",
+    "subjectId": "sub_int1411",
+    "subjectName": "Lập trình Web nâng cao",
+    "subjectSlug": "lap-trinh-web-nang-cao",
+    "dueDate": "2026-11-15T23:59:00.000Z",
+    "priority": "urgent",
+    "format": "Source Code GitHub",
+    "maxScore": 10,
+    "requirements": [
+      "Áp dụng chuẩn xác 3 chiến lược rendering: SSG, ISR (60s), SSR theo đúng từng tuyến đường",
+      "Xác thực NextAuth Credentials (Admin & User) và bảo vệ route bằng Middleware",
+      "Khu vực Admin có quyền thêm/xóa deadline và kích hoạt On-demand Revalidation",
+      "Đầy đủ Metadata động, Open Graph Image và JSON-LD BreadcrumbList",
+      "Bộ kiểm thử tự động Jest/RTL và Playwright E2E vượt qua 100%"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "dl_02",
+    "title": "Báo cáo giữa kỳ — Xây dựng mô hình phân loại ảnh CNN",
+    "description": "Huấn luyện mạng nơ-ron tích chập (Convolutional Neural Network) phân loại tập dữ liệu ảnh CIFAR-10 hoặc ảnh chữ số viết tay MNIST với độ chính xác đạt tối thiểu 88% trên tập kiểm thử.",
+    "subjectId": "sub_int1340",
+    "subjectName": "Nhập môn Trí tuệ nhân tạo",
+    "subjectSlug": "nhap-mon-tri-tue-nhan-tao",
+    "dueDate": "2026-11-18T23:59:00.000Z",
+    "priority": "high",
+    "format": "Báo cáo PDF & Jupyter Notebook",
+    "maxScore": 10,
+    "requirements": [
+      "Trình bày cấu trúc mạng: Conv2D, MaxPooling, Dropout, Batch Normalization",
+      "Vẽ đồ thị Learning Curve (Training vs Validation Loss/Accuracy)",
+      "Đánh giá mô hình qua Confusion Matrix và F1-Score chi tiết"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "dl_03",
+    "title": "Mô phỏng đường ống lệnh Pipelining trên tập lệnh MIPS 32-bit",
+    "description": "Lập trình mô phỏng chu trình thực thi lệnh 5 giai đoạn (IF, ID, EX, MEM, WB) trên vi xử lý MIPS. Xử lý các xung đột dữ liệu (Data Hazard) bằng Forwarding Unit và nạp bóng bóng trễ (Stall).",
+    "subjectId": "sub_int1332",
+    "subjectName": "Kiến trúc máy tính & Vi xử lý",
+    "subjectSlug": "kien-truc-may-tinh",
+    "dueDate": "2026-11-20T18:00:00.000Z",
+    "priority": "medium",
+    "format": "Source Code GitHub & Báo cáo",
+    "maxScore": 10,
+    "requirements": [
+      "Mô phỏng thành công 10 lệnh MIPS cơ bản (ADD, SUB, LW, SW, BEQ, J...)",
+      "Minh họa bảng thời gian chu kỳ xung nhịp (Clock Cycle Diagram)",
+      "Đo lường chỉ số CPI (Cycles Per Instruction) trước và sau tối ưu"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "dl_04",
+    "title": "Thiết kế phân mảnh ngang và dọc cho hệ thống E-Commerce",
+    "description": "Xây dựng lược đồ phân mảnh dữ liệu cho bảng Orders (theo vùng miền địa lý) và bảng Products (theo thuộc tính tĩnh/động). Kiểm tra tính toàn vẹn, tính tái thiết và tính tách biệt.",
+    "subjectId": "sub_int13110",
+    "subjectName": "Cơ sở dữ liệu phân tán",
+    "subjectSlug": "co-so-du-lieu-phan-tan",
+    "dueDate": "2026-11-22T23:59:00.000Z",
+    "priority": "high",
+    "format": "Báo cáo PDF & Script SQL",
+    "maxScore": 10,
+    "requirements": [
+      "Xác định vị từ phân mảnh ngang chính và phân mảnh ngang dẫn xuất",
+      "Chứng minh tính hoàn chỉnh (Completeness), Tái thiết (Reconstruction), Tách biệt (Disjointness)",
+      "Cài đặt View toàn cục hợp nhất các mảnh trên PostgreSQL / MySQL"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "dl_05",
+    "title": "Bài tập kiểm thử Frontend toàn diện với Jest & React Testing Library",
+    "description": "Xây dựng 69 test cases cho giỏ hàng Redux Toolkit và danh sách sản phẩm, kiểm thử hàm thuần, reducer, custom hook với fake timers và async thunk mock API.",
+    "subjectId": "sub_int1411",
+    "subjectName": "Lập trình Web nâng cao",
+    "subjectSlug": "lap-trinh-web-nang-cao",
+    "dueDate": "2026-11-02T23:59:00.000Z",
+    "priority": "high",
+    "format": "Source Code GitHub",
+    "maxScore": 10,
+    "requirements": [
+      "Đạt độ phủ Coverage Statements >= 90%",
+      "Kiểm thử hành vi người dùng bằng userEvent và getByRole",
+      "Giả lập đồng hồ bấm giờ (Fake Timers) kiểm thử debounce hook"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "dl_06",
+    "title": "Tối ưu hiệu năng React Virtualization 10.000 phần tử",
+    "description": "Ứng dụng ảo hóa danh sách react-window kết hợp React.memo, useMemo, useCallback, useDebounce để đạt điểm Google Lighthouse >= 95 trên danh sách 10.000 sản phẩm.",
+    "subjectId": "sub_int1411",
+    "subjectName": "Lập trình Web nâng cao",
+    "subjectSlug": "lap-trinh-web-nang-cao",
+    "dueDate": "2026-10-26T23:59:00.000Z",
+    "priority": "medium",
+    "format": "Source Code GitHub & Video Demo",
+    "maxScore": 10,
+    "requirements": [
+      "Cuộn mượt mà 60 FPS với 10.000 phần tử DOM ảo hóa",
+      "Đo đạc chỉ số Google Lighthouse trước và sau tối ưu",
+      "Quay video thực nghiệm stress test chứng minh không lag giật"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "dl_07",
+    "title": "Thực hành thuật toán A* tìm đường đi ngắn nhất trong mê cung",
+    "description": "Cài đặt giải thuật tìm kiếm heuristic A-Star với các hàm ước lượng khoảng cách Manhattan và Euclidean. So sánh số bước duyệt trạng thái với BFS và Dijkstra.",
+    "subjectId": "sub_int1340",
+    "subjectName": "Nhập môn Trí tuệ nhân tạo",
+    "subjectSlug": "nhap-mon-tri-tue-nhan-tao",
+    "dueDate": "2026-11-25T23:59:00.000Z",
+    "priority": "medium",
+    "format": "Source Code Python",
+    "maxScore": 10,
+    "requirements": [
+      "Giao diện trực quan hóa quá trình duyệt các ô (Node Visualizer)",
+      "Phân tích tính tối ưu và tính đầy đủ của hàm Heuristic",
+      "Đo thời gian thực thi trên ma trận mê cung kích thước 50x50 và 100x100"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "dl_08",
+    "title": "Phân tích Cache Miss & Tối ưu Cache Locality trên CPU",
+    "description": "Viết chương trình đo đạc thời gian nhân ma trận theo thứ tự hàng (Row-major) và cột (Column-major). Sử dụng công cụ Linux Perf để đo tỷ lệ L1/LLC Cache Misses.",
+    "subjectId": "sub_int1332",
+    "subjectName": "Kiến trúc máy tính & Vi xử lý",
+    "subjectSlug": "kien-truc-may-tinh",
+    "dueDate": "2026-11-28T23:59:00.000Z",
+    "priority": "low",
+    "format": "Báo cáo PDF & Mã nguồn C++",
+    "maxScore": 10,
+    "requirements": [
+      "Giải thích nguyên lý không gian định xứ (Spatial Locality) và thời gian (Temporal Locality)",
+      "Thu thập số liệu Cache Misses từ Linux Perf Counter",
+      "Đề xuất kỹ thuật Tiling/Blocking nâng cao hiệu suất bộ nhớ đệm"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "dl_09",
+    "title": "Cài đặt mô phỏng giao thức 2-Phase Commit (2PC) phân tán",
+    "description": "Xây dựng hệ thống giao dịch phân tán giữa 1 Coordinator và 3 Resource Participants. Xử lý kịch bản lỗi mạng ở pha Commit và quyết định Rollback toàn cục.",
+    "subjectId": "sub_int13110",
+    "subjectName": "Cơ sở dữ liệu phân tán",
+    "subjectSlug": "co-so-du-lieu-phan-tan",
+    "dueDate": "2026-11-30T23:59:00.000Z",
+    "priority": "high",
+    "format": "Source Code Node.js / Docker",
+    "maxScore": 10,
+    "requirements": [
+      "Ghi nhật ký WAL (Write-Ahead Logging) cho Coordinator và Participants",
+      "Kịch bản thử nghiệm: 1 node phản hồi VOTE_ABORT dẫn đến hủy bỏ toàn bộ",
+      "Đảm bảo tính nhất quán dữ liệu ACID trên cả 3 phân vùng"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "dl_10",
+    "title": "Bài tập tuần 8 — Tích hợp NextAuth & Phân quyền nhiều lớp (RBAC)",
+    "description": "Tích hợp Auth.js v5 với Credentials và GitHub OAuth. Phân quyền bảo vệ route tại Middleware, Server Component page và Server Action, tối ưu SEO với JSON-LD.",
+    "subjectId": "sub_int1411",
+    "subjectName": "Lập trình Web nâng cao",
+    "subjectSlug": "lap-trinh-web-nang-cao",
+    "dueDate": "2026-11-10T23:59:00.000Z",
+    "priority": "urgent",
+    "format": "Source Code GitHub & Demo Vercel",
+    "maxScore": 10,
+    "requirements": [
+      "Cấu hình NextAuth Credentials và OAuth GitHub thật",
+      "Bảo vệ phân quyền nhiều lớp: Middleware -> Page -> Server Action",
+      "Đạt điểm Lighthouse tối ưu và kiểm thử E2E Playwright"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "dl_11",
+    "title": "Đồ án lớn — Xây dựng Bot chơi cờ Caro với Minimax & Alpha-Beta",
+    "description": "Lập trình trí tuệ nhân tạo đối kháng cho bàn cờ Caro 15x15. Sử dụng thuật toán Minimax kết hợp cắt tỉa Alpha-Beta và hàm lượng giá thế cờ nâng cao.",
+    "subjectId": "sub_int1340",
+    "subjectName": "Nhập môn Trí tuệ nhân tạo",
+    "subjectSlug": "nhap-mon-tri-tue-nhan-tao",
+    "dueDate": "2026-12-10T23:59:00.000Z",
+    "priority": "high",
+    "format": "Ứng dụng Desktop / Web & Slide báo cáo",
+    "maxScore": 10,
+    "requirements": [
+      "Thời gian sinh nước đi của bot không vượt quá 3 giây / lượt",
+      "Nhận diện các thế cờ nguy hiểm: 4 mở, 3 mở, 4 chặn 1 đầu",
+      "Tổ chức thi đấu đối kháng trực tiếp giữa các nhóm trong lớp"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "dl_12",
+    "title": "Đồ án cuối kỳ — Hệ thống ngân hàng lõi phân tán mô phỏng Raft",
+    "description": "Thiết kế hệ thống giao dịch tài chính phân tán có khả năng chịu lỗi phân vùng mạng (Partition Tolerance) dựa trên thuật toán đồng thuận Raft Consensus.",
+    "subjectId": "sub_int13110",
+    "subjectName": "Cơ sở dữ liệu phân tán",
+    "subjectSlug": "co-so-du-lieu-phan-tan",
+    "dueDate": "2026-12-15T23:59:00.000Z",
+    "priority": "high",
+    "format": "Source Code GitHub & Báo cáo kỹ thuật",
+    "maxScore": 10,
+    "requirements": [
+      "Cơ chế bầu chọn Leader Election và nhân bản bản ghi Log Replication",
+      "Chịu được lỗi sập tối đa 1 trong 3 node mà hệ thống vẫn duy trì hoạt động",
+      "Giao dịch chuyển tiền đảm bảo tính nguyên tố và không bao giờ mất dữ liệu"
+    ],
+    "status": "open"
+  }
+]

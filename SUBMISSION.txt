@@ -1,0 +1,49 @@
+================================================================================
+BÀI NỘP THỰC HÀNH SỐ 3 — LẬP TRÌNH WEB NÂNG CAO (INT1411)
+ĐỀ TÀI: CLASS DEADLINE HUB (NEXT.JS 15, NEXTAUTH V5 & ANT DESIGN)
+================================================================================
+
+1. THÔNG TIN SINH VIÊN & HỌC PHẦN:
+- Giảng viên hướng dẫn: ThS. Ngô Văn Nhận
+- Thời gian giao bài: 27/10/2026 13:03
+- Họ và tên sinh viên: Nguyễn Tiến Tuấn
+- Mã số sinh viên: B23DCCC173
+- Lớp sinh viên: D23CQCC01-B
+- Lớp học phần tín chỉ: RIPT1411-20261-02
+- Khoa: Công nghệ Thông tin 1 — Học viện Công nghệ Bưu chính Viễn thông (PTIT)
+
+2. ĐƯỜNG DẪN KHO LƯU TRỮ VÀ TRIỂN KHAI TRỰC TUYẾN:
+- GitHub Repository (Public): https://github.com/Tunhoclaptrinh/WebNangCao
+- Git Branch thực hành: practice-lab-03
+- Đường dẫn branch trực tiếp: https://github.com/Tunhoclaptrinh/WebNangCao/tree/practice-lab-03
+- Live Demo trên Vercel: https://devworkspace-ex07-b23dccc173.vercel.app
+
+3. TÀI KHOẢN MẪU CHẤM BÀI (TEST CREDENTIALS):
+a) Tài khoản Quản trị viên / Lớp trưởng (Admin):
+   - Email: admin@ptit.edu.vn
+   - Mật khẩu: admin123
+   - Quyền hạn: Quản trị toàn quyền, xem KPI lớp, Thêm deadline mới, Xóa deadline, Kích hoạt On-demand Revalidation.
+b) Tài khoản Sinh viên (User):
+   - Email: sv@ptit.edu.vn
+   - Mật khẩu: sv123456
+   - Mã sinh viên: B23DCCC173 (Nguyễn Tiến Tuấn)
+   - Quyền hạn: Xem Dashboard cá nhân hóa, theo dõi % hoàn thành học kỳ, đánh dấu hoàn thành bài tập đã nộp.
+c) Đăng nhập GitHub OAuth:
+   - Hỗ trợ liên kết tài khoản GitHub trực tiếp (OAuth 2.0 PKCE).
+
+4. MA TRẬN CHIẾN LƯỢC RENDERING (THEO YÊU CẦU ĐỀ BÀI):
+- Route "/" (Trang chủ): SSG (Static Site Generation), load siêu tốc.
+- Route "/subjects/[slug]": SSG với generateStaticParams cho 4 môn học (INT1411, INT1340, INT1332, INT13110).
+- Route "/deadlines": ISR (Incremental Static Regeneration) tự động tái tạo sau mỗi 60 giây.
+- Route "/deadlines/[id]": ISR kết hợp On-demand Revalidation (revalidatePath) làm mới tức thì khi Lớp trưởng thêm/xóa bài tập.
+- Route "/dashboard": SSR (Server-Side Rendering, force-dynamic) cá nhân hóa theo từng sinh viên.
+- Route "/admin": SSR (Server-Side Rendering, force-dynamic) bảo vệ nghiêm ngặt quyền Admin.
+- Route "/403": Báo lỗi từ chối truy cập khi sinh viên vào trang Admin.
+
+5. KẾT QUẢ KIỂM THỬ & CHẤT LƯỢNG:
+- Jest & RTL Test Coverage: 92.74% Statements (36/36 tests passed).
+- Playwright E2E Tests: 8/8 scenarios passed (14.4s).
+- Google Lighthouse Performance: 96 / 96 / 96 / 100 (LCP 763ms, CLS 0.000).
+- Báo cáo chi tiết kèm toàn bộ hình ảnh minh chứng nhúng trực tiếp: REPORT_LAB_03.md
+
+================================================================================

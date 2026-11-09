@@ -1,0 +1,58 @@
+[
+  {
+    "id": "sub_int1411",
+    "code": "INT1411",
+    "slug": "lap-trinh-web-nang-cao",
+    "name": "Lập trình Web nâng cao",
+    "credits": 3,
+    "lecturer": "ThS. Ngô Văn Nhận",
+    "lecturerEmail": "nhannv@ptit.edu.vn",
+    "room": "Phòng máy 302 - Nhà A2",
+    "schedule": "Thứ 2 (Ca 2: 09:00 - 11:30)",
+    "description": "Nghiên cứu chuyên sâu kiến trúc ứng dụng web hiện đại: TypeScript nâng cao, Design Patterns trong React, State Management (Redux Toolkit, Zustand, Context API), tối ưu hiệu năng web 10k items, kiểm thử toàn diện với Jest/RTL và Full-stack với Next.js 15 App Router (SSG, ISR, SSR, NextAuth).",
+    "color": "#1677ff",
+    "badge": "Chuyên ngành"
+  },
+  {
+    "id": "sub_int1340",
+    "code": "INT1340",
+    "slug": "nhap-mon-tri-tue-nhan-tao",
+    "name": "Nhập môn Trí tuệ nhân tạo",
+    "credits": 3,
+    "lecturer": "TS. Nguyễn Thị Thu",
+    "lecturerEmail": "thunt@ptit.edu.vn",
+    "room": "Hội trường 101 - Nhà A3",
+    "schedule": "Thứ 3 (Ca 3: 13:00 - 15:30)",
+    "description": "Cung cấp nền tảng toán học và giải thuật thông minh trong AI: Tìm kiếm Heuristic (A*, Hill Climbing), lý thuyết trò chơi đối kháng (Minimax, Alpha-Beta Pruning), học máy cơ bản (Hồi quy, Phân loại) và mạng nơ-ron nhân tạo ứng dụng.",
+    "color": "#722ed1",
+    "badge": "Cơ sở ngành"
+  },
+  {
+    "id": "sub_int1332",
+    "code": "INT1332",
+    "slug": "kien-truc-may-tinh",
+    "name": "Kiến trúc máy tính & Vi xử lý",
+    "credits": 3,
+    "lecturer": "TS. Trần Văn Minh",
+    "lecturerEmail": "minhtv@ptit.edu.vn",
+    "room": "Phòng 405 - Nhà A1",
+    "schedule": "Thứ 4 (Ca 1: 06:45 - 09:15)",
+    "description": "Nguyên lý tổ chức và thiết kế vi kiến trúc vi xử lý hiện đại: Tập lệnh RISC/MIPS, kỹ thuật đường ống lệnh (Instruction Pipelining), phân cấp bộ nhớ đệm (Cache hierarchy L1/L2/L3), bộ nhớ ảo và điều khiển ngắt ngoại vi.",
+    "color": "#fa8c16",
+    "badge": "Cốt lõi"
+  },
+  {
+    "id": "sub_int13110",
+    "code": "INT13110",
+    "slug": "co-so-du-lieu-phan-tan",
+    "name": "Cơ sở dữ liệu phân tán",
+    "credits": 3,
+    "lecturer": "PGS.TS. Lê Hoàng Nam",
+    "lecturerEmail": "namlh@ptit.edu.vn",
+    "room": "Phòng 204 - Nhà A2",
+    "schedule": "Thứ 6 (Ca 4: 15:45 - 18:15)",
+    "description": "Thiết kế và quản trị các hệ thống dữ liệu quy mô lớn: Kỹ thuật phân mảnh ngang và dọc, sao lưu nhân bản dữ liệu, giao thức đồng thuận phân tán (2-Phase Commit, Paxos, Raft), tối ưu hóa truy vấn phân tán và xử lý bế tắc.",
+    "color": "#13c2c2",
+    "badge": "Chuyên ngành"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "sv@ptit.edu.vn": [
+    "dl_05",
+    "dl_06",
+    "dl_10"
+  ],
+  "user@devworkspace.local": [
+    "dl_05",
+    "dl_06"
+  ],
+  "admin@ptit.edu.vn": [
+    "dl_01",
+    "dl_05",
+    "dl_06",
+    "dl_10"
+  ],
+  "test-student@ptit.edu.vn": [],
+  "sv-action-test@ptit.edu.vn": []
+}

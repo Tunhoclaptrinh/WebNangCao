@@ -1,0 +1,38 @@
+[
+  {
+    "id": "usr_admin_ptit",
+    "email": "admin@ptit.edu.vn",
+    "name": "Lớp trưởng PTIT (Admin)",
+    "role": "admin",
+    "studentId": "B23DCCC001",
+    "class": "RIPT1411-20261-02",
+    "passwordHash": "$2a$12$ZqH83aQeI5l8M9KsmV7gIOW2nL9h4fC9e9gX1Yj8e2l7r3v5s4h9W"
+  },
+  {
+    "id": "usr_student_ptit",
+    "email": "sv@ptit.edu.vn",
+    "name": "Nguyễn Tiến Tuấn (Sinh viên)",
+    "role": "user",
+    "studentId": "B23DCCC173",
+    "class": "RIPT1411-20261-02",
+    "passwordHash": "$2a$12$ZqH83aQeI5l8M9KsmV7gIOW2nL9h4fC9e9gX1Yj8e2l7r3v5s4h9W"
+  },
+  {
+    "id": "usr_demo_admin",
+    "email": "admin@devworkspace.local",
+    "name": "Quản trị viên Demo",
+    "role": "admin",
+    "studentId": "ADMIN_DEMO",
+    "class": "RIPT1411-20261-02",
+    "passwordHash": "$2a$12$ZqH83aQeI5l8M9KsmV7gIOW2nL9h4fC9e9gX1Yj8e2l7r3v5s4h9W"
+  },
+  {
+    "id": "usr_demo_user",
+    "email": "user@devworkspace.local",
+    "name": "Sinh viên Demo",
+    "role": "user",
+    "studentId": "B23DCCC173",
+    "class": "RIPT1411-20261-02",
+    "passwordHash": "$2a$12$ZqH83aQeI5l8M9KsmV7gIOW2nL9h4fC9e9gX1Yj8e2l7r3v5s4h9W"
+  }
+]
